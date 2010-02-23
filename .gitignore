@@ -1,0 +1,10 @@
+log/*.log
+tmp/**/*
+doc/api
+doc/app
+config/database.yml
+db/*.sqlite3
+public/images/*
+public/logos/*
+public/cache/**/*
+*.swp
