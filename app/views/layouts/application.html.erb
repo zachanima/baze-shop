@@ -4,6 +4,23 @@
     <%= stylesheet_link_tag('application', 'formtastic', 'formtastic-changes', :cache => 'base') %>
   </head>
   <body>
-    <%= yield %>
+
+    <div id="header">
+    </div>
+
+    <div id="nav">
+      <ul>
+        <li><%= link_to('Shops', shops_path) %></li>
+      </ul>
+    </div>
+
+    <div id="content">
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+      Copyright &copy; 2010 Baze A/S
+    </div>
+
   </body>
 </html>
