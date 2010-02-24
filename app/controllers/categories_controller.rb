@@ -1,44 +1,42 @@
 class CategoriesController < ApplicationController
-  def index
-    @categories = Category.all
-  end
-  
-  def show
-    @category = Category.find(params[:id])
-  end
-  
+  before_filter :find_category, :only => [:edit, :update]
+  before_filter :find_shop, :only => [:new, :edit, :create, :update]
+
   def new
     @category = Category.new
   end
+
+  def edit
+  end
   
   def create
-    @category = Category.new(params[:category])
-    if @category.save
+    if @shop.categories.build(params[:category]).save
       flash[:notice] = "Successfully created category."
-      redirect_to @category
+      redirect_to(edit_shop_path(@shop))
     else
-      render :action => 'new'
+      render :action => :new
     end
   end
   
-  def edit
-    @category = Category.find(params[:id])
-  end
   
   def update
-    @category = Category.find(params[:id])
     if @category.update_attributes(params[:category])
       flash[:notice] = "Successfully updated category."
-      redirect_to @category
+      redirect_to(edit_shop_path(@shop))
     else
-      render :action => 'edit'
+      render :action => :edit
     end
   end
   
   def destroy
+  end
+
+  private
+  def find_category
     @category = Category.find(params[:id])
-    @category.destroy
-    flash[:notice] = "Successfully destroyed category."
-    redirect_to categories_url
+  end
+
+  def find_shop
+    @shop = Shop.find(params[:shop_id])
   end
 end

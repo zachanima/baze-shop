@@ -28,7 +28,7 @@ class ShopsController < ApplicationController
     if @shop.update_attributes(params[:shop])
       redirect_to(shops_path)
     else
-      render :action => :new
+      render :action => :edit
     end
   end
 

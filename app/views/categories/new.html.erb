@@ -1,5 +1,2 @@
-<% title "New Category" %>
-
-<%= render :partial => 'form' %>
-
-<p><%= link_to "Back to List", categories_path %></p>
+<% title "New Category for #{@shop.name}" %>
+<%= render 'form' %>

@@ -1,4 +1,10 @@
 <% semantic_form_for @shop do |f| %>
-  <%= f.inputs %>
+  <% f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :link %>
+    <%= f.input :text %>
+    <%= f.input :categories, :as => :check_boxes, :collection => categories_link_collection %>
+    <%= link_to_new('category', new_shop_category_path(@shop)) %>
+  <% end %>
   <%= f.buttons %>
 <% end %>
