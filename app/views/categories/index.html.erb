@@ -1,19 +1,19 @@
 <% title "Categories" %>
+<%= link_to_new('category', new_category_path) %>
 
 <table>
-  <tr>
-    <th>Parent</th>
-    <th>Name</th>
-  </tr>
-  <% for category in @categories %>
+  <thead>
     <tr>
-      <td><%=h category.parent_id %></td>
-      <td><%=h category.name %></td>
-      <td><%= link_to "Show", category %></td>
-      <td><%= link_to "Edit", edit_category_path(category) %></td>
-      <td><%= link_to "Destroy", category, :confirm => 'Are you sure?', :method => :delete %></td>
+      <th class="checkbox"><input type="checkbox"></th>
+      <th>Name</th>
+      <th>Parent</th>
+      <th>Shop</th>
+      <th>Created</th>
+      <th>Updated</th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <%= render @categories unless @categories.nil? %>
+  </tbody>
 </table>
 
-<p><%= link_to "New Category", new_category_path %></p>
