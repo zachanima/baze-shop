@@ -1,0 +1,7 @@
+<tr class="<%= cycle('odd', 'even') %>">
+  <td class="checkbox"><input type="checkbox"></td>
+  <td class="name"><%= link_to(shop.name, edit_shop_path(shop)) %></td>
+  <td><%= link_to(shop.link, shop_url(shop)) %></td>
+  <td><%= shop.created_at %></td>
+  <td><%= shop.updated_at %></td>
+</tr>

@@ -1,2 +1,18 @@
-<h1>Shops#index</h1>
-<p>Find me in app/views/shops/index.html.erb</p>
+<h1>List Shops</h1>
+<%= link_to_new('shop', new_shop_path) %>
+
+<table>
+  <thead>
+    <tr>
+      <th class="checkbox"><input type="checkbox"></th>
+      <th>Shop</th>
+      <th>Link</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @shops unless @shops.nil? %>
+  </tbody>
+</table>
+
