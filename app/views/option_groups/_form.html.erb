@@ -1,4 +1,9 @@
 <%- semantic_form_for @option_group do |f| -%>
-  <%= f.inputs %>
+  <% f.inputs do %>
+    <%= f.input :name %>
+    <%= f.input :text %>
+    <%= f.input :options, :as => :check_boxes, :collection => @option_group.options.collect{ |o| [o.text, o.id] } %>
+    <%= link_to_new('option', new_option_group_option_path(@option_group)) %>
+  <% end %>
   <%= f.buttons %>
 <%- end -%>
