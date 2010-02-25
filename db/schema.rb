@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100225215338) do
+ActiveRecord::Schema.define(:version => 20100225232728) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -27,6 +27,16 @@ ActiveRecord::Schema.define(:version => 20100225215338) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "categorizations_option_groups", :id => false, :force => true do |t|
+    t.integer "categorization_id"
+    t.integer "option_group_id"
+  end
+
+  create_table "categorizations_options", :id => false, :force => true do |t|
+    t.integer "categorization_id"
+    t.integer "option_id"
   end
 
   create_table "option_groups", :force => true do |t|

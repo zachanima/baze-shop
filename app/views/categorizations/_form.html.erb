@@ -2,6 +2,12 @@
   <%- f.inputs do -%>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
+    <%- @categorization.option_groups.each do |option_group| -%>
+      <%= f.input :options, :as => :check_boxes, :label => option_group.text, :collection => option_group.options.collect { |o| [o.text, o.id] } %>
+      <%= link_to_new('option', new_option_group_option_path(option_group)) %>
+    <% end %>
+    <%= f.input :option_groups, :as => :check_boxes, :collection => OptionGroup.all.collect { |og| [og.name, og.id] } %>
+    <%= link_to_new('option group', new_option_group_path) %>
   <%- end -%>
   <%= f.buttons %>
 <% end %>
