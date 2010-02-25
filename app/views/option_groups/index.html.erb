@@ -1,0 +1,23 @@
+<% title 'List option groups' %>
+<% form_tag(:action => :multiple) do %>
+  <%= link_to_new('option group', new_option_group_path) %>
+  <%= submit_tag('Edit',   :disabled => true, :name => 'edit') %>
+  <%= submit_tag('Copy',   :disabled => true, :name => 'copy') %>
+  <%= submit_tag('Delete', :disabled => true, :name => 'delete') %>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="checkbox"><input type="checkbox"></th>
+        <th>Name</th>
+        <th>Text</th>
+        <th>Options</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @option_groups unless @option_groups.nil? %>
+    </tbody>
+  </table>
+<% end %>
