@@ -12,6 +12,15 @@ a {
   color: #0000FF;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #000;
+  padding: 2px 8px;
+}
+
 .clear {
   clear: both;
   height: 0;

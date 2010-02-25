@@ -2,9 +2,7 @@
   <td class="checkbox">
     <%= check_box_tag('categorization_ids[]', categorization.id) %>
   </td>
-  <td class="name"><%= link_to(categorization.product.name, edit_shop_category_categorization_path(@shop, categorization.category, categorization)) %>
-  <td><%= categorization.product.number %></td>
-  <td><%= categorization.product.brand %></td>
+  <td class="name"><%= link_to(categorization.product.name, edit_shop_categorization_path(@shop, categorization)) %>
   <td><%= categorization.category.self_and_ancestors.collect { |a| a.name }.join(' > ') %></td>
   <td><%= categorization.product.created %></td>
   <td><%= categorization.product.updated %></td>

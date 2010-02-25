@@ -1,4 +1,7 @@
 <% semantic_form_for [@shop, @categorization] do |f| %>
-  <%= f.inputs %>
+  <%- f.inputs do -%>
+    <%= f.input :category, :as => :radio, :collection => categories_collection %>
+    <%= link_to_new('category', new_shop_category_path(@shop)) %>
+  <%- end -%>
   <%= f.buttons %>
 <% end %>

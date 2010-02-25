@@ -7,12 +7,12 @@ class CategorizationsController < ApplicationController
   end
 
   def edit
-    @category = @categorization.category
+    @categories = @categorization.category.shop.categories
   end
 
   def update
     if @categorization.update_attributes(params[:categorization])
-      redirect_to(shop_categories_path(@shop))
+      redirect_to(shop_categorizations_path(@shop))
     else
       render :action => :edit
     end
