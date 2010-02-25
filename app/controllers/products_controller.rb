@@ -40,7 +40,11 @@ class ProductsController < ApplicationController
 
   private
   def multiple_add_to_shop
-    render :text => "Add products <em>#{params[:product_ids].collect{|id|Product.find(id).name}.join('</em>, <em>')}</em> to shop <em>#{Shop.find(params[:shop_id]).name}</em>"
+    if params[:product_ids].nil?
+      redirect_to(products_path)
+    else
+      render :text => "Add products <em>#{params[:product_ids].collect{|id|Product.find(id).name}.join('</em>, <em>')}</em> to shop <em>#{Shop.find(params[:shop_id]).name}</em>"
+    end
   end
 
   def find_product
