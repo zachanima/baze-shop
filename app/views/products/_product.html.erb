@@ -1,5 +1,7 @@
-<tr>
-  <td class="checkbox"><input type="checkbox"></td>
+<tr class="<%= cycle('odd', 'even') %>">
+  <td class="checkbox">
+    <%= check_box_tag('product_ids[]', product.id) %>
+  </td>
   <td class="name"><%= link_to(product.name, edit_product_path(product)) %>
   <td><%= product.number %></td>
   <td><%= product.brand %></td>

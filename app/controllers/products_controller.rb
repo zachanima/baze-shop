@@ -30,7 +30,19 @@ class ProductsController < ApplicationController
     end
   end
 
+  def multiple
+    if params[:shop_id]
+      multiple_add_to_shop
+    else
+      render :text => params.inspect
+    end
+  end
+
   private
+  def multiple_add_to_shop
+    render :text => "Add products <em>#{params[:product_ids].collect{|id|Product.find(id).name}.join('</em>, <em>')}</em> to shop <em>#{Shop.find(params[:shop_id]).name}</em>"
+  end
+
   def find_product
     @product = Product.find(params[:id])
   end
