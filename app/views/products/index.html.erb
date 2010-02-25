@@ -1,19 +1,19 @@
-<% title 'List Shops' %>
-<%= link_to_new('shop', new_shop_path) %>
+<% title 'List Products' %>
+<%= link_to_new('product', new_product_path) %>
 
 <table>
   <thead>
     <tr>
       <th class="checkbox"><input type="checkbox"></th>
       <th>Name</th>
-      <th>Link</th>
-      <th>Users</th>
+      <th>Number</th>
+      <th>Brand</th>
+      <th>Shops</th>
       <th>Created</th>
       <th>Updated</th>
     </tr>
   </thead>
   <tbody>
-    <%= render @shops unless @shops.nil? %>
+    <%= render @products unless @products.nil? %>
   </tbody>
 </table>
-

@@ -1,10 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :shops do |shop|
-    shop.resources :users
     shop.resources :categories
+    shop.resources :products
+    shop.resources :users
   end
 
   map.resources :users
+  map.resources :products
 
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'

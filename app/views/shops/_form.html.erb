@@ -1,7 +1,7 @@
 <% semantic_form_for @shop do |f| %>
   <% f.inputs do %>
     <%= f.input :name %>
-    <%= f.input :link %>
+    <%= f.input :link, :hint => "http://shop.baze.dk/<em>#{@shop.link || 'link'}</em>" %>
     <%= f.input :text %>
     <%= f.input :categories, :as => :check_boxes, :collection => categories_link_collection %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
