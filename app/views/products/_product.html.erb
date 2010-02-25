@@ -5,7 +5,7 @@
   <td class="name"><%= link_to(product.name, edit_product_path(product)) %>
   <td><%= product.number %></td>
   <td><%= product.brand %></td>
-  <td><%#= product.shops.collect('&name').join(', ') %></td>
+  <td><%= product.categorizations.collect { |c| c.category.shop.name }.flatten.join(', ') %></td>
   <td><%= product.created %></td>
   <td><%= product.updated %></td>
 </tr>
