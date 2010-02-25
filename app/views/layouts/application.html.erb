@@ -16,7 +16,7 @@
           <%= link_to('Products', products_path) %>
           <ul>
             <%- Shop.all.each do |shop| -%>
-              <li><%= link_to(shop.name, shop_categories_path(shop)) %></li>
+              <li><%= link_to(shop.name, shop_categorizations_path(shop)) %></li>
             <%- end -%>
           </ul>
         </li>

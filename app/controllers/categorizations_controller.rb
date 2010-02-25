@@ -1,6 +1,10 @@
 class CategorizationsController < ApplicationController
   before_filter :find_categorization, :only => [:edit, :update]
-  before_filter :find_shop, :only => [:edit, :update]
+  before_filter :find_shop
+
+  def index
+    @categorizations = @shop.categories.collect { |c| c.categorizations }.flatten
+  end
 
   def edit
     @category = @categorization.category
@@ -20,6 +24,6 @@ class CategorizationsController < ApplicationController
   end
 
   def find_shop
-    @shop = @categorization.category.shop
+    @shop = Shop.find(params[:shop_id])
   end
 end

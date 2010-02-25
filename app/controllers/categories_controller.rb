@@ -1,10 +1,6 @@
 class CategoriesController < ApplicationController
   before_filter :find_category, :only => [:edit, :update]
-  before_filter :find_shop, :only => [:index, :new, :edit, :create, :update]
-
-  def index
-    @categorizations = @shop.categories.collect { |c| c.categorizations }.flatten
-  end
+  before_filter :find_shop
 
   def new
     @category = Category.new
