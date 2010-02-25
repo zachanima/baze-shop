@@ -3,6 +3,11 @@
   <td class="name"><%= link_to(shop.name, edit_shop_path(shop)) %></td>
   <td><%= link_to(shop.link, shop_url(shop)) %></td>
   <td><%= shop.users.count %></td>
+  <td>
+    <%=
+      shop.categories.collect { |c| c.products }.flatten.count
+      %>
+  </td>
   <td><%= shop.created %></td>
   <td><%= shop.updated %></td>
 </tr>

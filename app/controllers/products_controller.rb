@@ -1,9 +1,9 @@
 class ProductsController < ApplicationController
   before_filter :find_product,  :only => [:edit, :show, :update]
-  before_filter :find_products, :only => [:index]
-  before_filter :find_shops,    :only => [:index]
 
   def index
+    @shops = Shop.all
+    @products = Product.all
   end
 
   def new
@@ -32,30 +32,25 @@ class ProductsController < ApplicationController
 
   def multiple
     if params[:shop_id]
-      multiple_add_to_shop
+      multiple_add_to_shop(params[:shop_id])
     else
       render :text => params.inspect
     end
+    redirect_to(products_path)
   end
 
   private
-  def multiple_add_to_shop
-    if params[:product_ids].nil?
-      redirect_to(products_path)
-    else
-      render :text => "Add products <em>#{params[:product_ids].collect{|id|Product.find(id).name}.join('</em>, <em>')}</em> to shop <em>#{Shop.find(params[:shop_id]).name}</em>"
+  def multiple_add_to_shop(shop_id)
+    unless params[:product_ids].nil?
+      shop = Shop.find(shop_id)
+      params[:product_ids].each do |product_id|
+        shop.categories.first.categorizations.build(:product_id => product_id).save
+      end
+      flash[:notice] = "Added products <em>#{params[:product_ids].collect{|id|Product.find(id).name}.join('</em>, <em>')}</em> to shop <em>#{Shop.find(params[:shop_id]).name}</em>"
     end
   end
 
   def find_product
     @product = Product.find(params[:id])
-  end
-
-  def find_products
-    @products = Product.all
-  end
-
-  def find_shops
-    @shops = Shop.all
   end
 end

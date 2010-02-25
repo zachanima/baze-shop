@@ -18,6 +18,40 @@ a {
   overflow: hidden;
 }
 
+#nav {
+  width: 75%;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 0 40px;
+  border: 1px solid black;
+}
+
+#nav ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#nav > ul > li {
+  display: inline-block;
+  position: relative;
+}
+
+#nav > ul > li > ul {
+  display: none;
+}
+
+#nav > ul > li:hover > ul {
+  background-color: #fff;
+  border: 1px solid #000;
+  display: block;
+  position: absolute;
+}
+
+#nav > ul > li > ul > li > a {
+  display: block;
+  padding: 4px 8px;
+}
+
 #container {
   width: 75%;
   margin: 0 auto;

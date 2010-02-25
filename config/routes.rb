@@ -1,6 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :shops do |shop|
-    shop.resources :categories
+    shop.resources :categories do |category|
+      category.resources :categorizations
+    end
     shop.resources :products
     shop.resources :users
   end

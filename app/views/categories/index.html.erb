@@ -1,0 +1,23 @@
+<% title "List Products for #{@shop.name}" %>
+<% form_tag(:action => :multiple) do %>
+  <%= link_to_new('product', new_product_path) %>
+  <%= submit_tag('Edit',   :disabled => true, :name => 'edit') %>
+  <%= submit_tag('Copy',   :disabled => true, :name => 'copy') %>
+  <%= submit_tag('Delete', :disabled => true, :name => 'delete') %>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="checkbox"><input type="checkbox"></th>
+        <th>Name</th>
+        <th>Number</th>
+        <th>Brand</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @categorizations unless @categorizations.nil? %>
+    </tbody>
+  </table>
+<% end %>

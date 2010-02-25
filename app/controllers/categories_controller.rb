@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   before_filter :find_category, :only => [:edit, :update]
-  before_filter :find_shop, :only => [:new, :edit, :create, :update]
+  before_filter :find_shop, :only => [:index, :new, :edit, :create, :update]
+
+  def index
+    @categorizations = @shop.categories.collect { |c| c.categorizations }.flatten
+  end
 
   def new
     @category = Category.new
@@ -11,7 +15,7 @@ class CategoriesController < ApplicationController
   
   def create
     if @shop.categories.build(params[:category]).save
-      flash[:notice] = "Successfully created category."
+      flash[:notice] = 'Successfully created category.'
       redirect_to(edit_shop_path(@shop))
     else
       render :action => :new
@@ -21,7 +25,7 @@ class CategoriesController < ApplicationController
   
   def update
     if @category.update_attributes(params[:category])
-      flash[:notice] = "Successfully updated category."
+      flash[:notice] = 'Successfully updated category.'
       redirect_to(edit_shop_path(@shop))
     else
       render :action => :edit
