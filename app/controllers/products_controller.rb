@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_filter :find_product,  :only => [:edit, :show, :update]
   before_filter :find_products, :only => [:index]
+  before_filter :find_shops,    :only => [:index]
 
   def index
   end
@@ -36,5 +37,9 @@ class ProductsController < ApplicationController
 
   def find_products
     @products = Product.all
+  end
+
+  def find_shops
+    @shops = Shop.all
   end
 end

@@ -1,6 +1,22 @@
 <% title 'List Products' %>
 <%= link_to_new('product', new_product_path) %>
 
+<select>
+  <option>Apply action...</option>
+  <option disabled="disabled" />
+  <option>Edit</option>
+  <option>Copy</option>
+  <option>Delete</option>
+</select>
+
+<select>
+  <option>Add to shop...</option>
+  <option disabled="disabled" />
+  <%- @shops.each do |shop| -%>
+    <option><%= shop.name %></option>
+  <%- end -%>
+</select>
+
 <table>
   <thead>
     <tr>
