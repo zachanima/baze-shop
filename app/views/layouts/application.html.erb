@@ -10,7 +10,14 @@
   <body>
     <div id="nav">
       <ul>
-        <li><%= link_to('Shops', shops_path) %></li>
+        <li>
+          <%= link_to('Shops', shops_path) %>
+          <ul>
+            <%- Shop.all.each do |shop| -%>
+              <li><%= link_to(shop.name, edit_shop_path(shop)) %></li>
+            <%- end -%>
+          </ul>
+        </li>
         <li><%= link_to('Users', users_path) %></li>
         <li>
           <%= link_to('Products', products_path) %>
