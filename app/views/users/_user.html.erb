@@ -1,9 +1,0 @@
-<tr class="<%= cycle('odd', 'even') %>">
-  <td class="checkbox"><input type="checkbox"></td>
-  <td class="name"><%= link_to([user.first_name, user.last_name].join(' '), edit_shop_user_path(user.shop, user)) %></td>
-  <td><%= @shop.nil? ? "#{link_to(user.shop.name, shop_users_path(user.shop))} (#{user.department})" : user.department %></td>
-  <td><%= user.username %></td>
-  <td><%= user.password %></td>
-  <td><%= user.created %></td>
-  <td><%= user.updated %></td>
-</tr>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :find_shop, :only => [:index, :new, :edit, :create, :update]
+  before_filter :find_shop
   before_filter :find_user, :only => [:edit, :update]
 
   def index
@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   # def edit
 
   def create
-    user = @shop ? @shop.users.build(params[:user]) : User.new(params[:user])
-    if user.save
+    @user = @shop ? @shop.users.build(params[:user]) : User.new(params[:user])
+    if @user.save
       flash[:notice] = 'Created user.'
       redirect_to(users_path)
     else

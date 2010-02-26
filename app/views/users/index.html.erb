@@ -1,20 +1,31 @@
-<% title 'List Users' %>
-<%= link_to_new('user', @shop.nil? ? new_user_path : new_shop_user_path(@shop)) %>
+<% title ['List', @shop ? nil : 'all', 'users', @shop ? "of #{@shop.name}" : nil].join(' ') %>
+<%= link_to_new('user', @shop ? new_shop_user_path(@shop) : new_user_path) %>
 
-<table>
-  <thead>
-    <tr>
-      <th class="checkbox"><input type="checkbox"></th>
-      <th>Name</th>
-      <th><%= @shop.nil? ? 'Shop' : 'Department' %></th>
-      <th>Username</th>
-      <th>Password</th>
-      <th>Created</th>
-      <th>Updated</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @users unless @users.nil? %>
-  </tbody>
-</table>
-
+<% form_tag({ :action => :multiple }, :class => 'index') do %>
+  <table>
+    <thead>
+      <tr>
+        <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
+        <th>Name</th>
+        <th><%= @shop ? 'Department' : 'Shop'%></th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td class="checkbox"><%= check_box_tag('user_ids[]', user.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to([user.first_name, user.last_name].join(' '), edit_shop_user_path(user.shop, user)) %></td>
+          <td><%= @shop ? user.department : "#{link_to(user.shop.name, shop_users_path(user.shop))} (#{user.department})" %></td>
+          <td><%= user.username %></td>
+          <td><%= user.password %></td>
+          <td><%= user.created %></td>
+          <td><%= user.updated %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
