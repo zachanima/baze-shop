@@ -184,6 +184,11 @@ form.index {
   color: #666;
 }
 
+#nav ul li a.active {
+  color: #666;
+  background-color: #fff;
+}
+
 #notice {
   color: #fff;
   background-color: #8c6;

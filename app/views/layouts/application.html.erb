@@ -17,10 +17,10 @@
     <div id="nav">
       <div class="content">
         <ul>
-          <li><%= link_to('Shops', shops_path) %></li>
-          <li><%= link_to('Users', users_path) %></li>
-          <li><%= link_to('Products', products_path) %></li>
-          <li><%= link_to('Options', option_groups_path) %></li>
+          <li><%= link_to('Shops',    shops_path,         :class => ['shops', 'categories'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
+          <li><%= link_to('Users',    users_path,         :class => 'users' == controller.controller_name ? 'active' : 'inactive') %></li>
+          <li><%= link_to('Products', products_path,      :class => ['products', 'categorizations'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
+          <li><%= link_to('Options',  option_groups_path, :class => ['option_groups', 'options'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
         </ul>
       </div>
     </div>
