@@ -14,6 +14,7 @@ class ShopsController < ApplicationController
   # def show
 
   def create
+    params[:shop][:link] = params[:shop][:link].parameterize
     @shop = Shop.new(params[:shop])
     if @shop.save
       flash[:notice] = 'Created shop.'
