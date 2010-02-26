@@ -1,4 +1,12 @@
-<% semantic_form_for @user do |f| %>
-  <%= f.inputs %>
+<% semantic_form_for @shop.nil? ? @user : [@shop, @user] do |f| %>
+  <% f.inputs do %>
+    <%= f.input :shop unless @shop %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :department %>
+    <%= f.input :username %>
+    <%= f.input :password %>
+    <%= f.input :comment %>
+  <% end %>
   <%= f.buttons %>
 <% end %>

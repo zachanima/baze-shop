@@ -1,12 +1,12 @@
 <% title 'List Users' %>
-<%= link_to_new('user', new_user_path) %>
+<%= link_to_new('user', @shop.nil? ? new_user_path : new_shop_user_path(@shop)) %>
 
 <table>
   <thead>
     <tr>
       <th class="checkbox"><input type="checkbox"></th>
       <th>Name</th>
-      <th>Shop</th>
+      <th><%= @shop.nil? ? 'Shop' : 'Department' %></th>
       <th>Username</th>
       <th>Password</th>
       <th>Created</th>

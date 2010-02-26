@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :find_shop
   before_filter :find_user,  :only => [:edit, :show, :update]
   before_filter :find_users, :only => [:index]
 
@@ -16,7 +17,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(params[:user])
+    if @shop
+      @user = @shop.users.build(params[:user])
+    else
+      @user = User.new(params[:user])
+    end
+
     if @user.save
       redirect_to(users_path)
     else
@@ -41,6 +47,14 @@ class UsersController < ApplicationController
   end
 
   def find_users
-    @users = User.all
+    if @shop
+      @users = @shop.users
+    else
+      @users = User.all
+    end
+  end
+
+  def find_shop
+    @shop = Shop.find(params[:shop_id]) unless params[:shop_id].nil?
   end
 end
