@@ -43,6 +43,12 @@
       </div>
     <% end %>
 
+    <div id="fortune">
+      <div class="content">
+        <strong>Error</strong>: <%= fortune %>
+      </div>
+    </div>
+
     <div class="content" id="content">
       <%= content_tag(:div, [flash[:notice], link_to_function('Hide', "$('notice').fade()")].join(' - '), :id => 'notice') if flash[:notice] %>
       <%- if show_title? -%>

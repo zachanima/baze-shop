@@ -64,15 +64,18 @@ input.checkbox {
   display: block;
 }
 
-#notice {
-  margin-bottom: 16px;
-  padding: 4px 8px;
+#fortune {
+  margin: 4px 0;
 }
 
 #content {
-  margin-top: 24px;
   padding: 16px;
   width: 718px;
+}
+
+#notice {
+  margin-bottom: 16px;
+  padding: 4px 8px;
 }
 
 #footer {
@@ -114,6 +117,10 @@ th {
 
 #subnav ul li a {
   font-size: 9pt;
+}
+
+#fortune {
+  font-size: 8pt;
 }
 
 #notice {
@@ -187,6 +194,10 @@ form.index {
 #nav ul li a.active {
   color: #666;
   background-color: #fff;
+}
+
+#fortune {
+  color: #999;
 }
 
 #notice {
