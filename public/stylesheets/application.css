@@ -125,7 +125,7 @@ th {
 
 /* colours */
 a {
-  color: #f82;
+  color: #e82;
 }
 
 a:hover {
@@ -161,7 +161,7 @@ form.index {
 }
 
 #nav {
-  background-color: #f82;
+  background-color: #e82;
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
 }
@@ -177,7 +177,7 @@ form.index {
 }
 
 #subnav ul li a {
-  color: #f82;
+  color: #e82;
 }
 
 #nav ul li a:hover, #subnav ul li a:hover {
@@ -201,7 +201,7 @@ form.index {
 
 #content {
   background-color: #fff;
-  border-top: 5px solid #f82;
-  border-bottom: 1px solid #f82;
+  border-top: 5px solid #e82;
+  border-bottom: 1px solid #e82;
 }
 

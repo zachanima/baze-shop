@@ -25,23 +25,23 @@
       </div>
     </div>
 
-    <div id="subnav">
-      <div class="content">
-        <ul>
-          <% Shop.all.each do |shop| %>
-            <li>
-              <% if ['shops', 'categories'].include?(controller.controller_name) %>
-                <%= link_to(shop.name.force_encoding('UTF-8'), edit_shop_path(shop)) %>
-              <% elsif 'users' == controller.controller_name %>
-                <%= link_to(shop.name.force_encoding('UTF-8'), shop_users_path(shop)) %>
-              <% elsif ['products', 'categorizations'].include?(controller.controller_name) %>
-                <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop)) %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
+    <% if ['users', 'products', 'categorizations'].include?(controller.controller_name) %>
+      <div id="subnav">
+        <div class="content">
+          <ul>
+            <% Shop.all.each do |shop| %>
+              <li>
+                <% if 'users' == controller.controller_name %>
+                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_users_path(shop)) %>
+                <% elsif ['products', 'categorizations'].include?(controller.controller_name) %>
+                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop)) %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
       </div>
-    </div>
+    <% end %>
 
     <div class="content" id="content">
       <%= content_tag(:div, [flash[:notice], link_to_function('Hide', "$('notice').fade()")].join(' - '), :id => 'notice') if flash[:notice] %>
