@@ -1,124 +1,202 @@
+/* positions and dimensions */
 body {
-  background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+  margin: 0;
 }
 
-a img {
-  border: none;
+form.index {
+  margin-top: 12px;
 }
 
-a {
-  color: #0000FF;
+h1 {
+  margin: 0 0 8px 0;
 }
+
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 th, td {
-  border: 1px solid #000;
-  padding: 2px 8px;
+  padding-left: 4px;
 }
 
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+th.checkbox, td.checkbox {
+  padding: 0;
+  width: 0;
+}
+
+input.checkbox {
+  margin: 3px;
+}
+
+.content {
+  margin: auto;
+  width: 750px;
+}
+
+#header {
+  padding: 20px 0;
 }
 
 #nav {
-  width: 75%;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 0 40px;
-  border: 1px solid black;
+  padding-top: 4px;
 }
 
-#nav ul {
-  list-style: none;
+#nav ul, #subnav ul {
+  margin: 0;
   padding-left: 0;
 }
 
-#nav > ul > li {
+#nav ul li, #subnav ul li {
   display: inline-block;
-  position: relative;
 }
 
-#nav > ul > li > ul {
-  display: none;
+#nav ul li a {
+  padding: 4px 16px 8px 16px;
 }
 
-#nav > ul > li:hover > ul {
-  background-color: #fff;
-  border: 1px solid #000;
+#subnav ul li a {
+  padding: 12px 16px;
+}
+
+#nav ul li a, #subnav ul li a {
   display: block;
-  position: absolute;
 }
 
-#nav > ul > li > ul > li > a {
-  display: block;
+#notice {
+  margin-bottom: 16px;
   padding: 4px 8px;
 }
 
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+#content {
+  margin-top: 24px;
+  padding: 16px;
+  width: 718px;
 }
 
-#flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px 0;
+#footer {
+  margin: 16px 0;
 }
 
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+
+
+/* texts */
+body {
+  font: 10pt arial;
 }
 
-#flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
+h1 {
+  font-size: 18pt;
 }
 
-.fieldWithErrors {
-  display: inline;
-}
-
-#errorExplanation {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-}
-
-#errorExplanation h2 {
+th {
   text-align: left;
+}
+
+#header {
+  text-align: right;
+}
+
+#nav ul, #subnav ul {
+  list-style: none;
+}
+
+#nav ul li a {
+  font-size: 13pt;
   font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
+}
+
+#nav ul li a, #subnav ul li a {
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#subnav ul li a {
+  font-size: 9pt;
+}
+
+#notice {
+  font-weight: bold;
+}
+
+
+
+
+/* colours */
+a {
+  color: #f82;
+}
+
+a:hover {
+  color: #333;
+}
+
+body {
+  color: #666;
+  background-color: #eee;
+}
+
+
+table, th, td {
+  border: 1px solid #fff;
+}
+
+th {
+  color: #fff;
+  background-color: #ccc;
+}
+
+tr.even {
+  background-color: #eee;
+}
+
+form.index {
+  border: 1px solid #ccc;
+}
+
+#header {
+  color: #fff;
+  background-color: #333;
+}
+
+#nav {
+  background-color: #f82;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
+
+#nav ul li a {
   color: #fff;
 }
 
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 8px;
+#subnav {
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
 }
 
-#errorExplanation ul {
-  margin: 2px 24px;
+#subnav ul li a {
+  color: #f82;
 }
 
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: disc;
+#nav ul li a:hover, #subnav ul li a:hover {
+  color: #666;
 }
+
+#notice {
+  color: #fff;
+  background-color: #8c6;
+  border: 2px solid #5b3;
+}
+
+#notice a {
+  color: #fff;
+}
+
+#content {
+  background-color: #fff;
+  border-top: 5px solid #f82;
+  border-bottom: 1px solid #f82;
+}
+
