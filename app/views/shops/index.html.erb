@@ -1,20 +1,31 @@
-<% title 'List Shops' %>
+<% title 'List all shops' %>
 <%= link_to_new('shop', new_shop_path) %>
 
-<table>
-  <thead>
-    <tr>
-      <th class="checkbox"><input type="checkbox"></th>
-      <th>Name</th>
-      <th>Link</th>
-      <th>Users</th>
-      <th>Products</th>
-      <th>Created</th>
-      <th>Updated</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render @shops unless @shops.nil? %>
-  </tbody>
-</table>
-
+<% form_tag(:action => :multiple) do %>
+  <table>
+    <thead>
+      <tr>
+        <th class="checkbox"><input id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
+        <th>Name</th>
+        <th>Link</th>
+        <th>Users</th>
+        <th>Products</th>
+        <th>Created</th>
+        <th>Updated</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shops.each do |shop| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td class="checkbox"><%= check_box_tag('shop_ids[]', shop.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to(shop.name, edit_shop_path(shop)) %></td>
+          <td><%= link_to(shop.link, shop_url(shop)) %></td>
+          <td><%= link_to(shop.users.count, shop_users_path(shop)) %></td>
+          <td><%= link_to(shop.products.count, shop_categorizations_path(shop)) %></td>
+          <td><%= shop.created %></td>
+          <td><%= shop.updated %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

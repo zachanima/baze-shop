@@ -3,8 +3,10 @@
     <%= f.input :name %>
     <%= f.input :link, :hint => "http://shop.baze.dk/<em>#{@shop.link || 'link'}</em>" %>
     <%= f.input :text %>
-    <%= f.input :categories, :as => :check_boxes, :collection => categories_link_collection %>
-    <%= link_to_new('category', new_shop_category_path(@shop)) %>
+    <% category_links.each do |category_link| %>
+      <%= category_link %><br />
+    <% end %>
+    <%= link_to_new('category', new_shop_category_path(@shop)) unless @shop.new_record? %>
   <% end %>
   <%= f.buttons %>
 <% end %>
