@@ -12,6 +12,7 @@ class CategorizationsController < ApplicationController
 
   def update
     if @categorization.update_attributes(params[:categorization])
+      flash[:notice] = 'Updated categorization.'
       redirect_to(shop_categorizations_path(@shop))
     else
       render :action => :edit
@@ -21,9 +22,5 @@ class CategorizationsController < ApplicationController
   private
   def find_categorization
     @categorization = Categorization.find(params[:id])
-  end
-
-  def find_shop
-    @shop = Shop.find(params[:shop_id])
   end
 end

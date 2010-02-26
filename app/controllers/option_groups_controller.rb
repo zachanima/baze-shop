@@ -1,5 +1,6 @@
 class OptionGroupsController < ApplicationController
   before_filter :find_option_group, :only => [:edit, :update]
+
   def index
     @option_groups = OptionGroup.all
   end
@@ -8,12 +9,11 @@ class OptionGroupsController < ApplicationController
     @option_group = OptionGroup.new
   end
 
-  def edit
-  end
+  # def edit
 
   def create
     if OptionGroup.new(params[:option_group]).save
-      flash[:notice] = 'Successfully created option group.'
+      flash[:notice] = 'Created option group.'
       redirect_to(option_groups_path)
     else
       render :action => :new
@@ -22,12 +22,14 @@ class OptionGroupsController < ApplicationController
 
   def update
     if @option_group.update_attributes(params[:option_group])
-      flash[:notice] = 'Successfully updated option group.'
+      flash[:notice] = 'Updated option group.'
       redirect_to(option_groups_path)
     else
       render :action => :edit
     end
   end
+
+  # def destroy
 
   private
   def find_option_group

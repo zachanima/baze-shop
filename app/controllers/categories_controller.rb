@@ -6,12 +6,12 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  def edit
-  end
+  # def edit
   
   def create
-    if @shop.categories.build(params[:category]).save
-      flash[:notice] = 'Successfully created category.'
+    category = @shop.categories.build(params[:category])
+    if category.save
+      flash[:notice] = 'Created category.'
       redirect_to(edit_shop_path(@shop))
     else
       render :action => :new
@@ -21,22 +21,17 @@ class CategoriesController < ApplicationController
   
   def update
     if @category.update_attributes(params[:category])
-      flash[:notice] = 'Successfully updated category.'
+      flash[:notice] = 'Updated category.'
       redirect_to(edit_shop_path(@shop))
     else
       render :action => :edit
     end
   end
   
-  def destroy
-  end
+  # def destroy
 
   private
   def find_category
     @category = Category.find(params[:id])
-  end
-
-  def find_shop
-    @shop = Shop.find(params[:shop_id])
   end
 end
