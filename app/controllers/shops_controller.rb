@@ -18,7 +18,7 @@ class ShopsController < ApplicationController
     @shop = Shop.new(params[:shop])
     if @shop.save
       flash[:notice] = 'Created shop.'
-      redirect_to(shops_path)
+      redirect_to(edit_shop_path(@shop))
     else
       render :action => :new
     end
