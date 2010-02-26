@@ -12,9 +12,10 @@ class CategorizationsController < ApplicationController
 
   def update
     if @categorization.update_attributes(params[:categorization])
-      flash[:notice] = 'Updated categorization.'
+      flash[:notice] = ['Updated categorization', @categorization.product.name].join(' ')
       redirect_to(shop_categorizations_path(@shop))
     else
+      flash[:error] = ['Could not update categorization', @categorization.product.name].join(' ')
       render :action => :edit
     end
   end

@@ -17,18 +17,20 @@ class ShopsController < ApplicationController
   def create
     @shop = Shop.new(params[:shop])
     if @shop.save
-      flash[:notice] = 'Created shop.'
+      flash[:notice] = ['Created shop', @shop.name].join(' ')
       redirect_to(edit_shop_path(@shop))
     else
+      flash[:error] = ['Could not create shop', @shop.name].join(' ')
       render :action => :new
     end
   end
 
   def update
     if @shop.update_attributes(params[:shop])
-      flash[:notice] = 'Updated shop.'
+      flash[:notice] = ['Updated shop', @shop.name].join(' ')
       redirect_to(shops_path)
     else
+      flash[:error] = ['Could not update shop', @shop.name].join(' ')
       render :action => :edit
     end
   end

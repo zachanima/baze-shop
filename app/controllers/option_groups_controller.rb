@@ -12,19 +12,22 @@ class OptionGroupsController < ApplicationController
   # def edit
 
   def create
-    if OptionGroup.new(params[:option_group]).save
-      flash[:notice] = 'Created option group.'
-      redirect_to(option_groups_path)
+    @option_group = OptionGroup.new(params[:option_group])
+    if @option_group.save
+      flash[:notice] = ['Created option group', @option_group.name].join(' ')
+      redirect_to(edit_option_groups_path)
     else
+      flash[:error] = ['Could not create option group', @option_group.name].join(' ')
       render :action => :new
     end
   end
 
   def update
     if @option_group.update_attributes(params[:option_group])
-      flash[:notice] = 'Updated option group.'
+      flash[:notice] = ['Updated option group', @option_group.name].join(' ')
       redirect_to(option_groups_path)
     else
+      flash[:error] = ['Could not update option group', @option_group.name].join(' ')
       render :action => :edit
     end
   end

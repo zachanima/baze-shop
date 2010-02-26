@@ -73,7 +73,7 @@ input.checkbox {
   width: 718px;
 }
 
-#notice {
+#notice, #error {
   margin-bottom: 16px;
   padding: 4px 8px;
 }
@@ -123,7 +123,7 @@ th {
   font-size: 8pt;
 }
 
-#notice {
+#notice, #error {
   font-weight: bold;
 }
 
@@ -205,12 +205,20 @@ form.index {
 }
 
 #notice {
-  color: #fff;
   background-color: #8c6;
   border: 2px solid #5b3;
 }
 
-#notice a {
+#notice a, #error a {
+  color: #fff;
+}
+
+#error {
+  background-color: #c54;
+  border: 2px solid #b21;
+}
+
+#notice, #error {
   color: #fff;
 }
 

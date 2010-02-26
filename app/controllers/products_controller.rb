@@ -16,18 +16,20 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(params[:product])
     if @product.save
-      flash[:notice] = 'Created product.'
+      flash[:notice] = ['Created product', @product.name].join(' ')
       redirect_to(products_path)
     else
+      flash[:error] = ['Could not create product', @product.name].join(' ')
       render :action => :new
     end
   end
 
   def update
     if @product.update_attributes(params[:product])
-      flash[:notice] = 'Updated product.'
+      flash[:notice] = ['Updated product', @product.name].join(' ')
       redirect_to(products_path)
     else
+      flash[:error] = ['Could not update product', @product.name].join(' ')
       render :action => :edit
     end
   end

@@ -1,2 +1,2 @@
-<% title 'New user' %>
+<% title ['New user', @shop ? "of #{@shop.name}" : nil].join(' ') %>
 <%= render 'form' %>

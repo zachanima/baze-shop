@@ -51,6 +51,7 @@
 
     <div class="content" id="content">
       <%= content_tag(:div, [flash[:notice], link_to_function('Hide', "$('notice').fade()")].join(' - '), :id => 'notice') if flash[:notice] %>
+      <%= content_tag(:div, [flash[:error], link_to_function('Hide', "$('error').fade()")].join(' - '), :id => 'error') if flash[:error] %>
       <%- if show_title? -%>
         <h1><%=h yield(:title) %></h1>
       <%- end -%>
