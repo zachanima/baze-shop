@@ -1,5 +1,6 @@
 class ShopsController < ApplicationController
   before_filter :find_shop, :only => [:edit, :show, :update]
+  before_filter :parameterize_link, :only => [:create, :update]
 
   def index
     @shops = Shop.all
@@ -14,7 +15,6 @@ class ShopsController < ApplicationController
   # def show
 
   def create
-    params[:shop][:link] = params[:shop][:link].parameterize
     @shop = Shop.new(params[:shop])
     if @shop.save
       flash[:notice] = 'Created shop.'
@@ -38,5 +38,9 @@ class ShopsController < ApplicationController
   private
   def find_shop
     @shop = Shop.find(params[:id])
+  end
+
+  def parameterize_link
+    params[:shop][:link] = params[:shop][:link].parameterize if params[:shop] and params[:shop][:link]
   end
 end
