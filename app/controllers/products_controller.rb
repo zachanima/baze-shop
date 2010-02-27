@@ -38,17 +38,23 @@ class ProductsController < ApplicationController
 
   def multiple
     if @shop
-      multiple_add_to_shop
-      flash[:notice] = 'Added products to shop.'
+      if multiple_add_to_shop
+        flash[:notice] = "Added #{params[:product_ids].count} products to shop #{@shop.name}"
+        redirect_to(products_path)
+      else
+        flash[:notice] = "Could not add products to shop #{@shop.name} (Does the shop have any categories?)"
+      end
     end
-    redirect_to(products_path)
   end
 
   private
   def multiple_add_to_shop
     if params[:product_ids]
+      @shop.categories.build(:name => 'root').save if @shop.categories.empty?
       params[:product_ids].each do |product_id|
-        @shop.categories.first.categorizations.build(:product_id => product_id).save
+        unless @shop.categories.first.categorizations.build(:product_id => product_id).save
+          return false
+        end
       end
     end
   end
