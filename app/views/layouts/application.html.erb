@@ -32,9 +32,9 @@
             <% Shop.all.each do |shop| %>
               <li>
                 <% if 'users' == controller.controller_name %>
-                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_users_path(shop)) %>
+                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_users_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
                 <% elsif ['products', 'categorizations'].include?(controller.controller_name) %>
-                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop)) %>
+                  <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
                 <% end %>
               </li>
             <% end %>

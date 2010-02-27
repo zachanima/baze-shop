@@ -185,6 +185,11 @@ form.index {
   color: #fff;
 }
 
+#nav ul li a.active {
+  color: #666;
+  background-color: #fff;
+}
+
 #subnav {
   background-color: #fff;
   border-top: 1px solid #ddd;
@@ -194,13 +199,12 @@ form.index {
   color: #e82;
 }
 
-#nav ul li a:hover, #subnav ul li a:hover {
+#subnav ul li a.active {
   color: #666;
 }
 
-#nav ul li a.active {
+#nav ul li a:hover, #subnav ul li a:hover {
   color: #666;
-  background-color: #fff;
 }
 
 #fortune {
