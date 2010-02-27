@@ -1,10 +1,7 @@
-<% title 'List Products' %>
-<% form_tag(:action => :multiple) do %>
-  <%= link_to_new('product', new_product_path) %>
-  <%= submit_tag('Edit',   :disabled => true, :name => 'edit') %>
-  <%= submit_tag('Copy',   :disabled => true, :name => 'copy') %>
-  <%= submit_tag('Delete', :disabled => true, :name => 'delete') %>
+<% title 'List all products' %>
+<%= link_to_new('product', new_product_path) %>
 
+<% form_tag({ :action => :multiple }, :class => 'index') do %>
   <select onchange="this.form.submit()" name="shop_id">
     <option>Add to shop...</option>
     <option disabled="disabled" />
@@ -16,7 +13,7 @@
   <table>
     <thead>
       <tr>
-        <th class="checkbox"><input type="checkbox"></th>
+        <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
         <th>Name</th>
         <th>Number</th>
         <th>Brand</th>
@@ -26,7 +23,17 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @products unless @products.nil? %>
+      <% @products.each do |product| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td class="checkbox"><%= check_box_tag('product_ids[]', product.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to(product.name, edit_product_path(product)) %>
+          <td><%= product.number %></td>
+          <td><%= product.brand %></td>
+          <td><%= product.categorizations.collect { |c| link_to(c.category.shop.name, shop_categorizations_path(c.category.shop)) }.flatten.join(', ') %></td>
+          <td><%= product.created %></td>
+          <td><%= product.updated %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 <% end %>
