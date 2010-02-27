@@ -97,6 +97,10 @@ th {
   text-align: left;
 }
 
+td.name {
+  font-weight: bold;
+}
+
 #header {
   text-align: right;
 }
