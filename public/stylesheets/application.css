@@ -42,6 +42,10 @@ th.checkbox, td.checkbox {
   padding: 20px 0;
 }
 
+#header .logout {
+  float: right;
+}
+
 #nav {
   padding-top: 4px;
 }
@@ -104,7 +108,7 @@ td.name {
   font-weight: bold;
 }
 
-#header {
+#header .logout {
   text-align: right;
 }
 
@@ -180,6 +184,10 @@ form.index {
 #header {
   color: #fff;
   background-color: #333;
+}
+
+#header .logout a {
+  color: #fff;
 }
 
 #nav {
