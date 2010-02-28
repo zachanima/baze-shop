@@ -1,7 +1,19 @@
 <% semantic_form_for @order do |f| %>
   <% f.inputs do %>
-    <%= f.input :user, :collection => User.find(:all, :order => 'shop_id, first_name, last_name').collect { |u| ["#{u.name} (#{u.shop.name})", u.id] } %>
-    <%= f.input :categorization, :collection => Categorization.all.collect { |c| [c.product.name, c.id] } %>
+    <li><%= label_tag :shop %>
+    <% if @shop %>
+      <%= @shop.name %></li>
+      <%= f.input :user, :collection => @shop.users.all(:order => 'first_name, last_name').collect { |u| [u.name, u.id] } %>
+      <%= f.input :categorization, :collection => @shop.products.collect { |p| [p.name, p.id] } %>
+    <% else %>
+      <select onchange="location='/shops/'+options[selectedIndex].value+'/orders/new'">
+        <option>Select shop...</option>
+        <option disabled="disabled">
+        <% @shops.each do |shop| %>
+          <option value="<%= shop.id %>"><%= shop.name %></option>
+        <% end %>
+      </select>
+    <% end %>
   <% end %>
   <%= f.buttons %>
 <% end %>

@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
     shop.resources :categorizations do |categorization|
       categorization.resources :order
     end
+    shop.resources :orders
     shop.resources :products
     shop.resources :users, :collection => {
       :import => :get,

@@ -19,15 +19,15 @@
       <div class="content">
         <ul>
           <li><%= link_to('Shops',    shops_path,         :class => ['shops', 'categories'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
-          <li><%= link_to_function('Users', "$('products').hide();$('users').show();$('subnav').slideDown({ duration: 0.5 });", :class => 'users' == controller.controller_name ? 'active' : 'inactive') %></li>
-          <li><%= link_to_function('Products', "$('users').hide();$('products').show();$('subnav').slideDown({ duration: 0.5 });", :class => ['products', 'categorizations'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
+          <li><%= link_to_function('Users', "$('orders').hide();$('products').hide();$('users').show();$('subnav').slideDown({ duration: 0.5 });", :class => 'users' == controller.controller_name ? 'active' : 'inactive') %></li>
+          <li><%= link_to_function('Products', "$('orders').hide();$('users').hide();$('products').show();$('subnav').slideDown({ duration: 0.5 });", :class => ['products', 'categorizations'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
+          <li><%= link_to_function('Orders', "$('products').hide();$('users').hide();$('orders').show();$('subnav').slideDown({ duration: 0.5 });", :class => 'orders' == controller.controller_name ? 'active' : 'inactive') %></li>
           <li><%= link_to('Options',  option_groups_path, :class => ['option_groups', 'options'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
-          <li><%= link_to('Orders', orders_path) %></li>
         </ul>
       </div>
     </div>
 
-    <% if ['users', 'products', 'categorizations'].include?(controller.controller_name) %>
+    <% if ['users', 'products', 'categorizations', 'orders'].include?(controller.controller_name) %>
       <div id="subnav">
     <% else %>
       <div id="subnav" style="display: none;">
@@ -45,6 +45,7 @@
             </li>
           <% end %>
         </ul>
+
         <% if ['products', 'categorizations'].include?(controller.controller_name) %>
           <ul id="products">
         <% else %>
@@ -54,6 +55,19 @@
           <% Shop.all.each do |shop| %>
             <li>
               <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+            </li>
+          <% end %>
+        </ul>
+
+        <% if 'orders' == controller.controller_name %>
+          <ul id="orders">
+        <% else %>
+          <ul id="orders" style="display: none;">
+        <% end %>
+          <li><%= link_to('All orders', orders_path, :class => @shop ? 'inactive' : 'active') %></li>
+          <% Shop.all.each do |shop| %>
+            <li>
+              <%= link_to(shop.name.force_encoding('UTF-8'), shop_orders_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>

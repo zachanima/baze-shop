@@ -1,5 +1,5 @@
-<% title 'List all orders' %>
-<%= link_to_new('order', new_order_path) %>
+<% title ['List', @shop ? nil : 'all', 'orders', @shop ? "of #{@shop.name}" : nil].join(' ') %>
+<%= link_to_new('order', @shop ? new_shop_order_path(@shop) : new_order_path) %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
   <table>

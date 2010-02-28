@@ -1,2 +1,2 @@
-<% title 'New order' %>
+<% title ['New order', @shop ? "for #{@shop.name}" : nil].join(' ') %>
 <%= render 'form' %>
