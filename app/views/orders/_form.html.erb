@@ -1,0 +1,7 @@
+<% semantic_form_for @order do |f| %>
+  <% f.inputs do %>
+    <%= f.input :user, :collection => User.find(:all, :order => 'shop_id, first_name, last_name').collect { |u| ["#{u.name} (#{u.shop.name})", u.id] } %>
+    <%= f.input :categorization, :collection => Categorization.all.collect { |c| [c.product.name, c.id] } %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>

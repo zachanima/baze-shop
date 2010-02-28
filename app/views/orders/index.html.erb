@@ -1,0 +1,25 @@
+<% title 'List all orders' %>
+<%= link_to_new('order', new_order_path) %>
+
+<% form_tag({ :action => :multiple }, :class => 'index') do %>
+  <table>
+    <thead>
+      <tr>
+        <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
+        <th>ID</th>
+        <th>User</th>
+        <th>Product</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td class="checkbox"><%= check_box_tag('order_ids[]', order.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to(order.id, edit_order_path(order)) %></td>
+          <td><%= link_to(order.user.name, edit_shop_user_path(order.user.shop, order.user)) %></td>
+          <td><%= link_to(order.categorization.product.name, edit_shop_categorization_path(order.categorization.shop, order.categorization)) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
