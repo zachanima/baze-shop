@@ -1,0 +1,18 @@
+<h1><%= @shop.name %></h1>
+<% form_tag({ :action => :login }, :class => 'formtastic') do %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label :user_session, 'username' %>
+        <%= text_field_tag :username %>
+      </li>
+      <li>
+        <%= label :user_session, 'password' %>
+        <%= text_field_tag :password %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset>
+    <ol><li><%= submit_tag 'Log in' %> </li></ol>
+<% end %>
