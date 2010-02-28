@@ -1,4 +1,8 @@
 /* positions and dimensions */
+a.button {
+  margin-right: 8px;
+}
+
 body {
   margin: 0;
 }
@@ -11,6 +15,9 @@ h1 {
   margin: 0 0 8px 0;
 }
 
+input.checkbox {
+  margin: 3px;
+}
 
 table {
   border-collapse: collapse;
@@ -24,10 +31,6 @@ th, td {
 th.checkbox, td.checkbox {
   padding: 0;
   width: 0;
-}
-
-input.checkbox {
-  margin: 3px;
 }
 
 .content {
