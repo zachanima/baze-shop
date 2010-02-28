@@ -1,12 +1,23 @@
 <% semantic_form_for @shop ? [@shop, @user] : @user do |f| %>
   <% f.inputs do %>
-    <%= f.input :shop unless @shop %>
-    <%= f.input :first_name %>
-    <%= f.input :last_name %>
-    <%= f.input :department %>
-    <%= f.input :username %>
-    <%= f.input :password %>
-    <%= f.input :comment %>
+    <li><%= label_tag :shop %>
+    <% if @shop %>
+      <%= @shop.name %></li>
+      <%= f.input :first_name %>
+      <%= f.input :last_name %>
+      <%= f.input :department %>
+      <%= f.input :username %>
+      <%= f.input :password %>
+      <%= f.input :comment %>
+    <% else %>
+      <select onchange="location='/shops/'+options[selectedIndex].value+'/users/new'">
+        <option>Select shop...</option>
+        <option disabled="disabled">
+        <% @shops.each do |shop| %>
+          <option value="<%= shop.id %>"><%= shop.name %></option>
+        <% end %>
+      </select>
+    <% end %>
   <% end %>
-  <%= f.buttons %>
+  <%= f.buttons if @shop %>
 <% end %>
