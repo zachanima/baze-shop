@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :find_user, :only => [:edit, :update]
 
   def index
-    @users = @shop ? @shop.users : User.all
+    @users = @shop ? @shop.users : User.all(:order => 'first_name, last_name')
   end
 
   def new
