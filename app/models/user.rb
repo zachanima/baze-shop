@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  include DateMethods
-
   belongs_to :shop
   validates_presence_of :first_name, :username, :password
   validates_uniqueness_of :username, :scope => :shop_id

@@ -10,8 +10,6 @@
         <th>Link</th>
         <th>Users</th>
         <th>Products</th>
-        <th>Created</th>
-        <th>Updated</th>
       </tr>
     </thead>
     <tbody>
@@ -22,8 +20,6 @@
           <td><%= link_to(shop.link, shop_url(shop)) %></td>
           <td><%= link_to(shop.users.count, shop_users_path(shop)) %></td>
           <td><%= link_to(shop.products.count, shop_categorizations_path(shop)) %></td>
-          <td><%= shop.created %></td>
-          <td><%= shop.updated %></td>
         </tr>
       <% end %>
     </tbody>

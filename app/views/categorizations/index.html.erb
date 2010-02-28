@@ -9,8 +9,6 @@
         <th>Name</th>
         <th>Category</th>
         <th>Options</th>
-        <th>Created</th>
-        <th>Updated</th>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +18,6 @@
           <td class="name"><%= link_to(categorization.product.name, edit_shop_categorization_path(@shop, categorization)) %>
           <td><%= categorization.category.self_and_ancestors.collect { |a| a.name }.join(' > ') %></td>
           <td><%= categorization.option_groups.count %></td>
-          <td><%= categorization.product.created %></td>
-          <td><%= categorization.product.updated %></td>
         </tr>
       <% end %>
     </tbody>

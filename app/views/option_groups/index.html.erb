@@ -9,8 +9,6 @@
         <th>Name</th>
         <th>Text</th>
         <th>Options</th>
-        <th>Created</th>
-        <th>Updated</th>
       </tr>
     </thead>
     <tbody>
@@ -20,8 +18,6 @@
           <td class="name"><%= link_to(option_group.name, edit_option_group_path(option_group)) %>
           <td><%= option_group.text %></td>
           <td><%= option_group.options.count %></td>
-          <td><%= option_group.created %></td>
-          <td><%= option_group.updated %></td>
         </tr>
       <% end %>
     </tbody>
