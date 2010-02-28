@@ -1,0 +1,34 @@
+<% title ['Import users', @shop ? "into #{@shop.name}" : nil].join(' ') %>
+
+<% form_tag({ :action => :upload }, :class => 'formtastic', :multipart => true) do %>
+  <% field_set_tag do %>
+    <ol>
+      <li>
+        <%= label_tag :shop %>
+        <% if @shop %>
+          <%= @shop.name %>
+        <% else %>
+          <select onchange="location='/shops/'+options[selectedIndex].value+'/users/import'">
+            <option>Select shop...</option>
+            <option disabled="disabled">
+            <% @shops.each do |shop| %>
+              <option value="<%= shop.id %>"><%= shop.name %></option>
+            <% end %>
+          </select>
+        <% end %>
+      </li>
+      <% if @shop %>
+        <li>
+          <%= label_tag :file %>
+          <%= file_field_tag :file, :class => 'file' %>
+        </li>
+      <% end %>
+    </ol>
+  <% end %>
+
+  <% if @shop %>
+    <% field_set_tag(nil, :class => 'buttons') do %>
+      <ol><li><%= submit_tag('Upload') %></li></ol>
+    <% end %>
+  <% end %>
+<% end %>

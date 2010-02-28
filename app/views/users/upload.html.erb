@@ -1,0 +1,60 @@
+<% form_tag({ :action => :import_create }, :class => 'formtastic', :method => :put) do %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :shop %>
+        <%= hidden_field_tag 'user[shop_id]', @shop.id %>
+        <%= @shop.name %>
+      </li>
+      <li>
+        <%= label_tag :password %>
+        <%= text_field_tag :password %>
+      </li>
+      <li>
+        <%= label_tag :department %>
+        <%= text_field_tag :department %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset>
+    <table class="list" id="users">
+      <thead>
+        <tr>
+          <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
+          <% (0...@columns).each do |i| %>
+            <th><%= select_tag("fields[#{i}]", attributes_for_import) %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      <% x = 0 %>
+      <% y = 0 %>
+      <% @users.each do |attributes| %>
+        <% if attributes.count > 0 %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td class="checkbox"><%= check_box_tag('rows[]', y, y != 0, :class => 'checkbox') %></td>
+            <% attributes.each do |attribute| %>
+              <td>
+                <%= attribute %>
+                <%= hidden_field_tag "attributes[#{y}][#{x}]", attribute %>
+              </td>
+              <% x += 1 %>
+            <% end %>
+          </tr>
+          <% x = 0 %>
+          <% y += 1 %>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <fieldset>
+    <ol>
+      <li>
+        <%= submit_tag('Import Users') %>
+      </li>
+    </ol>
+  </fieldset>
+<% end %>

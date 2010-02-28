@@ -162,6 +162,10 @@ th {
   background-color: #ccc;
 }
 
+tr.odd {
+  background-color: #fff;
+}
+
 tr.even {
   background-color: #eee;
 }

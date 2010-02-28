@@ -6,9 +6,9 @@
   <select onchange="this.form.submit()" name="shop_id">
     <option>Add to shop...</option>
     <option disabled="disabled" />
-    <%- @shops.each do |shop| -%>
+    <% @shops.each do |shop| %>
       <option value="<%= shop.id %>"><%= shop.name %></option>
-    <%- end -%>
+    <% end %>
   </select>
 
   <table>

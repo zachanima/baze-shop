@@ -1,5 +1,6 @@
 <% title ['List', @shop ? nil : 'all', 'users', @shop ? "of #{@shop.name}" : nil].join(' ') %>
 <%= link_to_new('user', @shop ? new_shop_user_path(@shop) : new_user_path) %>
+<%= link_to('Import users', @shop ? import_shop_users_path(@shop) : import_users_path) %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
   <table>
@@ -10,8 +11,6 @@
         <th><%= @shop ? 'Department' : 'Shop'%></th>
         <th>Username</th>
         <th>Password</th>
-        <th>Created</th>
-        <th>Updated</th>
       </tr>
     </thead>
     <tbody>
@@ -22,8 +21,6 @@
           <td><%= @shop ? user.department : "#{link_to(user.shop.name, shop_users_path(user.shop))} (#{user.department})" %></td>
           <td><%= user.username %></td>
           <td><%= user.password %></td>
-          <td><%= user.created %></td>
-          <td><%= user.updated %></td>
         </tr>
       <% end %>
     </tbody>
