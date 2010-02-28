@@ -1,14 +1,11 @@
-<% title 'List option groups' %>
-<% form_tag(:action => :multiple) do %>
-  <%= link_to_new('option group', new_option_group_path) %>
-  <%= submit_tag('Edit',   :disabled => true, :name => 'edit') %>
-  <%= submit_tag('Copy',   :disabled => true, :name => 'copy') %>
-  <%= submit_tag('Delete', :disabled => true, :name => 'delete') %>
+<% title 'List all option groups' %>
+<%= link_to_new('option group', new_option_group_path) %>
 
+<% form_tag({ :action => :multiple }, :class => 'index') do %>
   <table>
     <thead>
       <tr>
-        <th class="checkbox"><input type="checkbox"></th>
+        <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
         <th>Name</th>
         <th>Text</th>
         <th>Options</th>
@@ -17,7 +14,16 @@
       </tr>
     </thead>
     <tbody>
-      <%= render @option_groups unless @option_groups.nil? %>
+      <% @option_groups.each do |option_group| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td class="checkbox"><%= check_box_tag('option_group_ids[]', option_group.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to(option_group.name, edit_option_group_path(option_group)) %>
+          <td><%= option_group.text %></td>
+          <td><%= option_group.options.count %></td>
+          <td><%= option_group.created %></td>
+          <td><%= option_group.updated %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 <% end %>
