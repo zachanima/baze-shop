@@ -1,6 +1,5 @@
 class ProductsController < ApplicationController
   before_filter :find_product,  :only => [:edit, :show, :update]
-  before_filter :find_shop, :only => [:multiple]
 
   def index
     @shops = Shop.all
@@ -37,26 +36,37 @@ class ProductsController < ApplicationController
   # def destroy
 
   def multiple
-    if @shop
+    if params[:product_ids].nil?
+      flash[:error] = 'No products selected'
+    elsif params[:shop_id].is_a?(Integer) # Ugly ugly hack!
+      @shop = Shop.find(params[:shop_id])
       if multiple_add_to_shop
         flash[:notice] = "Added #{params[:product_ids].count} products to shop #{@shop.name}"
-        redirect_to(products_path)
       else
         flash[:notice] = "Could not add products to shop #{@shop.name} (Does the shop have any categories?)"
+      end
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:product_ids].count} products"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    redirect_to(products_path)
+  end
+
+  private
+  # Adds products to first category (or creates a 'root' category if necessary)
+  def multiple_add_to_shop
+    @shop.categories.build(:name => 'root').save if @shop.categories.empty?
+    params[:product_ids].each do |product_id|
+      unless @shop.categories.first.categorizations.build(:product_id => product_id).save
+        return false
       end
     end
   end
 
-  private
-  def multiple_add_to_shop
-    if params[:product_ids]
-      @shop.categories.build(:name => 'root').save if @shop.categories.empty?
-      params[:product_ids].each do |product_id|
-        unless @shop.categories.first.categorizations.build(:product_id => product_id).save
-          return false
-        end
-      end
-    end
+  def multiple_destroy
+    Product.destroy(params[:product_ids])
   end
 
   def find_product

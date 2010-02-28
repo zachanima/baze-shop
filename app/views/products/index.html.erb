@@ -2,6 +2,7 @@
 <%= link_to_new('product', new_product_path) %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
+  <%= submit_tag 'Delete', :name => 'destroy' %>
   <select onchange="this.form.submit()" name="shop_id">
     <option>Add to shop...</option>
     <option disabled="disabled" />
