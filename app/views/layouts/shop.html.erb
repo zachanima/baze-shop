@@ -21,8 +21,15 @@
           <li>
             <%= link_to('Produkter', '') %>
             <ul>
-              <% @shop.categories.each do |category| %>
-                <li><%= link_to(category.name, shop_category_path(category)) %></li>
+              <% @shop.categories.roots.each do |root| %>
+                <li>
+                  <%= link_to(root.name, shop_category_path(@shop, root)) %>
+                  <ul>
+                    <% root.children.each do |child| %>
+                      <li><%= link_to(child.name, shop_category_path(@shop, child)) %></li>
+                    <% end %>
+                  </ul>
+                </li>
               <% end %>
             </ul>
           </li>

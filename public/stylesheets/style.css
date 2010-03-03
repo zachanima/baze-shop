@@ -33,18 +33,30 @@ h1 {
   display: inline-block;
 }
 
-#nav ul li a {
+#nav .content > ul > li > a {
   display: block;
   padding: 4px 16px 8px 16px;
 }
 
-#nav ul ul {
-  display: none;
-  position: absolute;
+#nav .content > ul ul a {
+  display: block;
+  padding: 4px 24px 4px 8px;
 }
 
-#nav ul:hover ul {
+#nav .content > ul > li > ul, #nav .content > ul > li > ul > li > ul {
+  display: none;
+  position: absolute;
+  margin-top: 3px;
+}
+
+#nav:hover .content > ul > li > ul {
   display: inherit;
+}
+
+#nav .content > ul > li > ul > li:hover > ul {
+  display: inherit;
+  margin-top: -22px;
+  margin-left: 100%;
 }
 
 #fortune {
@@ -79,11 +91,15 @@ h1 {
   list-style: none;
 }
 
-#nav ul li a {
+#nav ul a {
   font-size: 13pt;
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+#nav ul ul a {
+  font-size: 9pt;
 }
 
 #footer {
@@ -140,6 +156,10 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-top-width: 0;
+}
+
+#nav ul ul ul {
+  border-top-width: 1px;
 }
 
 #nav ul ul a {
