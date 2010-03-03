@@ -4,7 +4,7 @@
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
   <%= submit_tag 'Delete', :name => 'destroy' %>
   <select onchange="this.form.submit()" name="shop_id">
-    <option>Add to shop...</option>
+    <option value="0">Add to shop...</option>
     <option disabled="disabled" />
     <% @shops.each do |shop| %>
       <option value="<%= shop.id %>"><%= shop.name %></option>

@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   def multiple
     if params[:product_ids].nil?
       flash[:error] = 'No products selected'
-    elsif params[:shop_id].is_a?(Integer) # Ugly ugly hack!
+    elsif params[:shop_id] != '0' # 'Add to shop...'
       @shop = Shop.find(params[:shop_id])
       if multiple_add_to_shop
         flash[:notice] = "Added #{params[:product_ids].count} products to shop #{@shop.name}"
