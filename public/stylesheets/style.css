@@ -1,0 +1,142 @@
+/* positions and dimensions */
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0 0 8px 0;
+}
+
+.content {
+  margin: auto;
+  width: 750px;
+}
+
+#header {
+  padding: 20px 0;
+}
+
+#header .logout {
+  float: right;
+}
+
+#nav {
+  padding-top: 4px;
+}
+
+#nav ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+#nav ul li {
+  display: inline-block;
+}
+
+#nav ul li a {
+  display: block;
+  padding: 4px 16px 8px 16px;
+}
+
+#fortune {
+  padding: 12px 0;
+}
+
+#content {
+  padding: 16px;
+  width: 718px;
+}
+
+#footer {
+  margin: 16px 0;
+}
+
+
+
+/* texts */
+body {
+  font: 10pt arial;
+}
+
+h1 {
+  font-size: 18pt;
+}
+
+#header .logout {
+  text-align: right;
+}
+
+#nav ul {
+  list-style: none;
+}
+
+#nav ul li a {
+  font-size: 13pt;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+#footer {
+  font-size: 9pt;
+}
+
+
+
+
+/* colours */
+a {
+  color: #9c3;
+}
+
+a:hover {
+  color: #333;
+}
+
+body {
+  color: #666;
+  background-color: #eee;
+}
+
+
+#header {
+  color: #fff;
+  background-color: #333;
+}
+
+#header .logout a {
+  color: #fff;
+}
+
+#nav {
+  background-color: #9c3;
+  border-top: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+}
+
+#nav ul li a {
+  color: #fff;
+}
+
+#nav ul li a.active {
+  color: #666;
+  background-color: #fff;
+}
+
+#nav ul li a:hover {
+  color: #666;
+}
+
+#fortune {
+  border-top: 1px solid #ddd;
+}
+
+#content {
+  background-color: #fff;
+  border-top: 5px solid #9c3;
+  border-bottom: 1px solid #9c3;
+}
+
+#footer {
+  color: #999;
+}

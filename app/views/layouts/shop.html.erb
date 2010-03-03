@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title><%= @shop.name if @shop %></title>
+    <%= stylesheet_link_tag 'style', 'formtastic', 'formtastic_changes' %>
+    <%= javascript_include_tag :defaults %>
+  </head>
+  <body>
+    <div id="header">
+      <div class="content">
+        <span class="logout"><%= [[Time.now.day, Time.now.month].join('/'), [Time.now.hour, Time.now.min].join(':')].join(' - ') %><br /><a href="#">Logout</a></span>
+        <h1><%= @shop.name if @shop %></h1>
+      </div>
+    </div>
+
+    <div id="nav">
+      <div class="content">
+        <ul>
+          <li><%= link_to('Velkommen', '') %></li>
+          <li><%= link_to('Produkter', '') %></li>
+          <li><%= link_to('Historik', '') %></li>
+          <li><%= link_to('Information', '') %></li>
+          <li><%= link_to('Kontakt', '') %></li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="fortune">
+      <div class="content">
+      </div>
+    </div>
+
+    <div class="content" id="content">
+      <%- if show_title? -%>
+        <h1><%=h yield(:title) %></h1>
+      <%- end -%>
+        
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+      <div class="content">
+        &copy; 2009-<%= Time.now.year %> Baze A/S
+      </div>
+    </div>
+  </body>
+</html>

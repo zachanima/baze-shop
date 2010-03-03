@@ -12,7 +12,9 @@ class ShopsController < ApplicationController
 
   # def edit
 
-  # def show
+  def show
+    render :layout => 'shop'
+  end
 
   def create
     @shop = Shop.new(params[:shop])
