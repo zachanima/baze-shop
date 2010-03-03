@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # def edit
 
   def create
-    @user = @shop ? @shop.users.build(params[:user]) : User.new(params[:user])
+    @user = @shop.users.build(params[:user])
     if @user.save
       flash[:notice] = ['Created user', @user.name].join(' ')
       redirect_to(users_path)
