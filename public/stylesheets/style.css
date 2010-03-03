@@ -29,13 +29,22 @@ h1 {
   padding-left: 0;
 }
 
-#nav ul li {
+#nav .content > ul > li {
   display: inline-block;
 }
 
 #nav ul li a {
   display: block;
   padding: 4px 16px 8px 16px;
+}
+
+#nav ul ul {
+  display: none;
+  position: absolute;
+}
+
+#nav ul:hover ul {
+  display: inherit;
 }
 
 #fortune {
@@ -125,6 +134,16 @@ body {
 
 #nav ul li a:hover {
   color: #666;
+}
+
+#nav ul ul {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-top-width: 0;
+}
+
+#nav ul ul a {
+  color: #9c3;
 }
 
 #fortune {

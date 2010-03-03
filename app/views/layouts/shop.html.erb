@@ -18,7 +18,14 @@
       <div class="content">
         <ul>
           <li><%= link_to('Velkommen', '') %></li>
-          <li><%= link_to('Produkter', '') %></li>
+          <li>
+            <%= link_to('Produkter', '') %>
+            <ul>
+              <% @shop.categories.each do |category| %>
+                <li><%= link_to(category.name, shop_category_path(category)) %></li>
+              <% end %>
+            </ul>
+          </li>
           <li><%= link_to('Historik', '') %></li>
           <li><%= link_to('Information', '') %></li>
           <li><%= link_to('Kontakt', '') %></li>
