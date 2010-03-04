@@ -41,7 +41,7 @@
           <li><%= link_to('All users', users_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name.force_encoding('UTF-8'), shop_users_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.name, shop_users_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
@@ -54,7 +54,7 @@
           <li><%= link_to('All products', products_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name.force_encoding('UTF-8'), shop_categorizations_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.name, shop_categorizations_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
@@ -67,7 +67,7 @@
           <li><%= link_to('All orders', orders_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name.force_encoding('UTF-8'), shop_orders_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.name, shop_orders_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
