@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_filter :find_category, :only => [:edit, :update]
+  before_filter :find_category, :only => [:edit, :show, :update]
   before_filter :find_shop
 
   def new
@@ -7,6 +7,11 @@ class CategoriesController < ApplicationController
   end
 
   # def edit
+
+  def show
+    @categorizations = @category.categorizations
+    render :layout => 'shop'
+  end
   
   def create
     @category = @shop.categories.build(params[:category])

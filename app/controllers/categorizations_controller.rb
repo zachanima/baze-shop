@@ -1,5 +1,5 @@
 class CategorizationsController < ApplicationController
-  before_filter :find_categorization, :only => [:edit, :update]
+  before_filter :find_categorization, :only => [:edit, :show, :update]
   before_filter :find_shop
 
   def index
@@ -8,6 +8,10 @@ class CategorizationsController < ApplicationController
 
   def edit
     @categories = @categorization.category.shop.categories
+  end
+
+  def show
+    render :layout => 'shop'
   end
 
   def update

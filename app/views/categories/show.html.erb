@@ -1,0 +1,10 @@
+<% @categorizations.in_groups_of(3).each do |categorization_group| %>
+  <div class="product_group">
+    <% categorization_group.compact.each do |categorization| %>
+      <% link_to(shop_categorization_path(@shop, categorization), :class => 'product') do %>
+        <img src="noone-knows.jpg" />
+        <%= categorization.product.name %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
