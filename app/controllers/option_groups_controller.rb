@@ -15,7 +15,7 @@ class OptionGroupsController < ApplicationController
     @option_group = OptionGroup.new(params[:option_group])
     if @option_group.save
       flash[:notice] = ['Created option group', @option_group.name].join(' ')
-      redirect_to(edit_option_groups_path)
+      redirect_to(edit_option_group_path(@option_group))
     else
       flash[:error] = ['Could not create option group', @option_group.name].join(' ')
       render :action => :new
