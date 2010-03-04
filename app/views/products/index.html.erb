@@ -19,6 +19,7 @@
         <th>Number</th>
         <th>Brand</th>
         <th>Shops</th>
+        <th>Images</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,7 @@
           <td><%= product.number %></td>
           <td><%= product.brand %></td>
           <td><%= product.categorizations.collect { |c| link_to(c.category.shop.name, shop_categorizations_path(c.category.shop)) }.flatten.join(', ') %></td>
+          <td><%= product.images.count %></td>
         </tr>
       <% end %>
     </tbody>

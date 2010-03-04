@@ -6,7 +6,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :orders
 
-  map.resources :products
+  map.resources :products do |product|
+    product.resources :images
+  end
 
   map.resources :shops do |shop|
     shop.resources :categories do |category|
