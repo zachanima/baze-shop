@@ -15,7 +15,7 @@ class ImagesController < ApplicationController
       redirect_to(edit_product_path(@product))
     else
       flash[:error] = ['Could not create image', @image.name].join(' ')
-      render :ation => :new
+      render :action => :new
     end
   end
 
