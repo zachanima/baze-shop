@@ -11,4 +11,11 @@ class ApplicationController < ActionController::Base
   def find_shop
     @shop = Shop.find(params[:shop_id]) if params[:shop_id]
   end
+
+  protected
+  def authenticate
+    authenticate_or_request_with_http_basic do |login, password|
+      login == 'os' && password == 'secret'
+    end
+  end
 end

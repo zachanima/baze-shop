@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
   before_filter :find_shop, :only => [:edit, :show, :update]
   before_filter :parameterize_link, :only => [:create, :update]
 
