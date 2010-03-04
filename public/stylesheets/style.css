@@ -75,21 +75,27 @@ h1 {
   width: 30%;
 }
 
+.product .image {
+  height: 200px;
+}
+
 .product img { /* stand-in for image */
-  border: 1px solid #ccc;
   margin: 0 auto;
   margin-bottom: 8px;
-  display: block;
-  width: 200px;
-  height: 200px;
 }
 
 #images {
   float: left;
+  padding: 4px;
+}
+
+#images img {
+  display: block;
+  margin-bottom: 4px;
 }
 
 #product {
-  margin-left: 216px;
+  margin-left: 228px; /* 200px (img) + 16px (margin) + 8px (images padding) */
 }
 
 #footer {
@@ -135,6 +141,11 @@ h1 {
   font-size: 11pt;
   font-weight: bold;
   text-decoration: none;
+}
+
+#images {
+  letter-spacing: 1px;
+  text-align: center;
 }
 
 #footer {
@@ -215,6 +226,14 @@ body {
   border: 1px solid #ddd;
   -moz-box-shadow: 2px 2px 4px #888;
   -moz-border-radius: 8px;
+}
+
+.product img {
+  border-width: 0;
+}
+
+#images {
+  border: 1px solid #ccc;
 }
 
 #footer {

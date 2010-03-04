@@ -7,4 +7,5 @@ db/*.sqlite3
 public/images/*
 public/logos/*
 public/cache/**/*
+public/system/*
 *.swp
