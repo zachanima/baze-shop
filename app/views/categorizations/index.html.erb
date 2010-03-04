@@ -1,7 +1,8 @@
 <% title "List products for #{@shop.name}" %>
 <%= link_to_new('product', new_product_path) %>
 
-<% form_tag({ :action => :multiple }, :class => 'index') do %>
+<% form_tag("/shops/#{@shop.id}/categorizations/multiple", :class => 'index') do %>
+  <%= submit_tag 'Delete', :name => 'destroy' %>
   <table>
     <thead>
       <tr>

@@ -24,8 +24,24 @@ class CategorizationsController < ApplicationController
     end
   end
 
+  def multiple
+    if params[:categorization_ids].nil?
+      flash[:error] = 'No products selected'
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:categorization_ids].count} products from #{@shop.name}"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    redirect_to(shop_categorizations_path)
+  end
+
   private
   def find_categorization
     @categorization = Categorization.find(params[:id])
+  end
+
+  def multiple_destroy
+    Categorization.destroy(params[:categorization_ids])
   end
 end

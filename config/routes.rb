@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
     shop.resources :categories do |category|
       category.resources :categorizations
     end
+    shop.resources :categorizations, :collection => { :multiple => :post }
     shop.resources :categorizations do |categorization|
       categorization.resources :order
     end
