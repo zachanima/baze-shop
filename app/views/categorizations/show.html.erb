@@ -1,3 +1,7 @@
+<div id="images">
+  <%= link_to(image_tag(@categorization.product.images.first.data.url(:small)), @categorization.product.images.first.data.url) %>
+</div>
+
 <div id="product">
   <h1><%= @categorization.product.name %></h1>
   <%= @categorization.product.text %>
@@ -13,7 +17,7 @@
       </ol>
     <% end %>
     <% f.buttons do %>
-      <%= link_to('Føj til kurv...') %>
+      <%= f.commit_button('Føj til kurv...') %>
     <% end %>
   <% end %>
 </div>
