@@ -2,6 +2,8 @@
   <% f.inputs do %>
     <%= f.input :name %>
     <%= f.input :link, :hint => "http://shop.baze.dk/<em>#{@shop.link || 'link'}</em>" %>
+    <%= f.input :username_text %>
+    <%= f.input :password_text, :as => :string %>
     <%= f.input :text %>
   <% end %>
   <% unless @shop.new_record? %>

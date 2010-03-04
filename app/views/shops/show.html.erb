@@ -3,12 +3,12 @@
   <fieldset>
     <ol>
       <li>
-        <%= label :user_session, 'username' %>
+        <%= label :user_session, @shop.username_text %>
         <%= text_field_tag :username %>
       </li>
       <li>
-        <%= label :user_session, 'password' %>
-        <%= text_field_tag :password %>
+        <%= label :user_session, @shop.password_text %>
+        <%= password_field_tag :password %>
       </li>
     </ol>
   </fieldset>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100304043728) do
+ActiveRecord::Schema.define(:version => 20100304050309) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -85,9 +85,11 @@ ActiveRecord::Schema.define(:version => 20100304043728) do
   create_table "shops", :force => true do |t|
     t.string   "name"
     t.string   "link"
-    t.text     "text",       :limit => 255
+    t.text     "text",          :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "username_text"
+    t.string   "password_text"
   end
 
   create_table "users", :force => true do |t|

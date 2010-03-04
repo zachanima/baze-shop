@@ -10,6 +10,8 @@
         <th>Link</th>
         <th>Users</th>
         <th>Products</th>
+        <th>Username</th>
+        <th>Password</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +22,8 @@
           <td><%= link_to(shop.link, shop_url(shop)) %></td>
           <td><%= link_to(shop.users.count, shop_users_path(shop)) %></td>
           <td><%= link_to(shop.products.count, shop_categorizations_path(shop)) %></td>
+          <td><%= shop.username_text %></td>
+          <td><%= shop.password_text %></td>
         </tr>
       <% end %>
     </tbody>
