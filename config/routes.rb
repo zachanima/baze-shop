@@ -33,6 +33,8 @@ ActionController::Routing::Routes.draw do |map|
     :multiple_create => :put
   }
 
+  map.root :controller => :shops
+
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
