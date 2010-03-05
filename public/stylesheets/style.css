@@ -104,6 +104,7 @@ h1 {
 
 #product {
   margin-left: 228px; /* 200px (img) + 16px (margin) + 8px (images padding) */
+  min-height: 240px;
 }
 
 #footer {
