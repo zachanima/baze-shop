@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   belongs_to :product
+  has_and_belongs_to_many :categorizations
   validates_presence_of :name
 
   has_attached_file :data, :styles => {
