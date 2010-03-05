@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100305035735) do
+ActiveRecord::Schema.define(:version => 20100305050141) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(:version => 20100305035735) do
     t.integer  "shop_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
+    t.string   "login"
     t.string   "password"
     t.text     "comment"
     t.text     "text"
