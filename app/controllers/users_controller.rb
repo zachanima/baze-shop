@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = @shop.users.build(params[:user])
     if @user.save
       flash[:notice] = ['Created user', @user.name].join(' ')
-      redirect_to(users_path)
+      redirect_to(shop_users_path(@shop))
     else
       flash[:error] = ['Could not create user', @user.name].join(' ')
       render :action => :new
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(params[:user])
       flash[:notice] = ['Updated user', @user.name].join(' ')
-      redirect_to(users_path)
+      redirect_to(shop_users_path(@shop))
     else
       flash[:error] = ['Could not update user', @user.name].join(' ')
       render :action => :edit
