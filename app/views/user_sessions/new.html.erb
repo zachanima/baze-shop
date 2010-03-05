@@ -1,0 +1,18 @@
+<h1><%= @shop.name %></h1>
+<% form_tag(login_path(@shop), :class => 'formtastic') do |f| %>
+  <fieldset>
+    <ol>
+      <li>
+        <%= label_tag :login %>
+        <%= text_field_tag :login %>
+      </li>
+      <li>
+        <%= label_tag :password %>
+        <%= password_field_tag :password %>
+      </li>
+    </ol>
+  </fieldset>
+  <fieldset>
+    <ol><li><%= submit_tag 'Log ind' %></li></ol>
+  </fieldset>
+<% end %>

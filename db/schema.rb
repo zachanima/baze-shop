@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100305050141) do
+ActiveRecord::Schema.define(:version => 20100305050817) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -114,6 +114,8 @@ ActiveRecord::Schema.define(:version => 20100305050141) do
     t.string   "password"
     t.text     "comment"
     t.text     "text"
+    t.string   "persistence_token"
+    t.datetime "last_request_at"
   end
 
 end
