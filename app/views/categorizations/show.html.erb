@@ -12,7 +12,19 @@
       <% @categorization.option_groups.each do |option_group| %>
         <li>
           <%= f.label option_group.text %>
-          <%= f.select :option_ids, @categorization.options.find(:all, :conditions => ['option_group_id = ?', option_group]).collect { |o| [o.text, o.id] }, { :include_blank => true, :selected => :blank }, { :name => 'order[option_ids][]' } %>
+          <select name="option_ids">
+            <% @categorization.options.each do |option| %>
+              <% if option.option_group === option_group %>
+                <% if option.separator %>
+                  <option disabled="disabled" />
+                  <option disabled="disabled"><%= option.text %></option>
+                <% else %>
+                  <option value="<%= option.id %>"><%= option.text %></option>
+                <% end %>
+              <% end %>
+            <% end %>
+          </select>
+          <%#= f.select :option_ids, @categorization.options.find(:all, :conditions => ['option_group_id = ?', option_group]).collect { |o| [o.text, o.id] }, { :include_blank => true, :selected => :blank }, { :name => 'order[option_ids][]' } %>
         </li>
       <% end %>
       </ol>

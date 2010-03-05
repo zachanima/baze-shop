@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100305021201) do
+ActiveRecord::Schema.define(:version => 20100305022822) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20100305021201) do
     t.integer  "option_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "separator"
   end
 
   create_table "orders", :force => true do |t|

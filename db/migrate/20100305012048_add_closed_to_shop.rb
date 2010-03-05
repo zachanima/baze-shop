@@ -4,6 +4,6 @@ class AddClosedToShop < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :shops, :closed
+    remove_column :shops, :closed
   end
 end
