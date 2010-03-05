@@ -18,7 +18,7 @@
         <tr class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('user_ids[]', user.id, false, :class => 'checkbox') %></td>
           <td class="name"><%= link_to([user.first_name, user.last_name].join(' '), edit_shop_user_path(user.shop, user)) %></td>
-          <td><%= @shop ? user.department : "#{link_to(user.shop.name, shop_users_path(user.shop))} (#{user.department})" %></td>
+          <td><%= @shop ? user.department : [link_to(user.shop.name, shop_users_path(user.shop)), user.department.empty? ? nil : "(#{user.department})"].join(' ') %></td>
           <td><%= user.username %></td>
           <td><%= user.password %></td>
         </tr>
