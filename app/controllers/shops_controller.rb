@@ -42,7 +42,7 @@ class ShopsController < ApplicationController
 
   private
   def find_shop
-    @shop = Shop.find(params[:id])
+    @shop = Shop.find_by_link(params[:id])
   end
 
   def parameterize_link

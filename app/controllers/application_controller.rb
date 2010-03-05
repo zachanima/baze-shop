@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_shop
-    @shop = Shop.find(params[:shop_id]) if params[:shop_id]
+    @shop = Shop.find_by_link(params[:shop_id]) if params[:shop_id]
   end
 
   protected

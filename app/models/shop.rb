@@ -11,4 +11,8 @@ class Shop < ActiveRecord::Base
   def products
     self.categories.collect { |category| category.products }.flatten
   end
+
+  def to_param
+    self.link
+  end
 end

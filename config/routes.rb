@@ -1,5 +1,4 @@
 ActionController::Routing::Routes.draw do |map|
-
   map.resources :option_groups do |option_group|
     option_group.resources :options
   end
@@ -28,13 +27,12 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :users, :collection => {
-    :import => :get,
-    :upload => :post,
-    :multiple_create => :put
+    :import => :get
   }
 
-  map.root :controller => :shops
+  map.connect ':id', :controller => 'shops', :action => 'show'
 
+  map.root :controller => :shops
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
