@@ -30,9 +30,9 @@ ActionController::Routing::Routes.draw do |map|
     :import => :get
   }
 
-  map.connect ':id', :controller => 'shops', :action => 'show'
 
   map.root :controller => :shops
+  map.connect ':id', :controller => 'shops', :action => 'show'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end
