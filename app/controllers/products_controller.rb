@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
     @product = Product.new(params[:product])
     if @product.save
       flash[:notice] = ['Created product', @product.name].join(' ')
-      redirect_to(products_path)
+      redirect_to(edit_product_path(@product))
     else
       flash[:error] = ['Could not create product', @product.name].join(' ')
       render :action => :new

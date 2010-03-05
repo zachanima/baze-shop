@@ -1,5 +1,5 @@
 <% title "List products for #{@shop.name}" %>
-<%= link_to_new('product', new_product_path) %>
+<%= link_to('Add products', products_path) %>
 
 <% form_tag("/shops/#{@shop.id}/categorizations/multiple", :class => 'index') do %>
   <%= submit_tag 'Delete', :name => 'destroy' %>
