@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100304050309) do
+ActiveRecord::Schema.define(:version => 20100305012048) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20100304050309) do
     t.datetime "updated_at"
     t.string   "username_text"
     t.string   "password_text"
+    t.boolean  "closed"
   end
 
   create_table "users", :force => true do |t|
