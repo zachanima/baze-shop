@@ -1,4 +1,5 @@
 class OptionGroupsController < ApplicationController
+  before_filter :authenticate
   before_filter :find_option_group, :only => [:edit, :update]
 
   def index

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :authenticate, :except => [:show]
   before_filter :find_shop
   before_filter :find_user, :only => [:edit, :update]
 

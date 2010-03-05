@@ -1,4 +1,5 @@
 class CategorizationsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
   before_filter :find_categorization, :only => [:edit, :show, :update]
   before_filter :find_shop
 

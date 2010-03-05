@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_filter :authenticate
   before_filter :find_product
 
   def new

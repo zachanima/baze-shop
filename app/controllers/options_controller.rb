@@ -1,4 +1,5 @@
 class OptionsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
   before_filter :find_option_group
 
   def new
