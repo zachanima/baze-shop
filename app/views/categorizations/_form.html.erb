@@ -1,5 +1,22 @@
 <% semantic_form_for [@shop, @categorization] do |f| %>
   <% f.inputs do %>
+    <li class="string">
+      <%= f.label :name %>
+      <%= text_field_tag(:product_name, @categorization.product.name, :disabled => true) %>
+    </li>
+    <li class="string">
+      <%= f.label :number %>
+      <%= text_field_tag(:product_number, @categorization.product.number, :disabled => true) %>
+    </li>
+    <li class="string">
+      <%= f.label :brand %>
+      <%= text_field_tag(:product_brand, @categorization.product.brand, :disabled => true) %>
+    </li>
+    <li class="text">
+      <%= f.label :text %>
+      <%= text_area_tag(:product_text, @categorization.product.text, { :disabled => true, :rows => 20 }) %>
+    </li>
+
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
     <% @categorization.option_groups.each do |option_group| %>
