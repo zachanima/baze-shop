@@ -10,7 +10,7 @@
     <div id="header">
       <div class="content">
         <span class="logout"><%= [[Time.now.day, Time.now.month].join('/'), [Time.now.hour, Time.now.min].join(':')].join(' - ') %><br /><a href="#">Logout</a></span>
-        <h1><%= @shop.name if @shop %></h1>
+        <h1><%= @shop.logo.url == '/logos/original/missing.png' ? @shop.name : image_tag(@shop.logo.url) if @shop %></h1>
       </div>
     </div>
 

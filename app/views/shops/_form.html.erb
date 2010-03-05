@@ -1,7 +1,8 @@
-<% semantic_form_for @shop do |f| %>
+<% semantic_form_for(@shop, :html => { :multipart => true }) do |f| %>
   <% f.inputs do %>
     <%= f.input :name %>
     <%= f.input :link, :hint => "http://shop.baze.dk/<em>#{@shop.link || 'link'}</em>" %>
+    <%= f.input :logo %>
     <%= f.input :username_text %>
     <%= f.input :password_text, :as => :string %>
     <%= f.input :text %>
