@@ -3,5 +3,5 @@ class Category < ActiveRecord::Base
 
   belongs_to :shop
   has_many :categorizations, :dependent => :destroy
-  has_many :products, :through => :categorizations
+  has_many :templates, :through => :categorizations
 end

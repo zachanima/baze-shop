@@ -9,8 +9,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :orders
 
-  map.resources :products do |product|
-    product.resources :images
+  map.resources :templates do |template|
+    template.resources :images
   end
 
   map.resources :shops do |shop|
@@ -22,7 +22,6 @@ ActionController::Routing::Routes.draw do |map|
       categorization.resources :order
     end
     shop.resources :orders
-    shop.resources :products
     shop.resources :users, :collection => {
       :import => :get,
       :upload => :post,

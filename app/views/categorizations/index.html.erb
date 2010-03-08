@@ -1,5 +1,5 @@
 <% title "List products for #{@shop.name}" %>
-<%= link_to('Add products', products_path) %>
+<%= link_to('Add products', templates_path) %>
 
 <% form_tag("/shops/#{@shop.id}/categorizations/multiple", :class => 'index') do %>
   <%= submit_tag 'Delete', :name => 'destroy' %>
@@ -17,7 +17,7 @@
       <% @categorizations.each do |categorization| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('categorization_ids[]', categorization.id, false, :class => 'checkbox') %></td>
-          <td class="name"><%= link_to(categorization.product.name, edit_shop_categorization_path(@shop, categorization)) %>
+          <td class="name"><%= link_to(categorization.template.name, edit_shop_categorization_path(@shop, categorization)) %>
           <td><%= categorization.category.self_and_ancestors.collect { |a| a.name }.join(' > ') %></td>
           <td><%= categorization.images.count %></td>
           <td><%= categorization.option_groups.count %></td>

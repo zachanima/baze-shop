@@ -11,8 +11,8 @@ class Shop < ActiveRecord::Base
     self.users.collect { |user| user.orders }.flatten
   end
 
-  def products
-    self.categories.collect { |category| category.products }.flatten
+  def templates
+    self.categories.collect { |category| category.templates }.flatten
   end
 
   def to_param

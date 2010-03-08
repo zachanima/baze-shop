@@ -1,4 +1,4 @@
-<% semantic_form_for([@product, @image], :html => { :multipart => true }) do |f| %>
+<% semantic_form_for([@product_template, @image], :html => { :multipart => true }) do |f| %>
   <% f.inputs do %>
     <%= f.input :name %>
     <%= f.input :data %>

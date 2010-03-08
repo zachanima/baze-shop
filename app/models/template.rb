@@ -1,4 +1,4 @@
-class Product < ActiveRecord::Base
+class Template < ActiveRecord::Base
   has_many :categorizations, :dependent => :destroy
   has_many :categories, :through => :categorizations
   has_many :images, :dependent => :destroy

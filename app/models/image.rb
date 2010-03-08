@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  belongs_to :product
+  belongs_to :template
   has_and_belongs_to_many :categorizations
   validates_presence_of :name
 

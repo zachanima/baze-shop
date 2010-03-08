@@ -27,7 +27,7 @@
       </div>
     </div>
 
-    <% if ['users', 'products', 'categorizations', 'orders'].include?(controller.controller_name) %>
+    <% if ['users', 'templates', 'categorizations', 'orders'].include?(controller.controller_name) %>
       <div id="subnav">
     <% else %>
       <div id="subnav" style="display: none;">
@@ -46,12 +46,12 @@
           <% end %>
         </ul>
 
-        <% if ['products', 'categorizations'].include?(controller.controller_name) %>
+        <% if ['templates', 'categorizations'].include?(controller.controller_name) %>
           <ul id="products">
         <% else %>
           <ul id="products" style="display: none;">
         <% end %>
-          <li><%= link_to('All products', products_path, :class => @shop ? 'inactive' : 'active') %></li>
+          <li><%= link_to('All templates', templates_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
               <%= link_to(shop.name, shop_categorizations_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>

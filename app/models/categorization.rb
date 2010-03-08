@@ -1,6 +1,6 @@
 class Categorization < ActiveRecord::Base
   belongs_to :category
-  belongs_to :product
+  belongs_to :template
   has_many :orders
   has_and_belongs_to_many :images
   has_and_belongs_to_many :option_groups

@@ -1,5 +1,5 @@
-<% title 'List all products' %>
-<%= link_to_new('product', new_product_path) %>
+<% title 'List all templates' %>
+<%= link_to_new('template', new_template_path) %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
   <%= submit_tag 'Delete', :name => 'destroy' %>
@@ -23,14 +23,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @products.each do |product| %>
+      <% @templates.each do |template| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td class="checkbox"><%= check_box_tag('product_ids[]', product.id, false, :class => 'checkbox') %></td>
-          <td class="name"><%= link_to(product.name, edit_product_path(product)) %>
-          <td><%= product.number %></td>
-          <td><%= product.brand %></td>
-          <td><%= product.categorizations.collect { |c| link_to(c.category.shop.name, shop_categorizations_path(c.category.shop)) }.flatten.join(', ') %></td>
-          <td><%= product.images.count %></td>
+          <td class="checkbox"><%= check_box_tag('template_ids[]', template.id, false, :class => 'checkbox') %></td>
+          <td class="name"><%= link_to(template.name, edit_template_path(template)) %>
+          <td><%= template.number %></td>
+          <td><%= template.brand %></td>
+          <td><%= template.categorizations.collect { |c| link_to(c.category.shop.name, shop_categorizations_path(c.category.shop)) }.flatten.join(', ') %></td>
+          <td><%= template.images.count %></td>
         </tr>
       <% end %>
     </tbody>

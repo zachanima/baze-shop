@@ -2,8 +2,8 @@
   <div class="product_group">
     <% categorization_group.compact.each do |categorization| %>
       <% link_to(shop_categorization_path(@shop, categorization), :class => 'product') do %>
-        <%= image_tag(categorization.product.images.first.data.url(:small)) if categorization.product.images.first %>
-        <%= categorization.product.name %>
+        <%= image_tag(categorization.template.images.first.data.url(:small)) if categorization.template.images.first %>
+        <%= categorization.template.name %>
       <% end %>
     <% end %>
   </div>

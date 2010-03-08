@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100305050817) do
+ActiveRecord::Schema.define(:version => 20100308201723) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20100305050817) do
 
   create_table "categorizations", :force => true do |t|
     t.integer  "category_id"
-    t.integer  "product_id"
+    t.integer  "template_id"
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20100305050817) do
   end
 
   create_table "images", :force => true do |t|
-    t.integer  "product_id"
+    t.integer  "template_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "data_file_name"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20100305050817) do
     t.string   "name"
   end
 
-  add_index "images", ["product_id"], :name => "index_images_on_product_id"
+  add_index "images", ["template_id"], :name => "index_images_on_template_id"
 
   create_table "option_groups", :force => true do |t|
     t.string   "name"
@@ -79,15 +79,6 @@ ActiveRecord::Schema.define(:version => 20100305050817) do
     t.datetime "updated_at"
   end
 
-  create_table "products", :force => true do |t|
-    t.string   "name"
-    t.string   "number"
-    t.string   "brand"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "shops", :force => true do |t|
     t.string   "name"
     t.string   "link"
@@ -101,6 +92,15 @@ ActiveRecord::Schema.define(:version => 20100305050817) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+  end
+
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.string   "number"
+    t.string   "brand"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
