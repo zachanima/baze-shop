@@ -17,7 +17,7 @@
       <% @products.each do |product| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('product_ids[]', product.id, false, :class => 'checkbox') %></td>
-          <td class="name"><%= link_to(product.template.name, edit_shop_product_path(@shop, product)) %>
+          <td class="name"><%= link_to(product.name, edit_shop_product_path(@shop, product)) %>
           <td><%= product.category.self_and_ancestors.collect { |a| a.name }.join(' > ') %></td>
           <td><%= product.images.count %></td>
           <td><%= product.option_groups.count %></td>

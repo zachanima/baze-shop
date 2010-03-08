@@ -1,11 +1,11 @@
 <div id="images">
-  <%= link_to(image_tag(@product.images.first.data.url(:small)), @product.images.first.data.url) %>
+  <%= link_to(image_tag(@product.thumbnail), @product.images.first.data.url) %>
   <%= link_to('&lt;&lt;') %> 1 / <%= @product.images.count %> <%= link_to('&gt;&gt') %>
 </div>
 
 <div id="product">
-  <h1><%= @product.template.name %></h1>
-  <%= @product.template.text %>
+  <h1><%= @product.name %></h1>
+  <%= @product.text %>
   <% semantic_form_for(:order, :url => new_order_path, :html => { :class => 'formtastic', :method => :get }) do |f| %>
     <% if @product.option_groups.count > 0 %>
       <% f.inputs do %>

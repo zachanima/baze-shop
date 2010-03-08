@@ -1,8 +1,0 @@
-<tr class="<%= cycle('odd', 'even') %>">
-  <td class="checkbox"><input type="checkbox"></td>
-  <td class="name"><%= link_to(category.name, edit_category_path(category)) %></td>
-  <td><%#= category.parent %></td>
-  <td><%= category.shop.name unless category.shop.nil? %></td>
-  <td><%= category.created %></td>
-  <td><%= category.updated %></td>
-</tr>

@@ -29,7 +29,7 @@
           <td class="name"><%= link_to(template.name, edit_template_path(template)) %>
           <td><%= template.number %></td>
           <td><%= template.brand %></td>
-          <td><%= template.products.collect { |c| link_to(c.category.shop.name, shop_products_path(c.category.shop)) }.flatten.join(', ') %></td>
+          <td><%= template.products.collect { |p| link_to(p.category.shop.name, shop_products_path(p.category.shop)) }.flatten.join(', ') %></td>
           <td><%= template.images.count %></td>
         </tr>
       <% end %>

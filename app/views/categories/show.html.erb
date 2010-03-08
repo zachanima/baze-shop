@@ -2,8 +2,8 @@
   <div class="product_group">
     <% product_group.compact.each do |product| %>
       <% link_to(shop_product_path(@shop, product), :class => 'product') do %>
-        <%= image_tag(product.template.images.first.data.url(:small)) if product.template.images.first %>
-        <%= product.template.name %>
+        <%= image_tag(product.thumbnail) if product.images %>
+        <%= product.name %>
       <% end %>
     <% end %>
   </div>

@@ -20,14 +20,14 @@
         <ul>
           <li><%= link_to('Shops',    shops_path,         :class => ['shops', 'categories'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
           <li><%= link_to_function('Users', "$('orders').hide();$('products').hide();$('users').show();$('subnav').slideDown({ duration: 0.5 });", :class => 'users' == controller.controller_name ? 'active' : 'inactive') %></li>
-          <li><%= link_to_function('Products', "$('orders').hide();$('users').hide();$('products').show();$('subnav').slideDown({ duration: 0.5 });", :class => ['templates', 'products'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
+          <li><%= link_to_function('Products', "$('orders').hide();$('users').hide();$('products').show();$('subnav').slideDown({ duration: 0.5 });", :class => ['products', 'templates'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
           <li><%= link_to_function('Orders', "$('products').hide();$('users').hide();$('orders').show();$('subnav').slideDown({ duration: 0.5 });", :class => 'orders' == controller.controller_name ? 'active' : 'inactive') %></li>
           <li><%= link_to('Options',  option_groups_path, :class => ['option_groups', 'options'].include?(controller.controller_name) ? 'active' : 'inactive') %></li>
         </ul>
       </div>
     </div>
 
-    <% if ['users', 'templates', 'products', 'orders'].include?(controller.controller_name) %>
+    <% if ['orders', 'products', 'templates', 'users'].include?(controller.controller_name) %>
       <div id="subnav">
     <% else %>
       <div id="subnav" style="display: none;">
@@ -46,7 +46,7 @@
           <% end %>
         </ul>
 
-        <% if ['templates', 'products'].include?(controller.controller_name) %>
+        <% if ['products', 'templates'].include?(controller.controller_name) %>
           <ul id="products">
         <% else %>
           <ul id="products" style="display: none;">

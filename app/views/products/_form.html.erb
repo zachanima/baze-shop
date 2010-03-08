@@ -2,19 +2,19 @@
   <% f.inputs do %>
     <li class="string">
       <%= f.label :name %>
-      <%= text_field_tag(:template_name, @product.template.name, :disabled => true) %>
+      <%= text_field_tag(:template_name, @product.name, :disabled => true) %>
     </li>
     <li class="string">
       <%= f.label :number %>
-      <%= text_field_tag(:template_number, @product.template.number, :disabled => true) %>
+      <%= text_field_tag(:template_number, @product.number, :disabled => true) %>
     </li>
     <li class="string">
       <%= f.label :brand %>
-      <%= text_field_tag(:template_brand, @product.template.brand, :disabled => true) %>
+      <%= text_field_tag(:template_brand, @product.brand, :disabled => true) %>
     </li>
     <li class="text">
       <%= f.label :text %>
-      <%= text_area_tag(:template_text, @product.template.text, { :disabled => true, :rows => 20 }) %>
+      <%= text_area_tag(:template_text, @product.text, { :disabled => true, :rows => 20 }) %>
     </li>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
