@@ -4,7 +4,7 @@
     <% if @shop %>
       <%= @shop.name %></li>
       <%= f.input :user, :collection => @shop.users.all(:order => 'first_name, last_name').collect { |u| [u.name, u.id] } %>
-      <%= f.input :categorization, :collection => @shop.templates.collect { |p| [p.name, p.id] } %>
+      <%= f.input :product, :collection => @shop.templates.collect { |p| [p.name, p.id] } %>
     <% else %>
       <select onchange="location='/shops/'+options[selectedIndex].value+'/orders/new'">
         <option>Select shop...</option>

@@ -1,4 +1,4 @@
-class Categorization < ActiveRecord::Base
+class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :template
   has_many :orders

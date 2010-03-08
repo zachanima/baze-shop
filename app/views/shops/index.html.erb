@@ -22,7 +22,7 @@
           <td class="name"><%= link_to(shop.name, edit_shop_path(shop)) %></td>
           <td><%= link_to(shop.link, shop_url(shop)) %></td>
           <td><%= link_to(shop.users.count, shop_users_path(shop)) %></td>
-          <td><%= link_to(shop.templates.count, shop_categorizations_path(shop)) %></td>
+          <td><%= link_to(shop.templates.count, shop_products_path(shop)) %></td>
           <td><%= shop.username_text %></td>
           <td><%= shop.password_text %></td>
           <td><%= shop.closed ? 'Closed' : nil %></td>

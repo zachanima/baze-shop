@@ -60,7 +60,7 @@ class TemplatesController < ApplicationController
   def multiple_add_to_shop
     @shop.categories.build(:name => 'root').save if @shop.categories.empty?
     params[:template_ids].each do |template_id|
-      unless @shop.categories.first.categorizations.build(:template_id => template_id).save
+      unless @shop.categories.first.products.build(:template_id => template_id).save
         return false
       end
     end

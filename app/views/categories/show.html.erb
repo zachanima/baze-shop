@@ -1,9 +1,9 @@
-<% @categorizations.in_groups_of(3).each do |categorization_group| %>
+<% @products.in_groups_of(3).each do |product_group| %>
   <div class="product_group">
-    <% categorization_group.compact.each do |categorization| %>
-      <% link_to(shop_categorization_path(@shop, categorization), :class => 'product') do %>
-        <%= image_tag(categorization.template.images.first.data.url(:small)) if categorization.template.images.first %>
-        <%= categorization.template.name %>
+    <% product_group.compact.each do |product| %>
+      <% link_to(shop_product_path(@shop, product), :class => 'product') do %>
+        <%= image_tag(product.template.images.first.data.url(:small)) if product.template.images.first %>
+        <%= product.template.name %>
       <% end %>
     <% end %>
   </div>

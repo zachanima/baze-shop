@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100308201723) do
+ActiveRecord::Schema.define(:version => 20100308211746) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -19,29 +19,6 @@ ActiveRecord::Schema.define(:version => 20100308201723) do
     t.integer  "shop_id"
     t.integer  "lft"
     t.integer  "rgt"
-  end
-
-  create_table "categorizations", :force => true do |t|
-    t.integer  "category_id"
-    t.integer  "template_id"
-    t.integer  "position"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "categorizations_images", :id => false, :force => true do |t|
-    t.integer "categorization_id"
-    t.integer "image_id"
-  end
-
-  create_table "categorizations_option_groups", :id => false, :force => true do |t|
-    t.integer "categorization_id"
-    t.integer "option_group_id"
-  end
-
-  create_table "categorizations_options", :id => false, :force => true do |t|
-    t.integer "categorization_id"
-    t.integer "option_id"
   end
 
   create_table "images", :force => true do |t|
@@ -57,11 +34,21 @@ ActiveRecord::Schema.define(:version => 20100308201723) do
 
   add_index "images", ["template_id"], :name => "index_images_on_template_id"
 
+  create_table "images_products", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "image_id"
+  end
+
   create_table "option_groups", :force => true do |t|
     t.string   "name"
     t.string   "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "option_groups_products", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "option_group_id"
   end
 
   create_table "options", :force => true do |t|
@@ -72,9 +59,22 @@ ActiveRecord::Schema.define(:version => 20100308201723) do
     t.boolean  "separator"
   end
 
+  create_table "options_products", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "option_id"
+  end
+
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "categorization_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "products", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "template_id"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

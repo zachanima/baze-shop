@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   # def edit
 
   def show
-    @categorizations = @category.categorizations
+    @products = @category.products
     render :layout => 'shop'
   end
   

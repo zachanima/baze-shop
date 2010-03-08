@@ -15,11 +15,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :shops do |shop|
     shop.resources :categories do |category|
-      category.resources :categorizations
+      category.resources :products
     end
-    shop.resources :categorizations, :collection => { :multiple => :post }
-    shop.resources :categorizations do |categorization|
-      categorization.resources :order
+    shop.resources :products, :collection => { :multiple => :post }
+    shop.resources :products do |product|
+      product.resources :order
     end
     shop.resources :orders
     shop.resources :users, :collection => {
