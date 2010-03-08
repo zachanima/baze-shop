@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   end
 
   def thumbnail
-    if self.images
+    unless self.images.empty?
       self.images.first.data.url(:small)
     end
   end

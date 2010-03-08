@@ -1,8 +1,9 @@
+<h1>Produkter</h1>
 <% @products.in_groups_of(3).each do |product_group| %>
   <div class="product_group">
     <% product_group.compact.each do |product| %>
       <% link_to(shop_product_path(@shop, product), :class => 'product') do %>
-        <%= image_tag(product.thumbnail) if product.images %>
+        <%= image_tag(product.thumbnail) if product.thumbnail %>
         <%= product.name %>
       <% end %>
     <% end %>
