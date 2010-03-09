@@ -8,6 +8,7 @@
       <tr>
         <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
         <th>Name</th>
+        <th>Number</th>
         <th>Category</th>
         <th>Images</th>
         <th>Options</th>
@@ -18,6 +19,7 @@
         <tr class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('product_ids[]', product.id, false, :class => 'checkbox') %></td>
           <td class="name"><%= link_to(product.name, edit_shop_product_path(@shop, product)) %>
+          <td><%= product.number %></td>
           <td><%= product.category.self_and_ancestors.collect { |a| a.name }.join(' > ') if product.category %></td>
           <td><%= product.images.count %></td>
           <td><%= product.option_groups.count %></td>
