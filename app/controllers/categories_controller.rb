@@ -1,15 +1,15 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate, :except => [:index, :show]
-  before_filter :find_category, :only => [:edit, :show, :update]
   before_filter :find_shop
+  before_filter :find_category, :only => [:edit, :show, :update]
 
   def index
-    @categories = Category.all
+    @categories = @shop.categories
     render_shop
   end
 
   def new
-    @category = Category.new
+    @category = @shop.category.new
   end
 
   # def edit
@@ -45,6 +45,6 @@ class CategoriesController < ApplicationController
 
   private
   def find_category
-    @category = Category.find(params[:id])
+    @category = @shop.categories.find(params[:id])
   end
 end
