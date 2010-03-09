@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
   before_filter :authenticate, :except => [:index, :show]
   before_filter :find_shop
-  before_filter :find_category, :only => [:edit, :show, :update]
+  before_filter :find_category, :only => [:edit, :show, :update, :destroy]
 
   def index
     @categories = @shop.categories
@@ -40,7 +40,14 @@ class CategoriesController < ApplicationController
     end
   end
   
-  # def destroy
+  def destroy
+    @category.products.each do |p|
+      p.category = nil
+      p.save
+    end
+    @category.destroy
+    redirect_to(edit_shop_path(@shop))
+  end
 
   private
   def find_category

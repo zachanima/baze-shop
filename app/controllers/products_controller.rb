@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_filter :find_shop
 
   def index
-    @products = @shop.categories.collect { |c| c.products }.flatten
+    @products = @shop.products
   end
 
   def edit
