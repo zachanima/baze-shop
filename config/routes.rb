@@ -26,7 +26,9 @@ ActionController::Routing::Routes.draw do |map|
       :import => :get,
       :upload => :post,
       :import_create => :put
-    }
+    } do |user|
+      user.resources :orders
+    end
   end
 
   map.resources :user_sessions

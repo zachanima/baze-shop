@@ -2,7 +2,6 @@ class ShopsController < ApplicationController
   before_filter :authenticate, :except => [:show]
   before_filter :find_shop, :only => [:edit, :show, :update]
   before_filter :parameterize_link, :only => [:create, :update]
-  before_filter :find_current_user, :only => [:show]
 
   def index
     @shops = Shop.all
@@ -15,7 +14,7 @@ class ShopsController < ApplicationController
   # def edit
 
   def show
-    if @current_user.shop === @shop
+    if @current_user and @current_user.shop === @shop
       render :layout => 'shop'
     else
       redirect_to(login_path(@shop))

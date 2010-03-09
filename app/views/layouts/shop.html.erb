@@ -9,7 +9,7 @@
   <body>
     <div id="header">
       <div class="content">
-        <span class="logout"><%= [[Time.now.day, Time.now.month].join('/'), [Time.now.hour, Time.now.min].join(':')].join(' - ') %><br /><a href="#">Logout</a></span>
+        <span class="logout"><%= [[Time.now.day, Time.now.month].join('/'), [Time.now.hour, Time.now.min].join(':')].join(' - ') %><br /><%= link_to('Logout', logout_path(@shop)) %></span>
         <h1><%= @shop.logo.url == '/logos/original/missing.png' ? @shop.name : image_tag(@shop.logo.url) if @shop %></h1>
       </div>
     </div>
@@ -34,10 +34,9 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to('Historik', '') %></li>
-            <li><%= link_to('Information', '') %></li>
+            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) %></li>
+            <li><%= link_to('Information', shop_user_path(@shop, @current_user)) %></li>
           <% end %>
-          <li><%= link_to('Kontakt', 'kontakt') %></li>
         </ul>
       </div>
     </div>

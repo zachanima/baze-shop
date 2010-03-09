@@ -1,6 +1,8 @@
 require 'csv'
 
 class ApplicationController < ActionController::Base
+  before_filter :find_current_user
+
   helper :all
   protect_from_forgery
 
