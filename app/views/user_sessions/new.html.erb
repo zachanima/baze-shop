@@ -3,11 +3,11 @@
   <fieldset>
     <ol>
       <li>
-        <%= label_tag :login, @shop.username_text %>
+        <%= label_tag :login, @shop.username_text.empty? ? 'Brugernavn' : @shop.username_text %>
         <%= text_field_tag :login %>
       </li>
       <li>
-        <%= label_tag :password, @shop.password_text %>
+        <%= label_tag :password, @shop.password_text.empty? ? 'Adgangskode' : @shop.password_text %>
         <%= password_field_tag :password %>
       </li>
     </ol>

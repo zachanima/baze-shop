@@ -14,11 +14,7 @@ class ShopsController < ApplicationController
   # def edit
 
   def show
-    if @current_user and @current_user.shop === @shop
-      render :layout => 'shop'
-    else
-      redirect_to(login_path(@shop))
-    end
+    render_shop
   end
 
   def create

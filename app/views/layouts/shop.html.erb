@@ -20,7 +20,7 @@
           <li><%= link_to('Velkommen', shop_path(@shop)) %></li>
           <% if @current_user and @current_user.shop === @shop %>
             <li>
-              <%= link_to('Produkter', '') %>
+              <%= link_to('Produkter', shop_categories_path(@shop)) %>
               <ul>
                 <% @shop.categories.roots.each do |root| %>
                   <li>

@@ -24,4 +24,13 @@ class ApplicationController < ActionController::Base
   def find_current_user
     @current_user = User.find(session[:user_id]) if session[:user_id]
   end
+
+  def render_shop
+    if @current_user and @current_user.shop === @shop
+      render :layout => 'shop'
+    else
+      session.delete(:user_id)
+      redirect_to(login_path(@shop))
+    end
+  end
 end

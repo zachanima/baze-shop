@@ -3,6 +3,9 @@ class CategoriesController < ApplicationController
   before_filter :find_category, :only => [:edit, :show, :update]
   before_filter :find_shop
 
+  def index
+  end
+
   def new
     @category = Category.new
   end
