@@ -33,10 +33,24 @@ class OptionGroupsController < ApplicationController
     end
   end
 
-  # def destroy
+  def multiple
+    if params[:option_group_ids].nil?
+      flash[:error] = 'No option groups selected'
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:option_group_ids].count} option groups"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    redirect_to(option_groups_path)
+  end
 
   private
   def find_option_group
     @option_group = OptionGroup.find(params[:id])
+  end
+
+  def multiple_destroy
+    OptionGroup.destroy(params[:option_group_ids])
   end
 end
