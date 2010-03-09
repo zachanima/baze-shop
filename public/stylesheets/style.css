@@ -85,11 +85,11 @@ h1 {
 
 .product .image {
   height: 200px;
+  margin-bottom: 8px;
 }
 
 .product img { /* stand-in for image */
   margin: 0 auto;
-  margin-bottom: 8px;
 }
 
 #images {
@@ -97,9 +97,12 @@ h1 {
   padding: 4px;
 }
 
+#images div {
+  margin-bottom: 4px;
+}
+
 #images img {
   display: block;
-  margin-bottom: 4px;
 }
 
 #product {

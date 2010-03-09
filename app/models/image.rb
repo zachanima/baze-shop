@@ -4,8 +4,8 @@ class Image < ActiveRecord::Base
   validates_presence_of :name
 
   has_attached_file :data, :styles => {
-    :small => '200x200#',
-    :original => '800x600>' }
+    :small => '200x200>',
+    :original => '800x800>' }
   validates_attachment_presence :data
   validates_attachment_content_type :data, :content_type => [
     'image/jpeg', 'image/pjpeg', 'image/jpg', 'image/png' ]
