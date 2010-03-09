@@ -2,7 +2,7 @@
     <% if @product.images.count > 1 %>
       <div><%= link_to('&lt;&lt;') %> 1 / <%= @product.images.count %> <%= link_to('&gt;&gt') %></div>
     <% end %>
-    <%= link_to(image_tag(@product.thumbnail), @product.images.first.data.url) %>
+    <%= link_to(image_tag(@product.thumbnail), @product.images.first.data.url) if @product.thumbnail %>
   </div>
 
 <div id="product">
