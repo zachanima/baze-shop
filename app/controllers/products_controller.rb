@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @categories = @product.category.shop.categories
+    @categories = @shop.categories
   end
 
   def show
