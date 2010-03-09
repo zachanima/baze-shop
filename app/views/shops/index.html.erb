@@ -12,6 +12,7 @@
         <th>Products</th>
         <th>Username</th>
         <th>Password</th>
+        <th>Currency</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -25,6 +26,7 @@
           <td><%= link_to(shop.templates.count, shop_products_path(shop)) %></td>
           <td><%= shop.username_text %></td>
           <td><%= shop.password_text %></td>
+          <td><%= shop.currency %></td>
           <td><%= shop.closed ? 'Closed' : nil %></td>
         </tr>
       <% end %>
