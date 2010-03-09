@@ -1,0 +1,10 @@
+<h1>Kategorier</h1>
+<% @categories.in_groups_of(3).each do |category_group| %>
+  <div class="product_group">
+    <% category_group.compact.each do |category| %>
+      <% link_to(shop_category_path(@shop, category), :class => 'product') do %>
+        <%= category.name %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

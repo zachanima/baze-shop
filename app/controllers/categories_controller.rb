@@ -1,9 +1,11 @@
 class CategoriesController < ApplicationController
-  before_filter :authenticate, :except => [:show]
+  before_filter :authenticate, :except => [:index, :show]
   before_filter :find_category, :only => [:edit, :show, :update]
   before_filter :find_shop
 
   def index
+    @categories = Category.all
+    render_shop
   end
 
   def new
