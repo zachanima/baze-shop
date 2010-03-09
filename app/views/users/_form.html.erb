@@ -14,7 +14,7 @@
         <option>Select shop...</option>
         <option disabled="disabled">
         <% @shops.each do |shop| %>
-          <option value="<%= shop.id %>"><%= shop.name %></option>
+          <option value="<%= shop.link %>"><%= shop.name %></option>
         <% end %>
       </select>
     <% end %>
