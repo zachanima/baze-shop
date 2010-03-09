@@ -17,25 +17,27 @@
     <div id="nav">
       <div class="content">
         <ul>
-          <li><%= link_to('Velkommen', '') %></li>
-          <li>
-            <%= link_to('Produkter', '') %>
-            <ul>
-              <% @shop.categories.roots.each do |root| %>
-                <li>
-                  <%= link_to(root.name, shop_category_path(@shop, root)) %>
-                  <ul>
-                    <% root.children.each do |child| %>
-                      <li><%= link_to(child.name, shop_category_path(@shop, child)) %></li>
-                    <% end %>
-                  </ul>
-                </li>
-              <% end %>
-            </ul>
-          </li>
-          <li><%= link_to('Historik', '') %></li>
-          <li><%= link_to('Information', '') %></li>
-          <li><%= link_to('Kontakt', '') %></li>
+          <li><%= link_to('Velkommen', shop_path(@shop)) %></li>
+          <% if @current_user and @current_user.shop === @shop %>
+            <li>
+              <%= link_to('Produkter', '') %>
+              <ul>
+                <% @shop.categories.roots.each do |root| %>
+                  <li>
+                    <%= link_to(root.name, shop_category_path(@shop, root)) %>
+                    <ul>
+                      <% root.children.each do |child| %>
+                        <li><%= link_to(child.name, shop_category_path(@shop, child)) %></li>
+                      <% end %>
+                    </ul>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+            <li><%= link_to('Historik', '') %></li>
+            <li><%= link_to('Information', '') %></li>
+          <% end %>
+          <li><%= link_to('Kontakt', 'kontakt') %></li>
         </ul>
       </div>
     </div>
