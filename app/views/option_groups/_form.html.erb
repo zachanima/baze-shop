@@ -2,6 +2,7 @@
   <% f.inputs do %>
     <%= f.input :name %>
     <%= f.input :text %>
+    <%= f.input :optional %>
     <% unless @option_group.new_record? %>
       <%= f.input :options, :as => :check_boxes, :collection => @option_group.options.collect{ |o| [[o.text, o.separator ? '(separator)' : nil].join(' '), o.id] } %>
       <%= link_to_new('option', new_option_group_option_path(@option_group)) %>

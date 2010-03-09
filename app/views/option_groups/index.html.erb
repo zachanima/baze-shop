@@ -9,6 +9,7 @@
         <th>Name</th>
         <th>Text</th>
         <th>Options</th>
+        <th>Optional</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
           <td class="name"><%= link_to(option_group.name, edit_option_group_path(option_group)) %>
           <td><%= option_group.text %></td>
           <td><%= option_group.options.count %></td>
+          <td><%= option_group.optional ? 'Optional' : nil %></td>
         </tr>
       <% end %>
     </tbody>

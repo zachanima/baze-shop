@@ -14,6 +14,7 @@
           <li>
             <%= f.label option_group.text %>
             <select name="option_ids">
+              <%= '<option />' if option_group.optional %>
               <% @product.options.each do |option| %>
                 <% if option.option_group === option_group %>
                   <% if option.separator %>
