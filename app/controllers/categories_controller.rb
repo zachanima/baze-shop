@@ -30,7 +30,6 @@ class CategoriesController < ApplicationController
     end
   end
   
-  
   def update
     if @category.update_attributes(params[:category])
       flash[:notice] = 'Updated category'
