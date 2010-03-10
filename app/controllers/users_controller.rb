@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show]
   before_filter :find_shop
-  before_filter :find_user, :only => [:edit, :update]
+  before_filter :find_user, :only => [:show, :edit, :update]
 
   def index
     @users = @shop ? @shop.users.all(:order => 'first_name, last_name') : User.all(:order => 'first_name, last_name')
@@ -13,6 +13,10 @@ class UsersController < ApplicationController
   end
 
   # def edit
+
+  def show
+    render_shop
+  end
 
   def create
     @user = @shop.users.build(params[:user])
