@@ -56,11 +56,13 @@
       <%= yield %>
     </div>
 
-    <% content_tag :div, :class => 'content', :id => 'cart' do %>
-      <span>Varekurv</span>
-      <%= render 'orders/cart' %>
-      <%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) %>
-    <% end unless @current_user.waiting_orders.empty? or controller.action_name == 'review' %>
+    <% if @current_user and @current_user.shop === @shop %>
+      <% content_tag :div, :class => 'content', :id => 'cart' do %>
+        <span>Varekurv</span>
+        <%= render 'orders/cart' %>
+        <%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) %>
+      <% end unless @current_user.waiting_orders.empty? or controller.action_name == 'review' %>
+    <% end %>
 
     <div id="footer">
       <div class="content">
