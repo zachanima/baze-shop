@@ -8,7 +8,7 @@
 <div id="product">
   <h1><%= @product.name %></h1>
   <%= markdown(@product.text) %>
-  <% semantic_form_for(:order, :url => new_order_path, :html => { :class => 'formtastic', :method => :get }) do |f| %>
+  <% semantic_form_for(:order, :url => shop_user_orders_path(@shop, @current_user), :html => { :class => 'formtastic', :method => :post }) do |f| %>
     <% if @product.option_groups.count > 0 %>
       <% f.inputs do %>
         <ol>
@@ -16,7 +16,7 @@
           <li>
             <%= f.label option_group.text %>
             <% if option_group.options.count > 1 or option_group.optional %>
-              <select name="option_ids">
+              <select name="order[variation_ids][]">
                 <%= '<option />' if option_group.optional %>
                 <% @product.options.all(:order => 'position').each do |option| %>
                   <% if option.option_group === option_group %>
@@ -24,7 +24,7 @@
                       <option disabled="disabled" />
                       <option disabled="disabled"><%= option.text %></option>
                     <% else %>
-                      <option value="<%= option.id %>"><%= option.text %></option>
+                      <option value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %></option>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -41,18 +41,20 @@
       <ol>
         <li>
           <%= f.label 'Antal' %>
-          <select name="quantity">
+          <select name="order[quantity]">
             <% (1..10).each do |quantity| %>
               <option value="<%= quantity %>"><%= quantity %></option>
             <% end %>
           </select>
         <li>
           <%= f.label 'Pris' %>
+          <%= f.input :price, :as => :hidden, :value => @product.price %>
           <span class="price"><%= format_currency(@product.price) %></span>
         </li>
       </ol>
     </fieldset>
     <% f.buttons do %>
+      <%= f.input :product_id, :as => :hidden, :value => @product.id %>
       <%= f.commit_button('Føj til kurv...') %>
     <% end %>
   <% end %>

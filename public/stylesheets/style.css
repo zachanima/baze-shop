@@ -7,6 +7,15 @@ h1 {
   margin: 0 0 8px 0;
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding-left: 4px;
+}
+
 .content {
   margin: auto;
   width: 750px;
@@ -126,6 +135,18 @@ h1 {
   font-size: 18pt;
 }
 
+th {
+  text-align: left;
+}
+
+td {
+  vertical-align: top;
+}
+
+td.name {
+  font-weight: bold;
+}
+
 #header .logout {
   text-align: right;
 }
@@ -182,6 +203,22 @@ body {
   background-color: #eee;
 }
 
+table, th, td {
+  border: 1px solid #fff;
+}
+
+th {
+  color: #fff;
+  background-color: #999;
+}
+
+tr.odd {
+  background-color: #fff;
+}
+
+tr.even {
+  background-color: #f4f4f4;
+}
 
 #header {
   color: #fff;

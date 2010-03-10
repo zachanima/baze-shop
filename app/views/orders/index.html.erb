@@ -1,25 +1,63 @@
-<% title ['List', @shop ? nil : 'all', 'orders', @shop ? "of #{@shop.name}" : nil].join(' ') %>
-<%= link_to_new('order', @shop ? new_shop_order_path(@shop) : new_order_path) %>
-
-<% form_tag({ :action => :multiple }, :class => 'index') do %>
+<% if @user and @current_user %>
+  <h1>Ordrehistorik</h1>
   <table>
     <thead>
       <tr>
-        <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
-        <th>ID</th>
-        <th>User</th>
-        <th>template</th>
+        <th>#</th>
+        <th>Produkt</th>
+        <th>Valg</th>
+        <th>Antal</th>
+        <th>Samlet pris</th>
+        <th>Bestilt</th>
       </tr>
     </thead>
     <tbody>
       <% @orders.each do |order| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td class="checkbox"><%= check_box_tag('order_ids[]', order.id, false, :class => 'checkbox') %></td>
-          <td class="name"><%= link_to(order.id, edit_order_path(order)) %></td>
-          <td><%= link_to(order.user.name, edit_shop_user_path(order.user.shop, order.user)) %></td>
-          <td><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) %></td>
+          <td><%= order.id %></td>
+          <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+          <td><%= order.variations.collect { |v| [v.option.option_group.text, v.option.text].join(': ') }.join('<br />') %></td>
+          <td><%= order.quantity %></td>
+          <td><%= format_currency(order.price) %></td>
+          <td><%= order.created_at.to_s(:short) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+<% else %>
+  <% title ['List', @shop ? nil : 'all', 'orders', @shop ? "of #{@shop.name}" : nil].join(' ') %>
+  <%= link_to_new('order', @shop ? new_shop_order_path(@shop) : new_order_path) %>
+
+  <% form_tag({ :action => :multiple }, :class => 'index') do %>
+    <table>
+      <thead>
+        <tr>
+          <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
+          <th>ID</th>
+          <%= content_tag :th, 'Shop' unless @shop %>
+          <th>User</th>
+          <th>Product</th>
+          <th>Options</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td class="checkbox"><%= check_box_tag('order_ids[]', order.id, false, :class => 'checkbox') %></td>
+            <td class="name"><%= link_to(order.id, edit_order_path(order)) %></td>
+            <%= content_tag :td, link_to(order.user.shop.name, shop_orders_path(order.user.shop)) unless @shop %>
+            <td><%= link_to(order.user.name, edit_shop_user_path(order.user.shop, order.user)) %></td>
+            <td><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) %></td>
+            <td><%= order.variations.collect { |v| "<abbr title=\"#{v.option.option_group.text}\">#{v.option.text}</abbr>" }.join(', ') %></td>
+            <td><%= order.quantity %></td>
+            <td><%= format_currency(order.price) %></td>
+            <td><%= order.created_at.to_s(:short) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 <% end %>
