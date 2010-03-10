@@ -173,10 +173,6 @@ h1 {
 
 
 /* colours */
-a {
-  color: #9c3;
-}
-
 a:hover {
   color: #333;
 }
@@ -202,7 +198,6 @@ body {
 }
 
 #nav {
-  background-color: #9c3;
   border-top: 3px solid #fff;
   border-bottom: 3px solid #fff;
 }
@@ -230,18 +225,12 @@ body {
   border-top-width: 1px;
 }
 
-#nav ul ul a {
-  color: #9c3;
-}
-
 #fortune {
   border-top: 1px solid #ddd;
 }
 
 #content {
   background-color: #fff;
-  border-top: 5px solid #9c3;
-  border-bottom: 1px solid #9c3;
 }
 
 .product {
