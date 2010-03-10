@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
       render_shop
     else
       authenticate
-      @orders = @shop ? @shop.orders.all(:conditions => { :accepted => true }) : Order.all(:conditions => { :accepted => true })
+      @orders = @shop ? @shop.orders.select { |o| o.accepted = true } : Order.all(:conditions => { :accepted => true })
     end
   end
 
