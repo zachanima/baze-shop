@@ -38,6 +38,19 @@ class OrdersController < ApplicationController
   end
 
 
+  def multiple
+    if params[:order_ids].nil?
+      flash[:error] = 'No orders selected'
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:order_ids].count} orders"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    redirect_to(@shop ? shop_orders_path(@shop) : orders_path)
+  end
+
+
   # Cart
   def review
     @orders = @current_user.waiting_orders
@@ -56,5 +69,9 @@ class OrdersController < ApplicationController
   private
   def find_order
     @order = Order.find(params[:id])
+  end
+
+  def multiple_destroy
+    Order.destroy(params[:order_ids])
   end
 end
