@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310054440) do
+ActiveRecord::Schema.define(:version => 20100310064851) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -60,11 +60,6 @@ ActiveRecord::Schema.define(:version => 20100310054440) do
     t.datetime "updated_at"
     t.boolean  "separator"
     t.integer  "position"
-  end
-
-  create_table "options_products", :id => false, :force => true do |t|
-    t.integer "product_id"
-    t.integer "option_id"
   end
 
   create_table "orders", :force => true do |t|
@@ -122,6 +117,12 @@ ActiveRecord::Schema.define(:version => 20100310054440) do
     t.text     "text"
     t.string   "persistence_token"
     t.datetime "last_request_at"
+  end
+
+  create_table "variations", :force => true do |t|
+    t.integer "product_id"
+    t.integer "option_id"
+    t.float   "price"
   end
 
 end

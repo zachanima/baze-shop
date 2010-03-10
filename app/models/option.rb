@@ -1,5 +1,6 @@
 class Option < ActiveRecord::Base
   belongs_to :option_group
-  has_and_belongs_to_many :products
+  has_many :variations
+  has_many :products, :through => :variations
   validates_presence_of :text
 end

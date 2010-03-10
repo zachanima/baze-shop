@@ -3,9 +3,10 @@ class Product < ActiveRecord::Base
   belongs_to :category
   belongs_to :template
   has_many :orders
+  has_many :variations
+  has_many :options, :through => :variations
   has_and_belongs_to_many :images
   has_and_belongs_to_many :option_groups
-  has_and_belongs_to_many :options
 
   def name
     self.template.name
