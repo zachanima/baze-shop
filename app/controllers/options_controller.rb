@@ -1,7 +1,7 @@
 class OptionsController < ApplicationController
   before_filter :authenticate, :except => [:show]
   before_filter :find_option_group
-  before_filter :find_option,  :only => [:edit, :update]
+  before_filter :find_option,  :only => [:edit, :update, :destroy]
 
   def new
     @option = Option.new
@@ -28,6 +28,11 @@ class OptionsController < ApplicationController
       flash[:error] = ['Could not update option', @option.text].join(' ')
       render :action => :edit
     end
+  end
+
+  def destroy
+    @option.destroy
+    redirect_to(edit_option_group_path(@option_group))
   end
 
 
