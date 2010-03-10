@@ -11,6 +11,18 @@ module ApplicationHelper
     link_to("Add new #{string}", path, :class => 'button')
   end
 
+  def format_currency(number)
+    if number.to_f == 0
+      return
+    else
+      number_to_currency(number.to_f, {
+        :unit => @shop ? @shop.currency : nil,
+        :separator => ',',
+        :precision => number.to_f == number.to_i ? 0 : 2,
+        :format => '%n %u'})
+    end
+  end
+
   def fortune
     [
     "clock speed",

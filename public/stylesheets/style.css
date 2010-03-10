@@ -160,6 +160,11 @@ h1 {
   text-align: center;
 }
 
+.price {
+  font-weight: bold !important;
+  font-size: 12pt;
+}
+
 #footer {
   font-size: 9pt;
 }

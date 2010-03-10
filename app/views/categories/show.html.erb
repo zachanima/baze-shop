@@ -6,7 +6,8 @@
         <div class="image">
           <%= image_tag(product.thumbnail) if product.thumbnail %>
         </div>
-        <%= product.name %>
+        <%= product.name %><br />
+        <span class="price"><%= format_currency(product.price) %></span>
       <% end %>
     <% end %>
   </div>
