@@ -40,6 +40,13 @@
     <fieldset>
       <ol>
         <li>
+          <%= f.label 'Antal' %>
+          <select name="quantity">
+            <% (1..10).each do |quantity| %>
+              <option value="<%= quantity %>"><%= quantity %></option>
+            <% end %>
+          </select>
+        <li>
           <%= f.label 'Pris' %>
           <span class="price"><%= format_currency(@product.price) %></span>
         </li>
