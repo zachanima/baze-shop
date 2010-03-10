@@ -7,7 +7,7 @@
 
 <div id="product">
   <h1><%= @product.name %></h1>
-  <%= @product.text %>
+  <%= markdown(@product.text) %>
   <% semantic_form_for(:order, :url => new_order_path, :html => { :class => 'formtastic', :method => :get }) do |f| %>
     <% if @product.option_groups.count > 0 %>
       <% f.inputs do %>
