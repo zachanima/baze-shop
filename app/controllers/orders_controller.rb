@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = @current_user.orders.build(params[:order])
-    @order.price *= @order.quantity
+    @order.price *= @order.quantity unless @order.price.blank?
     @order.save
     redirect_to(shop_category_product_path(@shop, @order.product.category, @order.product))
   end
