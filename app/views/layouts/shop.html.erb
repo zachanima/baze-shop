@@ -20,7 +20,7 @@
           <li><%= link_to('Velkommen', shop_path(@shop)) %></li>
           <% if @current_user and @current_user.shop === @shop %>
             <li>
-              <%= link_to('Produkter', shop_categories_path(@shop)) %>
+              <%= link_to('Produkter', '#') %>
               <ul>
                 <% @shop.categories.roots.all(:order => 'position').each do |root| %>
                   <%= render :partial => 'categories/nav', :locals => { :category => root } %>

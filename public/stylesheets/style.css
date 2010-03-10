@@ -58,11 +58,11 @@ h1 {
 }
 
 #nav:hover .content > ul > li > ul {
-  display: inherit;
+  display: block;
 }
 
 #nav .content > ul > li > ul li:hover > ul {
-  display: inherit;
+  display: block;
   margin-top: -23px;
   margin-left: 100%;
 }
@@ -260,4 +260,11 @@ body {
 
 #footer {
   color: #999;
+}
+
+
+
+/* ie7 fixes (thank god for css2 and compatible, above) */
+#nav .content > ul > li {
+  *display: inline;
 }
