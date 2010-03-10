@@ -19,7 +19,6 @@ class ShopsController < ApplicationController
     else
       render_shop
     end
-
   end
 
   def create
