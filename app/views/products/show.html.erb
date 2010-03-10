@@ -48,13 +48,13 @@
           </select>
         <li>
           <%= f.label 'Pris' %>
-          <%= f.input :price, :as => :hidden, :value => @product.price %>
           <span class="price"><%= format_currency(@product.price) %></span>
         </li>
       </ol>
     </fieldset>
     <% f.buttons do %>
       <%= f.input :product_id, :as => :hidden, :value => @product.id %>
+      <%= f.input :price, :as => :hidden, :value => @product.price %>
       <%= f.commit_button('Føj til kurv...') %>
     <% end %>
   <% end %>

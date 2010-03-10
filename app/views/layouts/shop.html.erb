@@ -9,7 +9,7 @@
       a, #nav ul ul a {
         color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
-      #nav {
+      #nav, tr.total {
         background-color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
       #content {
@@ -39,7 +39,8 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) if @current_user.orders.count > 0 %></li>
+            <li><%= link_to("Kurv (#{@current_user.waiting_orders.count} produkt#{@current_user.waiting_orders.count == 1 ? '' : 'er'})", review_shop_user_orders_path(@shop, @current_user)) if @current_user.waiting_orders.count > 0 %></li>
+            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) if @current_user.accepted_orders.count > 0 %></li>
             <li><%= link_to('Information', shop_user_path(@shop, @current_user)) unless @current_user.text.blank? %></li>
           <% end %>
         </ul>

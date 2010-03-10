@@ -1,0 +1,30 @@
+<h1>Varekurv for <%= @current_user.name %></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Produkt</th>
+      <th>Nummer</th>
+      <th>Valg</th>
+      <th>Antal</th>
+      <th>Pris</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+        <td><%= order.product.number %></td>
+        <td><%= order.variations.collect { |v| [v.option.option_group.text, v.option.text].join(': ') }.join('<br />') %></td>
+        <td><%= order.quantity %></td>
+        <td><%= format_currency(order.price) %></td>
+      </tr>
+    <% end %>
+    <tr class="total">
+      <td colspan="4">Total</td>
+      <td><%= format_currency(@orders.collect(&:price).compact.inject(0) { |b,i| b + i }) %>
+    </tr>
+  </tbody>
+</table>
+<% form_tag(accept_shop_user_orders_path(@shop, @current_user), { :class => 'accept' }) do %>
+  <%= submit_tag('Accepter bestilling') %>
+<% end %>

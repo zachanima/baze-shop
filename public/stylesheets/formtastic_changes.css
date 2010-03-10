@@ -43,3 +43,11 @@ form.formtastic fieldset ol li ol li ul {
 form.formtastic fieldset ol li ol li ul li {
   background-color: rgba(0,0,0,0.05);
 }
+
+
+
+/* cart */
+form.accept {
+  margin-top: 16px;
+  text-align: right;
+}

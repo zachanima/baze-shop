@@ -147,6 +147,10 @@ td.name {
   font-weight: bold;
 }
 
+tr.total {
+  font-weight: bold;
+}
+
 #header .logout {
   text-align: right;
 }
@@ -218,6 +222,10 @@ tr.odd {
 
 tr.even {
   background-color: #f4f4f4;
+}
+
+tr.total {
+  color: #fff;
 }
 
 #header {

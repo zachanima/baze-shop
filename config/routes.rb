@@ -27,7 +27,10 @@ ActionController::Routing::Routes.draw do |map|
       :upload => :post,
       :import_create => :put
     } do |user|
-      user.resources :orders
+      user.resources :orders, :collection => {
+        :review => :get,
+        :accept => :post
+      }
     end
   end
 
