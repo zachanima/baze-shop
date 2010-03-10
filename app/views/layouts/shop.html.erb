@@ -39,7 +39,7 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) %></li>
+            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) if @current_user.orders.count > 0 %></li>
             <li><%= link_to('Information', shop_user_path(@shop, @current_user)) unless @current_user.text.blank? %></li>
           <% end %>
         </ul>
