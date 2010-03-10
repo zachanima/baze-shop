@@ -5,9 +5,10 @@
       <tr>
         <th>#</th>
         <th>Produkt</th>
+        <th>Nummer</th>
         <th>Valg</th>
         <th>Antal</th>
-        <th>Samlet pris</th>
+        <th>Pris</th>
         <th>Bestilt</th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= order.id %></td>
           <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+          <td><%= order.product.number %></td>
           <td><%= order.variations.collect { |v| [v.option.option_group.text, v.option.text].join(': ') }.join('<br />') %></td>
           <td><%= order.quantity %></td>
           <td><%= format_currency(order.price) %></td>

@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
   def index
     @user = User.find(params[:user_id]) if params[:user_id]
     if @user
-      @orders = @user.orders
+      @orders = @user.accepted_orders
       render_shop
     else
       authenticate
