@@ -24,6 +24,10 @@ form.formtastic fieldset ol li ol {
 
 form.formtastic fieldset ol li ol li {
   margin: 0;
+  padding: 0 0 4px 0;
+}
+
+form.formtastic fieldset ol li ol#category_tree li {
   padding: 2px 0 12px 0;
 }
 

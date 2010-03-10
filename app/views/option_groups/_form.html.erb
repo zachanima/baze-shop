@@ -10,7 +10,7 @@
           <% @option_group.options.all(:order => 'position').each do |option| %>
             <% content_tag_for(:li, option) do %>
               <span class="handle">[drag]</span>
-              <%= link_to(option.text, edit_option_group_option_path(@option_group, option)) %>
+              <%= link_to(option.text, edit_option_group_option_path(@option_group, option), :class => option.separator ? 'separator' : nil) %>
               (<%= link_to('delete', option_group_option_path(@option_group, option), :confirm => "Delete option #{option.text}?", :method => :delete) %>)
             <% end %>
           <% end %>

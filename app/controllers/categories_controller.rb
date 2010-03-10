@@ -33,7 +33,7 @@ class CategoriesController < ApplicationController
   
   def update
     if @category.update_attributes(params[:category])
-      flash[:notice] = 'Updated category'
+      flash[:notice] = ['Updated category', @category.name].join(' ')
       redirect_to(edit_shop_path(@shop))
     else
       flash[:error] = ['Could not update category', @category.name].join(' ')

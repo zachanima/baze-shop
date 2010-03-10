@@ -112,6 +112,10 @@ td.name {
   font-weight: bold;
 }
 
+a.separator {
+  font-weight: bold;
+}
+
 #header .logout {
   text-align: right;
 }
