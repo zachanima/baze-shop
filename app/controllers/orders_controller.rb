@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   before_filter :find_shop
 
   def index
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id]) if params[:user_id]
     if @user
       @orders = @user.orders
       render_shop
