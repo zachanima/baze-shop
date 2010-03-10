@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # Should authenticate on shopless orders and userless indices
   before_filter :authenticate, :except => [:index, :new, :review]
   before_filter :find_shop
-  before_filter :find_order, :only => [:edit]
+  before_filter :find_order, :only => [:edit, :destroy]
 
   def index
     @user = User.find(params[:user_id]) if params[:user_id]
@@ -27,6 +27,13 @@ class OrdersController < ApplicationController
     @order.price *= @order.quantity unless @order.price.blank?
     @order.accepted = false
     @order.save
+    redirect_to(review_shop_user_orders_path(@shop, @current_user))
+  end
+
+  def destroy
+    if @order.user === @current_user
+      @order.destroy
+    end
     redirect_to(review_shop_user_orders_path(@shop, @current_user))
   end
 

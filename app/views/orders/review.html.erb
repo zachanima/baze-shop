@@ -15,7 +15,10 @@
         <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
         <td><%= order.product.number %></td>
         <td><%= order.variations.collect { |v| [v.option.option_group.text, v.option.text].join(': ') }.join('<br />') %></td>
-        <td><%= order.quantity %></td>
+        <td>
+          <%= order.quantity %>
+          <%= link_to('X', shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>
+        </td>
         <td><%= format_currency(order.price) %></td>
       </tr>
     <% end %>
