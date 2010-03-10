@@ -12,7 +12,7 @@
       #nav, tr.total {
         background-color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
-      #content {
+      #content, #cart {
         border-top: 5px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
         border-bottom: 1px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
@@ -39,8 +39,8 @@
                 <% end %>
               </ul>
             </li>
-            <li><%= link_to("Kurv (#{@current_user.waiting_orders.count} produkt#{@current_user.waiting_orders.count == 1 ? '' : 'er'})", review_shop_user_orders_path(@shop, @current_user)) if @current_user.waiting_orders.count > 0 %></li>
-            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) if @current_user.accepted_orders.count > 0 %></li>
+            <li><%= link_to("Kurv (#{@current_user.waiting_orders.count} produkt#{@current_user.waiting_orders.count == 1 ? '' : 'er'})", review_shop_user_orders_path(@shop, @current_user)) unless @current_user.waiting_orders.empty? %></li>
+            <li><%= link_to('Historik', shop_user_orders_path(@shop, @current_user)) unless @current_user.accepted_orders.empty? %></li>
             <li><%= link_to('Information', shop_user_path(@shop, @current_user)) unless @current_user.text.blank? %></li>
           <% end %>
         </ul>
@@ -55,6 +55,12 @@
     <div class="content" id="content">
       <%= yield %>
     </div>
+
+    <% content_tag :div, :class => 'content', :id => 'cart' do %>
+      <span>Varekurv</span>
+      <%= render 'orders/cart' %>
+      <%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) %>
+    <% end unless @current_user.waiting_orders.empty? or controller.action_name == 'review' %>
 
     <div id="footer">
       <div class="content">

@@ -80,9 +80,23 @@ th, td {
   padding: 12px 0;
 }
 
-#content {
+#content, #cart {
   padding: 16px;
   width: 718px;
+}
+
+#cart {
+  margin-top: 16px;
+}
+
+#cart span {
+  display: block;
+  margin-bottom: 8px;
+}
+
+#cart > a {
+  display: block;
+  margin-top: 8px;
 }
 
 .product {
@@ -190,6 +204,15 @@ tr.total {
   font-size: 12pt;
 }
 
+#cart span {
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+#cart > a {
+  text-align: right;
+}
+
 #footer {
   font-size: 9pt;
 }
@@ -274,7 +297,7 @@ tr.total {
   border-top: 1px solid #ddd;
 }
 
-#content {
+#content, #cart {
   background-color: #fff;
 }
 

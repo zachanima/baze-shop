@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Produkt</th>
+      <th>Nummer</th>
+      <th>Valg</th>
+      <th>Antal</th>
+      <th>Pris</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @current_user.waiting_orders.each do |order| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+        <td><%= order.product.number %></td>
+        <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.option.text].join(': ') }.join('<br />') %></td>
+        <td>
+          <%= order.quantity %>
+          <%= link_to('X', shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>
+        </td>
+        <td><%= format_currency(order.price) %></td>
+      </tr>
+    <% end %>
+    <tr class="total">
+      <td colspan="4">Total</td>
+      <td><%= format_currency(@current_user.waiting_orders.collect(&:price).compact.inject(0) { |b,i| b + i }) %>
+    </tr>
+  </tbody>
+</table>

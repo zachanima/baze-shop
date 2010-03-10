@@ -27,14 +27,19 @@ class OrdersController < ApplicationController
     @order.price *= @order.quantity unless @order.price.blank?
     @order.accepted = false
     @order.save
-    redirect_to(review_shop_user_orders_path(@shop, @current_user))
+    redirect_to(shop_product_path(@shop, @order.product))
   end
 
   def destroy
     if @order.user === @current_user
       @order.destroy
     end
-    redirect_to(review_shop_user_orders_path(@shop, @current_user))
+
+    if @current_user.waiting_orders.empty?
+      redirect_to(shop_path(@shop))
+    else
+      redirect_to(review_shop_user_orders_path(@shop, @current_user))
+    end
   end
 
 
