@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    @current_user.waiting_orders.each { |o| o.destroy }
+    @current_user.waiting_orders.each { |o| o.destroy } if @current_user and @current_user.shop === @shop
     session.delete(:user_id)
     redirect_to(shop_path(@shop))
   end
