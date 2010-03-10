@@ -14,7 +14,12 @@ class ShopsController < ApplicationController
   # def edit
 
   def show
-    render_shop
+    if @shop.closed
+      render :layout => 'shop'
+    else
+      render_shop
+    end
+
   end
 
   def create
