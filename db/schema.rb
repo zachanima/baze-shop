@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310032627) do
+ActiveRecord::Schema.define(:version => 20100310054440) do
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20100310032627) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "separator"
+    t.integer  "position"
   end
 
   create_table "options_products", :id => false, :force => true do |t|

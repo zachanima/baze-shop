@@ -16,4 +16,12 @@ class OptionsController < ApplicationController
       render :action => :new
     end
   end
+
+
+  def sort
+    params[:options].each_with_index do |id, index|
+      Option.update_all(['position = ?', index + 1], ['id = ?', id])
+    end
+    render :nothing => true
+  end
 end

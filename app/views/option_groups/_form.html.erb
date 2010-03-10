@@ -1,12 +1,24 @@
-<%- semantic_form_for @option_group do |f| -%>
+<% semantic_form_for @option_group do |f| %>
   <% f.inputs do %>
     <%= f.input :name %>
     <%= f.input :text %>
     <%= f.input :optional %>
     <% unless @option_group.new_record? %>
-      <%= f.input :options, :as => :check_boxes, :collection => @option_group.options.collect{ |o| [[o.text, o.separator ? '(separator)' : nil].join(' '), o.id] } %>
+      <li>
+        <%= f.label :options %>
+        <ol id="options">
+          <% @option_group.options.all(:order => 'position').each do |option| %>
+            <% content_tag_for(:li, option) do %>
+              <span class="handle">[drag]</span>
+              <%= link_to(option.text, edit_option_group_option_path(@option_group, option)) %>
+              (<%= link_to('delete', option_group_option_path(@option_group, option), :confirm => "Delete option #{option.text}?", :method => :delete) %>)
+            <% end %>
+          <% end %>
+        </ol>
+      </li>
       <%= link_to_new('option', new_option_group_option_path(@option_group)) %>
     <% end %>
   <% end %>
   <%= f.buttons %>
-<%- end -%>
+<% end %>
+<%= sortable_element('options', :url => sort_option_group_options_path(@option_group)) %>
