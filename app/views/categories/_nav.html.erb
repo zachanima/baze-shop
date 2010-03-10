@@ -1,0 +1,8 @@
+<li>
+  <%= link_to(category.name, shop_category_path(@shop, category)) %>
+  <% content_tag :ul do %>
+    <% category.children.each do |child| %>
+      <%= render :partial => 'categories/nav', :locals => { :category => child } %>
+    <% end %>
+  <% end unless category.children.empty? %>
+</li>

@@ -14,3 +14,28 @@ form.formtastic fieldset {
   margin-top: 16px;
   padding-top: 16px;
 }
+
+
+
+/* sorting lists */
+form.formtastic fieldset ol li ol {
+  margin-left: 25%;
+}
+
+form.formtastic fieldset ol li ol li {
+  margin: 0;
+  padding: 2px 0 12px 0;
+}
+
+form.formtastic fieldset ol li ol li.empty {
+  background-color: rgba(0,0,0,0.025);
+  padding: 8px 0;
+}
+
+form.formtastic fieldset ol li ol li ul {
+  margin-left: 2em;
+}
+
+form.formtastic fieldset ol li ol li ul li {
+  background-color: rgba(0,0,0,0.05);
+}

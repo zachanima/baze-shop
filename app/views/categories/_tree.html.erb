@@ -1,0 +1,11 @@
+<li id="<%= dom_id(category) %>">
+  <span class="handle">[drag]</span>
+  <%= link_to(category.name, edit_shop_category_path(@shop, category)) %>
+  (<%= link_to('delete', shop_category_path(@shop, category), :confirm => "Delete category #{category.name}?", :method => :delete) %>)
+  <ul>
+    <li class="empty" />
+    <% category.children.each do |child| %>
+      <%= render :partial => 'categories/tree', :locals => { :category => child } %>
+    <% end %>
+  </ul>
+</li>

@@ -9,5 +9,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 Rails::Initializer.run do |config|
   config.gem 'justinfrench-formtastic', :lib => 'formtastic', :source => 'http://gems.github.com'
   config.gem 'authlogic'
+  config.gem 'robinsp-sortable_element_for_nested_set', :lib => 'sortable_element_for_nested_set', :source => 'http://gems.github.com'
   config.time_zone = 'UTC'
 end

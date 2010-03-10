@@ -51,7 +51,7 @@ h1 {
   padding: 4px 24px 4px 8px;
 }
 
-#nav .content > ul > li > ul, #nav .content > ul > li > ul > li > ul {
+#nav .content > ul > li ul, #nav .content > ul > li > ul > li > ul {
   display: none;
   position: absolute;
   margin-top: 3px;
@@ -61,9 +61,9 @@ h1 {
   display: inherit;
 }
 
-#nav .content > ul > li > ul > li:hover > ul {
+#nav .content > ul > li > ul li:hover > ul {
   display: inherit;
-  margin-top: -22px;
+  margin-top: -23px;
   margin-left: 100%;
 }
 

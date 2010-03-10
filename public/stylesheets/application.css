@@ -142,6 +142,11 @@ td.name {
   font-weight: bold;
 }
 
+.handle {
+  color: #999;
+  font-size: 8pt;
+}
+
 #footer {
   font-size: 9pt;
 }
@@ -253,6 +258,10 @@ form.index {
   background-color: #fff;
   border-top: 5px solid #e82;
   border-bottom: 1px solid #e82;
+}
+
+.handle {
+  cursor: move;
 }
 
 #footer {

@@ -11,11 +11,19 @@
   <% end %>
   <% unless @shop.new_record? %>
     <% f.inputs do %>
-      <% category_links.each do |category_link| %>
-        <%= category_link %><br />
-      <% end %>
+      <li>
+        <%= f.label :categories %>
+        <ol id="categories_tree">
+          <% @shop.categories.roots.all(:order => 'position').each do |root| %>
+            <%= render :partial => 'categories/tree', :locals => { :category => root } %>
+          <% end %>
+        </ol>
+      </li>
       <%= link_to_new('category', new_shop_category_path(@shop)) %>
     <% end %>
   <% end %>
   <%= f.buttons %>
 <% end %>
+<%= sortable_element_reporting_target(
+  'categories_tree', 'moved_category_id', :handle => 'handle', :tree => true,
+  :url => sort_shop_categories_path(@shop)) %>

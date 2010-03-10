@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
+  handles_sorting_of_nested_set
   before_filter :authenticate, :except => [:index, :show]
   before_filter :find_shop
   before_filter :find_category, :only => [:edit, :show, :update, :destroy]
 
   def index
-    @categories = @shop.categories
+    @categories = @shop.categories(:order => 'position')
     render_shop
   end
 
@@ -47,6 +48,32 @@ class CategoriesController < ApplicationController
     end
     @category.destroy
     redirect_to(edit_shop_path(@shop))
+  end
+
+
+  def sort
+    @category = Category.find(params[:moved_category_id])
+    new_position = position_of(:moved_category_id).in_tree(:categories_tree)
+
+    if new_position[:parent]
+      @category.move_to_child_of(new_position[:parent])
+    else
+      @category.move_to_root
+    end unless @category.parent_id === new_position[:parent]
+
+    if new_position[:move_to_right_of]
+      @category.move_to_right_of(new_position[:move_to_right_of])
+    else
+      @category.move_to_left_of(new_position[:move_to_left_of])
+    end
+
+    params[:categories_tree].each do |category_params|
+      index = category_params.first.to_i
+      id = category_params.last[:id]
+      Category.update_all(['position = ?', index + 1], ['id = ?', id])
+    end
+    
+    render :nothing => true
   end
 
   private

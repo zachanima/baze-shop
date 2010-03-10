@@ -22,15 +22,8 @@
             <li>
               <%= link_to('Produkter', shop_categories_path(@shop)) %>
               <ul>
-                <% @shop.categories.roots.each do |root| %>
-                  <li>
-                    <%= link_to(root.name, shop_category_path(@shop, root)) %>
-                    <ul>
-                      <% root.children.each do |child| %>
-                        <li><%= link_to(child.name, shop_category_path(@shop, child)) %></li>
-                      <% end %>
-                    </ul>
-                  </li>
+                <% @shop.categories.roots.all(:order => 'position').each do |root| %>
+                  <%= render :partial => 'categories/nav', :locals => { :category => root } %>
                 <% end %>
               </ul>
             </li>
