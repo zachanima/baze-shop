@@ -15,7 +15,9 @@
         <td><%= order.product.number %></td>
         <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.option.text].join(': ') }.join('<br />') %></td>
         <td>
+          <%= link_to_remote('-', :update => 'cart', :url => "/shops/#{@shop.link}/orders/decrement/#{order.id}") %>
           <%= order.quantity %>
+          <%= link_to_remote('+', :update => 'cart', :url => "/shops/#{@shop.link}/orders/increment/#{order.id}") %>
           <%= link_to('X', shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>
         </td>
         <td><%= format_currency(order.price) %></td>

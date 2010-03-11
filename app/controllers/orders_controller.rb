@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   # Should authenticate on shopless orders and userless indices
   before_filter :authenticate, :except => [:index, :new, :review]
   before_filter :find_shop
-  before_filter :find_order, :only => [:edit, :destroy]
+  before_filter :find_order, :only => [:edit, :destroy, :increment, :decrement]
 
   def index
     @user = User.find(params[:user_id]) if params[:user_id]
@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    if @order.user === @current_user
+    if @order.accepted == false and @order.user === @current_user
       @order.destroy
     end
 
@@ -86,6 +86,18 @@ class OrdersController < ApplicationController
       order.save
     end
     render_shop
+  end
+
+  def increment
+    @order.quantity += 1
+    @order.save
+    render :partial => 'cart'
+  end
+
+  def decrement
+    @order.quantity -= 1
+    @order.save
+    render :partial => 'cart'
   end
 
   private

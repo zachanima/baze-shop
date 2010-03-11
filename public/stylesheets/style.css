@@ -80,21 +80,21 @@ th, td {
   padding: 12px 0;
 }
 
-#content, #cart {
+#content, body > #cart {
   padding: 16px;
   width: 718px;
 }
 
-#cart {
+body > #cart {
   margin-top: 16px;
 }
 
-#cart span {
+body > #cart span {
   display: block;
   margin-bottom: 8px;
 }
 
-#cart > a {
+body > #cart > a {
   display: block;
   margin-top: 8px;
 }
@@ -213,12 +213,12 @@ tr.total {
   font-weight: bold;
 }
 
-#cart span {
+body > #cart span {
   font-weight: bold;
   font-size: 12pt;
 }
 
-#cart > a {
+body > #cart > a {
   text-align: right;
 }
 
@@ -306,7 +306,7 @@ tr.total {
   border-top: 1px solid #ddd;
 }
 
-#content, #cart {
+#content, body > #cart {
   background-color: #fff;
 }
 

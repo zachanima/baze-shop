@@ -12,7 +12,7 @@
       #nav, tr.total {
         background-color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
-      #content, #cart {
+      #content, body > #cart {
         border-top: 5px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
         border-bottom: 1px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }

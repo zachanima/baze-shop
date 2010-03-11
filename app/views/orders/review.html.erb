@@ -1,5 +1,7 @@
 <h1>Varekurv for <%= @current_user.name %></h1>
-<%= render 'cart' %>
+<div id="cart">
+  <%= render 'cart' %>
+</div>
 <% form_tag(accept_shop_user_orders_path(@shop, @current_user), { :class => 'accept' }) do %>
   <%= submit_tag('Accepter bestilling') %>
 <% end %>
