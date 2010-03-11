@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   protected
   def authenticate
     authenticate_or_request_with_http_basic do |login, password|
-      login == 'os' && password == 'secret'
+      login == Admin.first.login && password == Admin.first.password
     end
   end
 

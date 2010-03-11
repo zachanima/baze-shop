@@ -1,0 +1,5 @@
+<% title ['Edit admin', @admin.login].join(' ') %>
+<% semantic_form_for(@admin) do |f| %>
+  <%= f.inputs %>
+  <%= f.buttons %>
+<% end %>

@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310120538) do
+ActiveRecord::Schema.define(:version => 20100311043743) do
+
+  create_table "admins", :force => true do |t|
+    t.string   "login"
+    t.string   "password"
+    t.text     "text"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "categories", :force => true do |t|
     t.integer  "parent_id"

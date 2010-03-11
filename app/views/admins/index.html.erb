@@ -1,0 +1,12 @@
+<% title 'Dashboard' %>
+<p>
+  <strong><%= Shop.all.count %></strong> Shops,
+  <strong><%= User.all.count %></strong> Users,
+  <strong><%= Product.all.count %></strong> Products,
+  <strong><%= Order.all.count %></strong> Orders,
+  <strong><%= OptionGroup.all.count %></strong> Option Groups,
+  <strong><%= Option.all.count %></strong> Options.
+  <strong><%= Image.all.count %></strong> Images,
+</p>
+<%= @admin.text %>
+<%= link_to('Edit', edit_admin_path(@admin)) %>
