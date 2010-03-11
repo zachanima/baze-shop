@@ -146,6 +146,26 @@ body > #cart > a {
   margin: 16px 0;
 }
 
+table.category {
+  border-collapse: separate;
+  border-spacing: 16px 0;
+}
+
+table.category td {
+  border: 1px solid #000;
+  vertical-align: middle;
+  width: 33%;
+}
+
+table.category img {
+  margin-top: 4px;
+}
+
+table.category span {
+  display: block;
+  margin-bottom: 4px;
+}
+
 
 
 
@@ -178,6 +198,13 @@ tr.order_group td {
   font-weight: bold;
 }
 
+table.category td {
+  text-align: center;
+}
+
+table.category span {
+  font-weight: bold;
+}
 
 tr.total {
   font-weight: bold;
@@ -202,13 +229,11 @@ tr.total {
   font-size: 9pt;
 }
 
-.product_group {
-  text-align: center;
+table.category td {
+  font-size: 11pt;
 }
 
-.product {
-  font-size: 11pt;
-  font-weight: bold;
+table.category a {
   text-decoration: none;
 }
 
@@ -324,13 +349,13 @@ tr.total {
   background-color: #fff;
 }
 
-.product {
+table.category td {
   border: 1px solid #ddd;
   -moz-box-shadow: 2px 2px 4px #888;
   -moz-border-radius: 8px;
 }
 
-.product img {
+table.category img {
   border-width: 0;
 }
 
@@ -361,4 +386,8 @@ tr.total {
 /* ie7 fixes (thank god for css2 and compatible, above) */
 #nav .content > ul > li {
   *display: inline;
+}
+
+#fortune {
+  *padding: 4px 0;
 }
