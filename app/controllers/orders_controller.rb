@@ -11,7 +11,11 @@ class OrdersController < ApplicationController
       render_shop
     else
       authenticate
-      @orders = @shop ? @shop.orders.select { |o| o.accepted = true } : Order.all(:conditions => { :accepted => true })
+      if @shop
+        @orders = @shop.orders.reject { |o| o.order_group_id == nil }
+      else
+        @orders = OrderGroup.find(:all).collect { |order_group| order_group.orders }.flatten
+      end
     end
   end
 
@@ -40,7 +44,6 @@ class OrdersController < ApplicationController
 
     unless flash[:error]
       @order.price *= @order.quantity unless @order.price.blank?
-      @order.accepted = false
       @order.save
     end
 
@@ -87,8 +90,10 @@ class OrdersController < ApplicationController
 
   def accept
     @orders = @current_user.waiting_orders
+    @order_group = @current_user.order_groups.build
+    @order_group.save
     @orders.each do |order|
-      order.accepted = true
+      order.order_group_id = @order_group.id
       order.save
     end
     render_shop

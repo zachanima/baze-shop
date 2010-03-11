@@ -3,25 +3,32 @@
   <table>
     <thead>
       <tr>
-        <th>#</th>
         <th>Produkt</th>
         <th>Nummer</th>
         <th>Valg</th>
         <th>Antal</th>
         <th>Pris</th>
-        <th>Bestilt</th>
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
-        <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= order.id %></td>
-          <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
-          <td><%= order.product.number %></td>
-          <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.option.text].join(': ') }.join('<br />') %></td>
-          <td><%= order.quantity %></td>
-          <td><%= format_currency(order.price) %></td>
-          <td><%= order.created_at.to_s(:short) %></td>
+      <% @current_user.order_groups.each do |order_group| %>
+        <% reset_cycle('even_odd') %>
+        <tr class="order_group">
+          <td colspan="4">Ordre #<%= order_group.id %></td>
+          <td class="date_price"><%= order_group.created_at.to_s(:short) %></td>
+        </tr>
+        <% order_group.orders.each do |order| %>
+          <tr class="<%= cycle('even', 'odd', :name => 'even_odd') %>">
+            <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+            <td><%= order.product.number %></td>
+            <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.option.text].join(': ') }.join('<br />') %></td>
+            <td><%= order.quantity %></td>
+            <td class="date_price"><%= format_currency(order.price) %></td>
+          </tr>
+        <% end %>
+        <tr class="order_group order_group_total <%= cycle('even', 'odd', :name => 'even_odd') %>">
+          <td colspan="4">Total</td>
+          <td class="date_price"><%= format_currency(order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -36,28 +43,26 @@
       <thead>
         <tr>
           <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
-          <th>ID</th>
+          <th>Product</th>
           <%= content_tag :th, 'Shop' unless @shop %>
           <th>User</th>
-          <th>Product</th>
           <th>Options</th>
           <th>Quantity</th>
           <th>Price</th>
-          <th>Date</th>
+          <th>Order</th>
         </tr>
       </thead>
       <tbody>
         <% @orders.each do |order| %>
           <tr class="<%= cycle('odd', 'even') %>">
             <td class="checkbox"><%= check_box_tag('order_ids[]', order.id, false, :class => 'checkbox') %></td>
-            <td class="name"><%= link_to(order.id, edit_order_path(order)) %></td>
+            <td class="name"><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) %></td>
             <%= content_tag :td, link_to(order.user.shop.name, shop_orders_path(order.user.shop)) unless @shop %>
             <td><%= link_to(order.user.name, edit_shop_user_path(order.user.shop, order.user)) %></td>
-            <td><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) %></td>
             <td><%= order.variations.collect { |v| "<abbr title=\"#{v.option.option_group.text}\">#{v.option.text}</abbr>" }.join(', ') %></td>
             <td><%= order.quantity %></td>
             <td><%= format_currency(order.price) %></td>
-            <td><%= order.created_at.to_s(:short) %></td>
+            <td>#<%= order.order_group.id %></td>
           </tr>
         <% end %>
       </tbody>

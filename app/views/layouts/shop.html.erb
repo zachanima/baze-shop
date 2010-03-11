@@ -14,6 +14,8 @@
       }
       #content, body > #cart {
         border-top: 5px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
+      }
+      #content, body > #cart, tr.order_group_total {
         border-bottom: 1px solid <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
     </style>

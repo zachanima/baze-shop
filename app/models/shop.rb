@@ -9,7 +9,7 @@ class Shop < ActiveRecord::Base
     :original => '500x50>' }
 
   def orders
-    self.users.collect { |user| user.orders }.flatten
+    Order.all(:order => 'order_group_id').select { |o| o.user.shop === self }
   end
 
   def templates

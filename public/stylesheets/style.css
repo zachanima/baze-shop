@@ -13,7 +13,11 @@ table {
 }
 
 th, td {
-  padding-left: 4px;
+  padding: 2px 4px;
+}
+
+tr.order_group td {
+  padding: 4px;
 }
 
 .content {
@@ -166,6 +170,15 @@ td.name {
   font-weight: bold;
 }
 
+td.date_price {
+  text-align: right;
+}
+
+tr.order_group td {
+  font-weight: bold;
+}
+
+
 tr.total {
   font-weight: bold;
 }
@@ -239,7 +252,7 @@ body {
   background-color: #eee;
 }
 
-table, th, td {
+table, th {
   border: 1px solid #fff;
 }
 
@@ -247,6 +260,7 @@ th {
   color: #fff;
   background-color: #999;
 }
+
 
 tr.odd {
   background-color: #fff;
