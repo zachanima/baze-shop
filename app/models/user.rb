@@ -16,4 +16,12 @@ class User < ActiveRecord::Base
   def waiting_orders
     self.orders.all(:conditions => { :order_group_id => nil })
   end
+
+  def balance
+    balance = self.budget
+    self.accepted_orders.each do |order|
+      balance -= order.price
+    end
+    return balance
+  end
 end

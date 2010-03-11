@@ -24,7 +24,8 @@
     <div id="header">
       <div class="content">
         <% content_tag :span, :class => 'logout' do %>
-          Logget ind som <%= @current_user.name %><br />
+          Logget ind som <strong><%= @current_user.name %></strong><br />
+          <% if @current_user.budget %>Saldo: <strong><%= format_currency(@current_user.balance) %></strong><br /><% end %>
           <%= link_to('Log ud', logout_path(@shop)) %></span>
         <% end if @current_user %>
         <h1><%= @shop.logo.url == '/logos/original/missing.png' ? @shop.name : image_tag(@shop.logo.url) if @shop %></h1>
@@ -63,9 +64,7 @@
 
     <% if @current_user and @current_user.shop === @shop %>
       <% content_tag :div, :class => 'content', :id => 'cart' do %>
-        <span>Varekurv</span>
         <%= render 'orders/cart' %>
-        <%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) %>
       <% end unless @current_user.waiting_orders.empty? or controller.action_name == 'review' %>
     <% end %>
 

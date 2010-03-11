@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
     end
 
     unless flash[:error]
-      @order.price *= @order.quantity unless @order.price.blank?
+      @order.update_price
       @order.save
     end
 
@@ -101,6 +101,7 @@ class OrdersController < ApplicationController
 
   def increment
     @order.quantity += 1
+    @order.update_price
     @order.save
     render :partial => 'cart'
   end
@@ -110,6 +111,7 @@ class OrdersController < ApplicationController
     if @order.quantity == 0
       @order.destroy
     else
+      @order.update_price
       @order.save
     end
 

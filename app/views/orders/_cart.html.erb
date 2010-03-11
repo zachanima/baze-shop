@@ -1,3 +1,4 @@
+<% unless controller.action_name == 'review' %><span>Varekurv</span><% end %>
 <table>
   <thead>
     <tr>
@@ -29,3 +30,4 @@
     </tr>
   </tbody>
 </table>
+<%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) unless controller.action_name == 'review' %>

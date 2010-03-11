@@ -8,6 +8,7 @@
       <%= f.input :department %>
       <%= f.input :login %>
       <%= f.input :password, :as => :string %>
+      <%= f.input :budget %>
       <%= f.input :text %>
     <% else %>
       <select onchange="location='/shops/'+options[selectedIndex].value+'/users/new'">
