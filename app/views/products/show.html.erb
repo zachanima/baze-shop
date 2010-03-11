@@ -21,7 +21,7 @@
                 <% if option_group.optional %>
                   <option />
                 <% else %>
-                  <option selected="selected" value="">V&aelig;lg <%= option_group.text %>...</option>
+                  <option value="">V&aelig;lg <%= option_group.text %>...</option>
                   <%= '<option disabled="disabled" />' unless @product.options.all(:order => 'position').select { |o| o.option_group === option_group }.first.separator %>
                 <% end %>
                 <% @product.options.all(:order => 'position').each do |option| %>
@@ -30,7 +30,11 @@
                       <option disabled="disabled" />
                       <option disabled="disabled"><%= option.text %></option>
                     <% else %>
-                      <option value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %></option>
+                      <% if @current_user.accepted_orders.select { |o| o.product == @product }.last.variations.select { |v| v.option === option ? true : nil }.compact.empty? %>
+                        <option value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %></option>
+                      <% else %>
+                        <option selected="selected" value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %> (seneste ordre)</option>
+                      <% end %>
                     <% end %>
                   <% end %>
                 <% end %>
