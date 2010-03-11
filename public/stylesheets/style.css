@@ -330,6 +330,14 @@ tr.total {
   border: 1px solid #ccc;
 }
 
+#cart {
+  color: #fff;
+}
+
+#cart > * {
+  color: #666;
+}
+
 #footer {
   color: #999;
 }

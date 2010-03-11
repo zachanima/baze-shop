@@ -53,9 +53,11 @@ class OrdersController < ApplicationController
     end
 
     if @current_user.waiting_orders.empty?
-      redirect_to(shop_path(@shop))
+      render :update do |page|
+        page.reload
+      end
     else
-      redirect_to(review_shop_user_orders_path(@shop, @current_user))
+      render :partial => 'cart'
     end
   end
 
@@ -76,7 +78,11 @@ class OrdersController < ApplicationController
   # Cart
   def review
     @orders = @current_user.waiting_orders
-    render_shop
+    if @orders.empty?
+      redirect_to(shop_path(@shop))
+    else
+      render_shop
+    end
   end
 
   def accept
@@ -96,8 +102,19 @@ class OrdersController < ApplicationController
 
   def decrement
     @order.quantity -= 1
-    @order.save
-    render :partial => 'cart'
+    if @order.quantity == 0
+      @order.destroy
+    else
+      @order.save
+    end
+
+    if @current_user.waiting_orders.empty?
+      render :update do |page|
+        page.reload
+      end
+    else
+      render :partial => 'cart'
+    end
   end
 
   private
