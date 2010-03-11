@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_filter :find_shop
 
   def index
-    @products = @shop.products
+    @products = @shop.products.all(:order => 'category_id, position')
   end
 
   def edit
@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
     end
   end
 
+
   def multiple
     if params[:product_ids].nil?
       flash[:error] = 'No products selected'
@@ -35,6 +36,15 @@ class ProductsController < ApplicationController
       flash[:error] = "Unexpected error, params: #{params.inspect}"
     end
     redirect_to(shop_products_path)
+  end
+
+  def sort
+    params[:products_list].each_with_index do |id, index|
+      Product.update_all(['position = ?', index + 1], ['id = ?', id])
+    end
+    render :update do |page|
+      page.reload
+    end
   end
 
   private

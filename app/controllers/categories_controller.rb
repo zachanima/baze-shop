@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   # def edit
 
   def show
-    @products = @category.products
+    @products = @category.products.all(:order => 'position')
     render :layout => 'shop'
   end
   

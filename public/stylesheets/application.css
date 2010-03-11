@@ -33,6 +33,11 @@ th.checkbox, td.checkbox {
   width: 0;
 }
 
+td.handle {
+  width: 0;
+  padding-right: 4px;
+}
+
 .content {
   margin: auto;
   width: 950px;
