@@ -49,5 +49,9 @@ form.formtastic fieldset ol li ol li ul li {
 /* cart */
 form.accept {
   margin-top: 16px;
+}
+
+form.accept li.accept {
+  margin-right: 4px;
   text-align: right;
 }

@@ -1,7 +1,17 @@
 <h1>Varekurv for <%= @current_user.name %></h1>
-<div id="cart">
-  <%= render 'cart' %>
-</div>
-<% form_tag(accept_shop_user_orders_path(@shop, @current_user), { :class => 'accept' }) do %>
-  <%= submit_tag('Accepter bestilling') %>
+  <div id="cart">
+    <%= render 'cart' %>
+  </div>
+<% form_tag(accept_shop_user_orders_path(@shop, @current_user), { :class => 'accept formtastic' }) do %>
+  <fieldset>
+    <ol>
+      <li class="text">
+        <%= label_tag :text, 'Kommentar' %>
+        <%= text_area_tag 'order_group[text]', nil, :rows => 4 %>
+      </li>
+      <li class="accept">
+        <%= submit_tag('Accepter bestilling') %>
+      </li>
+    </ol>
+  </fieldset>
 <% end %>

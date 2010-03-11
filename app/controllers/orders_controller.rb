@@ -90,7 +90,7 @@ class OrdersController < ApplicationController
 
   def accept
     @orders = @current_user.waiting_orders
-    @order_group = @current_user.order_groups.build
+    @order_group = @current_user.order_groups.build(:text => params[:order_group][:text])
     @order_group.save
     @orders.each do |order|
       order.order_group_id = @order_group.id
