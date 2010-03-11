@@ -133,6 +133,11 @@ th, td {
   min-height: 240px;
 }
 
+#error {
+  margin-bottom: 16px;
+  padding: 4px 8px;
+}
+
 #footer {
   margin: 16px 0;
 }
@@ -202,6 +207,10 @@ tr.total {
 .price {
   font-weight: bold !important;
   font-size: 12pt;
+}
+
+#error {
+  font-weight: bold;
 }
 
 #cart span {
@@ -309,6 +318,12 @@ tr.total {
 
 .product img {
   border-width: 0;
+}
+
+#error {
+  background-color: #c54;
+  border: 2px solid #b21;
+  color: #fff;
 }
 
 #images {

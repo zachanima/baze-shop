@@ -24,9 +24,26 @@ class OrdersController < ApplicationController
 
   def create
     @order = @current_user.orders.build(params[:order])
-    @order.price *= @order.quantity unless @order.price.blank?
-    @order.accepted = false
-    @order.save
+
+    # validate
+    @order.product.option_groups.each do |option_group|
+      unless option_group.optional
+        if @order.variations.select { |v| v.option.option_group === option_group }.compact.empty?
+          if flash[:error]
+            flash[:error] += ", #{option_group.text} ikke valgt"
+          else
+            flash[:error] = "#{option_group.text} ikke valgt"
+          end
+        end
+      end
+    end
+
+    unless flash[:error]
+      @order.price *= @order.quantity unless @order.price.blank?
+      @order.accepted = false
+      @order.save
+    end
+
     redirect_to(shop_product_path(@shop, @order.product))
   end
 

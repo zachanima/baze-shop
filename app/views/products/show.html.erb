@@ -11,13 +11,19 @@
   <% semantic_form_for(:order, :url => shop_user_orders_path(@shop, @current_user), :html => { :class => 'formtastic', :method => :post }) do |f| %>
     <% if @product.option_groups.count > 0 %>
       <% f.inputs do %>
+        <%= content_tag :div, flash[:error], :id => 'error' if flash[:error] %>
         <ol>
         <% @product.option_groups.each do |option_group| %>
           <li>
             <%= f.label option_group.text %>
             <% if @product.options.select { |o| o.option_group === option_group }.count > 1 or option_group.optional %>
               <select name="order[variation_ids][]">
-                <%= '<option />' if option_group.optional %>
+                <% if option_group.optional %>
+                  <option />
+                <% else %>
+                  <option selected="selected" value="">V&aelig;lg <%= option_group.text %>...</option>
+                  <%= '<option disabled="disabled" />' unless @product.options.all(:order => 'position').select { |o| o.option_group === option_group }.first.separator %>
+                <% end %>
                 <% @product.options.all(:order => 'position').each do |option| %>
                   <% if option.option_group === option_group %>
                     <% if option.separator %>
