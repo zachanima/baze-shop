@@ -21,7 +21,10 @@
   <body>
     <div id="header">
       <div class="content">
-        <span class="logout"><%= [[Time.now.day, Time.now.month].join('/'), [Time.now.hour, Time.now.min].join(':')].join(' - ') %><br /><%= link_to('Logout', logout_path(@shop)) %></span>
+        <% content_tag :span, :class => 'logout' do %>
+          Logget ind som <%= @current_user.name %><br />
+          <%= link_to('Log ud', logout_path(@shop)) %></span>
+        <% end if @current_user %>
         <h1><%= @shop.logo.url == '/logos/original/missing.png' ? @shop.name : image_tag(@shop.logo.url) if @shop %></h1>
       </div>
     </div>
