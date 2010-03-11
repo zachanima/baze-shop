@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  before_filter :authenticate, :except => [:show]
+
   def index
     @admin = Admin.first
   end
