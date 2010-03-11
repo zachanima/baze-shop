@@ -90,10 +90,7 @@ class OrdersController < ApplicationController
 
   def accept
     @orders = @current_user.waiting_orders
-    if params[:order_group][:address_id].empty?
-      flash[:error] = 'Leveringsadresse ikke valgt'
-      redirect_to(review_shop_user_orders_path(@shop, @current_user))
-    else 
+    if @shop.addresses.empty? or not params[:order_group][:address_id].empty?
       @order_group = @current_user.order_groups.build(params[:order_group])
       @order_group.save
       @orders.each do |order|
@@ -101,6 +98,9 @@ class OrdersController < ApplicationController
         order.save
       end
       render_shop
+    else 
+      flash[:error] = 'Leveringsadresse ikke valgt'
+      redirect_to(review_shop_user_orders_path(@shop, @current_user))
     end
   end
 
