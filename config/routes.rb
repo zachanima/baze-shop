@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :shops do |shop|
+    shop.resources :addresses, :collection => { :sort => :post }
     shop.resources :categories, :collection => { :sort => :post } do |category|
       category.resources :products
     end

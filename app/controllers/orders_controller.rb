@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
   end
 
   def destroy
-    if @order.accepted == false and @order.user === @current_user
+    if @order.order_group_id == nil and @order.user === @current_user
       @order.destroy
     end
 
@@ -90,13 +90,18 @@ class OrdersController < ApplicationController
 
   def accept
     @orders = @current_user.waiting_orders
-    @order_group = @current_user.order_groups.build(:text => params[:order_group][:text])
-    @order_group.save
-    @orders.each do |order|
-      order.order_group_id = @order_group.id
-      order.save
+    if params[:order_group][:address_id].empty?
+      flash[:error] = 'Leveringsadresse ikke valgt'
+      redirect_to(review_shop_user_orders_path(@shop, @current_user))
+    else 
+      @order_group = @current_user.order_groups.build(params[:order_group])
+      @order_group.save
+      @orders.each do |order|
+        order.order_group_id = @order_group.id
+        order.save
+      end
+      render_shop
     end
-    render_shop
   end
 
   def increment

@@ -1,4 +1,5 @@
 class Shop < ActiveRecord::Base
+  has_many :addresses, :dependent => :destroy
   has_many :categories, :dependent => :destroy
   has_many :products, :dependent => :destroy
   has_many :users, :dependent => :destroy

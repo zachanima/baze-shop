@@ -22,9 +22,25 @@
       </li>
       <%= link_to_new('category', new_shop_category_path(@shop)) %>
     <% end %>
+    <% f.inputs do %>
+      <li>
+        <%= f.label :addresses %>
+        <ol id="addresses">
+          <% @shop.addresses.all(:order => 'position').each do |address| %>
+            <% content_tag_for(:li, address) do %>
+              <span class="handle">[drag]</span>
+              <%= link_to(address.text.gsub("\r\n", ', '), edit_shop_address_path(@shop, address)) %>
+              (<%= link_to('delete', shop_address_path(@shop, address), :confirm => "Delete address\n#{address.text}?", :method => :delete) %>)
+            <% end %>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+    <%= link_to_new('address', new_shop_address_path(@shop)) %>
   <% end %>
   <%= f.buttons %>
 <% end %>
 <%= sortable_element_reporting_target(
   'categories_tree', 'moved_category_id', :handle => 'handle', :tree => true,
   :url => sort_shop_categories_path(@shop)) %>
+<%= sortable_element('addresses', :url => sort_shop_addresses_path(@shop)) %>

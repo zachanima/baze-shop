@@ -4,7 +4,17 @@
   </div>
 <% form_tag(accept_shop_user_orders_path(@shop, @current_user), { :class => 'accept formtastic' }) do %>
   <fieldset>
+    <%= content_tag :div, flash[:error], :id => 'error' if flash[:error] %>
     <ol>
+      <li>
+        <%= label_tag :address, 'Leveringsadresse' %>
+        <select name="order_group[address_id]">
+          <option selected="selected" value="">V&aelig;lg leveringsadresse...</option>
+          <option disabled="disabled" />
+          <% @shop.addresses.each do |address| %>
+            <option value="<%= address.id %>"><%= address.text.gsub("\r\n", ', ') %></option>
+          <% end %>
+      </li>
       <li class="text">
         <%= label_tag :text, 'Kommentar' %>
         <%= text_area_tag 'order_group[text]', nil, :rows => 4 %>
