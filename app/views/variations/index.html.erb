@@ -1,0 +1,14 @@
+<% title "Edit variations of #{@product.name}" %>
+<% form_tag(update_prices_shop_product_variations_path(@shop, @product), :class => 'formtastic') do |f| %>
+  <fieldset>
+    <ol>
+      <% @variations.each do |variation| %>
+        <li>
+          <%= label_tag :price, [variation.option.option_group.text, variation.option.text].join(': ') %>
+          <%= text_field_tag "variations[#{variation.id}][price]", variation.price %>
+        </li>
+      <% end %>
+    </ol>
+  </fieldset>
+  <fieldset><ol><li><%= submit_tag 'Save' %></li></ol></fieldset>
+<% end %>

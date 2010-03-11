@@ -23,6 +23,7 @@ ActionController::Routing::Routes.draw do |map|
     shop.resources :products, :collection => { :multiple => :post, :sort => :post }
     shop.resources :products do |product|
       product.resources :order
+      product.resources :variations, :collection => { :update_prices => :post }
     end
     shop.resources :orders
     shop.resources :users, :collection => {

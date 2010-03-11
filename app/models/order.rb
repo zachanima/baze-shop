@@ -10,5 +10,6 @@ class Order < ActiveRecord::Base
       self.price += variation.price if self.price and variation.price
     end
     self.price *= self.quantity if self.price
+    self.save
   end
 end

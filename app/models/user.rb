@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   def balance
     balance = self.budget
     self.accepted_orders.each do |order|
-      balance -= order.price
+      balance -= order.price if order.price
     end
     return balance
   end

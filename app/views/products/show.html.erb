@@ -24,16 +24,23 @@
                   <option value="">V&aelig;lg <%= option_group.text %>...</option>
                   <%= '<option disabled="disabled" />' unless @product.options.all(:order => 'position').select { |o| o.option_group === option_group }.first.separator %>
                 <% end %>
-                <% @product.options.all(:order => 'position').each do |option| %>
-                  <% if option.option_group === option_group %>
+                <% option_group.options.all(:order => 'position').each do |option| %>
+                  <% if option.option_group === option_group and @product.options.include?(option) %>
                     <% if option.separator %>
                       <option disabled="disabled" />
                       <option disabled="disabled"><%= option.text %></option>
                     <% else %>
+                      <% variation = option.variations.find(:first, :conditions => { :product_id => @product.id }) %>
                       <% if @current_user.accepted_orders.select { |o| o.product == @product }.last.nil? or @current_user.accepted_orders.select { |o| o.product == @product }.last.variations.select { |v| v.option === option ? true : nil }.compact.empty? %>
-                        <option value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %></option>
+                        <option value="<%= variation.id %>">
+                          <%= option.text %>
+                          <%= "(+#{format_currency(variation.price)})" if variation.price %>
                       <% else %>
-                        <option selected="selected" value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>"><%= option.text %> (seneste ordre)</option>
+                        <option selected="selected" value="<%= option.variations.find(:first, :conditions => { :product_id => @product.id }).id %>">
+                          <%= option.text %>
+                          <%= "(+#{format_currency(variation.price)})" if variation.price %>
+                          (seneste ordre)
+                        </option>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -57,10 +64,11 @@
               <option value="<%= quantity %>"><%= quantity %></option>
             <% end %>
           </select>
-        <li>
-          <%= f.label 'Pris' %>
-          <span class="price"><%= format_currency(@product.price) %></span>
         </li>
+        <% content_tag :li do %>
+          <%= f.label 'Stykpris' %>
+          <span class="price"><%= format_currency(@product.price) %></span>
+        <% end if @product.price %>
       </ol>
     </fieldset>
     <% f.buttons do %>
