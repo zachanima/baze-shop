@@ -148,7 +148,8 @@ body > #cart > a {
 
 table.category {
   border-collapse: separate;
-  border-spacing: 16px 0;
+  border-spacing: 16px;
+  margin: -8px 0;
 }
 
 table.category td {
