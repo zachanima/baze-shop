@@ -91,11 +91,15 @@ class OrdersController < ApplicationController
   def accept
     @orders = @current_user.waiting_orders
     if @shop.addresses.empty? or not params[:order_group][:address_id].empty?
-      @order_group = @current_user.order_groups.build(params[:order_group])
-      @order_group.save
-      @orders.each do |order|
-        order.order_group_id = @order_group.id
-        order.save
+      if @orders.empty?
+        @order_group = @current_user.order_groups.last
+      else
+        @order_group = @current_user.order_groups.build(params[:order_group])
+        @order_group.save
+        @orders.each do |order|
+          order.order_group_id = @order_group.id
+          order.save
+        end
       end
       render_shop
     else 

@@ -16,6 +16,11 @@ th, td {
   padding: 2px 4px;
 }
 
+table p {
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+
 tr.order_group td {
   padding: 4px;
 }
@@ -263,6 +268,10 @@ body > #cart > a {
 
 #footer {
   font-size: 9pt;
+}
+
+.strong {
+  font-weight: bold;
 }
 
 

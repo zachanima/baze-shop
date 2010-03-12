@@ -15,8 +15,8 @@
         <% unless order_group.orders.empty? %>
           <% reset_cycle('even_odd') %>
           <tr class="order_group">
-            <td colspan="4">Ordre #<%= order_group.id %></td>
-            <td class="date_price"><%= order_group.created_at.to_s(:short) %></td>
+            <td>Ordre #<%= order_group.id %></td>
+            <td colspan="4" class="date_price"><%= order_group.created_at.to_s(:short) %></td>
           </tr>
           <% order_group.orders.each do |order| %>
             <tr class="<%= cycle('even', 'odd', :name => 'even_odd') %>">
@@ -31,8 +31,8 @@
             </tr>
           <% end %>
           <tr class="order_group order_group_total <%= cycle('even', 'odd', :name => 'even_odd') %>">
-            <td colspan="4">Total</td>
-            <td class="date_price"><%= format_currency(order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }) %></td>
+            <td>Total</td>
+            <td colspan="4" class="date_price"><%= format_currency(order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }) %></td>
           </tr>
         <% end %>
       <% end %>

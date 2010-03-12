@@ -1,1 +1,62 @@
 <h1>Tak for din bestilling!</h1>
+<table>
+  <tbody>
+    <tr class="order_group">
+      <td>Ordre #<%= @order_group.id %></td>
+      <td colspan="4" class="date_price"><%= @order_group.created_at.to_s(:short) %></td>
+    </tr>
+    <% @order_group.orders.each do |order| %>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+        <td><%= order.product.number %></td>
+        <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
+        <td>
+          <%= order.quantity %> stk.
+          <% if order.product.price %>&aacute; <%= format_currency(order.product.price) %><% end %>
+        </td>
+        <td class="date_price"><%= format_currency(order.price) %></td>
+      </tr>
+    <% end %>
+    <tr class="total">
+      <td>Total</td>
+      <td colspan="4"class="date_price"><%= format_currency(@order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }) %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Kundeoplysninger</h2>
+<table>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Firma:</td>
+    <td><%= @shop.name %></td>
+  <% end %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Afdeling:</td>
+    <td><%= @current_user.department %></td>
+  <% end unless @current_user.department.empty? %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Navn:</td>
+    <td><%= @current_user.name %></td>
+  <% end %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Adresse:</td>
+    <td><%= @order_group.address ? @order_group.address.text.gsub("\r\n", '<br />') : '' %></td>
+  <% end if @order_group.address #or @current_user.address %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Telefon:</td>
+    <td><%#= @current_user.telephone %></td>
+  <% end #if @current_user.telephone%>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Email:</td>
+    <td><%#= @current_user.email %></td>
+  <% end #if @current_user.email %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Noter:</td>
+    <td><%= markdown(@current_user.text).gsub("\r\n", '<br />') %></td>
+  <% end unless @current_user.text.empty? %>
+</table>
+
+<% unless @order_group.text.empty? %>
+  <h2>Kommentar</h2>
+  <%= markdown(@order_group.text).gsub("\r\n", '<br />') %>
+<% end %>
