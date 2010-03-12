@@ -40,16 +40,20 @@
   <% end %>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Adresse:</td>
-    <td><%= @order_group.address ? @order_group.address.text.gsub("\r\n", '<br />') : '' %></td>
-  <% end if @order_group.address #or @current_user.address %>
+    <td><%= @current_user.address.gsub("\r\n", '<br />') %></td>
+  <% end if @current_user.address and @order_group.address.nil? %>
+  <% content_tag :tr, :class => cycle('even', 'odd') do %>
+    <td class="strong">Leveringsadresse:</td>
+    <td><%= @order_group.address.text.gsub("\r\n", '<br />') %></td>
+  <% end if @order_group.address %>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Telefon:</td>
-    <td><%#= @current_user.telephone %></td>
-  <% end #if @current_user.telephone%>
+    <td><%= @current_user.telephone %></td>
+  <% end if @current_user.telephone%>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Email:</td>
-    <td><%#= @current_user.email %></td>
-  <% end #if @current_user.email %>
+    <td><%= @current_user.email %></td>
+  <% end if @current_user.email %>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Noter:</td>
     <td><%= markdown(@current_user.text).gsub("\r\n", '<br />') %></td>

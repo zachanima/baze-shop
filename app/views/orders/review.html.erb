@@ -6,16 +6,23 @@
   <fieldset>
     <%= content_tag :div, flash[:error], :id => 'error' if flash[:error] %>
     <ol>
-      <% unless @shop.addresses.empty? %>
+      <% unless @shop.addresses.empty? and @current_user.address.empty? %>
         <li>
           <%= label_tag :address, 'Leveringsadresse' %>
-          <select name="order_group[address_id]">
-            <option selected="selected" value="">V&aelig;lg leveringsadresse...</option>
-            <option disabled="disabled" />
-            <% @shop.addresses.each do |address| %>
-              <option value="<%= address.id %>"><%= address.text.gsub("\r\n", ', ') %></option>
-            <% end %>
-          </select>
+          <% if @shop.addresses.count + (@current_user.address.empty? ? 0 : 1) > 1 %>
+            <select name="order_group[address_id]">
+              <option selected="selected" value="">V&aelig;lg leveringsadresse...</option>
+              <option disabled="disabled" />
+              <% unless @current_user.address.empty? %>
+                <option value="0"><%= @current_user.address.gsub("\r\n", ', ') %></option>
+              <% end %>
+              <% @shop.addresses.each do |address| %>
+                <option value="<%= address.id %>"><%= address.text.gsub("\r\n", ', ') %></option>
+              <% end %>
+            </select>
+          <% elsif @shop.addresses.count + (@current_user.address.empty? ? 0 : 1) == 1 %>
+            <%= @shop.addresses.first ? @shop.addresses.first.text : @current_user.address %>
+          <% end %>
         </li>
       <% end %>
       <li class="text">

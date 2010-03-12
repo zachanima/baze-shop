@@ -8,8 +8,11 @@
       <%= f.input :department %>
       <%= f.input :login %>
       <%= f.input :password, :as => :string %>
-      <%= f.input :budget %>
+      <%= f.input :email %>
+      <%= f.input :telephone %>
+      <%= f.input :address %>
       <%= f.input :text %>
+      <%= f.input :budget %>
     <% else %>
       <select onchange="location='/shops/'+options[selectedIndex].value+'/users/new'">
         <option>Select shop...</option>
