@@ -58,7 +58,11 @@ class UsersController < ApplicationController
     params[:rows].each do |row|
       user = Hash.new
       params[:attributes][row].each_key do |key|
-        user[fields[key].to_sym] = params[:attributes][row][key] unless fields[key].empty?
+        if user[fields[key].to_sym].nil?
+          user[fields[key].to_sym] = params[:attributes][row][key] unless fields[key].empty?
+        else
+          user[fields[key].to_sym] += "\r\n" + params[:attributes][row][key] unless fields[key].empty?
+        end
       end
       user[:password] = params[:password] unless user[:password]
       user[:department] = params[:department] unless user[:department]
