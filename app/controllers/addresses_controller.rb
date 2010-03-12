@@ -1,4 +1,5 @@
 class AddressesController < ApplicationController
+  before_filter :authenticate
   before_filter :find_shop
   before_filter :find_address, :only => [:edit, :update, :destroy]
 

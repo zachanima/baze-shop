@@ -37,6 +37,21 @@
       </li>
     <% end %>
     <%= link_to_new('address', new_shop_address_path(@shop)) %>
+    <% f.inputs do %>
+      <li>
+        <%= f.label :email_addresses %>
+        <ol id="email_addresses">
+          <% @shop.email_addresses.all(:order => 'position').each do |email_address| %>
+            <% content_tag_for(:li, email_address) do %>
+              <span class="handle">[drag]</span>
+              <%= link_to(email_address.text.gsub("\r\n", ', '), edit_shop_email_address_path(@shop, email_address)) %>
+              (<%= link_to('delete', shop_email_address_path(@shop, email_address), :confirm => "Delete email address\n#{email_address.text}?", :method => :delete) %>)
+            <% end %>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+    <%= link_to_new('email address', new_shop_email_address_path(@shop)) %>
   <% end %>
   <%= f.buttons %>
 <% end %>
@@ -44,3 +59,4 @@
   'categories_tree', 'moved_category_id', :handle => 'handle', :tree => true,
   :url => sort_shop_categories_path(@shop)) %>
 <%= sortable_element('addresses', :url => sort_shop_addresses_path(@shop)) %>
+<%= sortable_element('email_addresses', :url => sort_shop_email_addresses_path(@shop)) %>
