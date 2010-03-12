@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"  />
+    <style type="text/css">
+      .even { background-color: #f4f4f4; }
+    </style>
+  </head>
+  <body>
+    <strong>Tak for din bestilling!</strong>
+    <br />
+    <br />
+    <table border="1px">
+      <tbody>
+        <tr>
+          <td><strong>Ordre #<%= @order_group.id %></strong></td>
+          <td />
+          <td />
+          <td />
+          <td><strong><%= @order_group.created_at.to_s(:short) %></strong></td>
+        </tr>
+        <% @order_group.orders.each do |order| %>
+          <tr class="<%= cycle('even', 'odd') %>">
+            <td><%= order.product.name %>&nbsp;&nbsp;&nbsp;</td>
+            <td><%= order.product.number %>&nbsp;&nbsp;&nbsp;</td>
+            <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price([v.price.to_i, @shop.currency].join(' '))].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
+            <td>
+              <%= order.quantity %> stk.
+              <% if order.product.price.to_i %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
+            &nbsp;&nbsp;&nbsp;</td>
+            <td><%= [order.price.to_i, @shop.currency].join(' ') %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td />
+          <td />
+          <td />
+          <td><strong><%= [@order_group.orders.collect { |o| o.price.to_i }.compact.inject(0) { |b,i| b + i }, @shop.currency].join(' ') %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <br />
+
+    <strong>Kundeoplysninger</strong>
+    <table>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Firma:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @shop.name %></td>
+      <% end %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Afdeling:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @user.department %></td>
+      <% end unless @user.department.empty? %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Navn:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @user.name %></td>
+      <% end %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Adresse:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @user.address.gsub("\r\n", '<br />') %></td>
+      <% end if @user.address and @order_group.address.nil? %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Leveringsadresse:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @order_group.address.text.gsub("\r\n", '<br />') %></td>
+      <% end if @order_group.address %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Telefon:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @user.telephone %></td>
+      <% end if @user.telephone%>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Email:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= @user.email %></td>
+      <% end if @user.email %>
+      <% content_tag :tr, :class => cycle('even', 'odd') do %>
+        <td class="strong">Noter:&nbsp;&nbsp;&nbsp;</td>
+        <td><%= Maruku.new(@user.text).to_html.gsub("\r\n", '<br />') %></td>
+      <% end unless @user.text.empty? %>
+    </table>
+    <br />
+    <br />
+
+    <% unless @order_group.text.empty? %>
+      <strong>Kommentar</strong>
+      <%= Maruku.new(@order_group.text).to_html.gsub("\r\n", '<br />') %>
+    <% end %>
+  </body>
+</html> 

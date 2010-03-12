@@ -101,6 +101,8 @@ class OrdersController < ApplicationController
           order.order_group_id = @order_group.id
           order.save
         end
+        OrderGroupMailer.deliver_receipt(@order_group)
+        @order_group = @current_user.order_groups.last
       end
       render_shop
     else 
