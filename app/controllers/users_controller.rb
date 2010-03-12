@@ -66,6 +66,11 @@ class UsersController < ApplicationController
       end
       user[:password] = params[:password] unless user[:password]
       user[:department] = params[:department] unless user[:department]
+      if user[:text]
+        user[:text] = params[:text] + ' ' + user[:text] unless params[:text].nil?
+      else
+        user[:text] = params[:text] unless params[:text].nil?
+      end
       @shop.users.create(user)
     end
     flash[:notice] = "Imported #{params[:rows].count} users"
