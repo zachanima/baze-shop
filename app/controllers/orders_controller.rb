@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   # Should authenticate on shopless orders and userless indices
-  before_filter :authenticate, :except => [:index, :new, :review]
+  before_filter :authenticate, :except => [:index, :new, :create, :destroy, :review, :accept, :increment, :decrement]
   before_filter :find_shop
   before_filter :find_order, :only => [:edit, :destroy, :increment, :decrement]
 
