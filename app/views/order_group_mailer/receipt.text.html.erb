@@ -22,14 +22,14 @@
         </tr>
         <% @order_group.orders.each do |order| %>
           <tr class="<%= cycle('even', 'odd') %>">
-            <td><%= order.product.name %>&nbsp;&nbsp;&nbsp;</td>
+            <td><strong><%= order.product.name %>&nbsp;&nbsp;&nbsp;</strong></td>
             <td><%= order.product.number %>&nbsp;&nbsp;&nbsp;</td>
-            <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price([v.price.to_i, @shop.currency].join(' '))].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
+            <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [v.price.to_i, @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
             <td>
               <%= order.quantity %> stk.
-              <% if order.product.price.to_i %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
+              <% if order.product.price %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
             &nbsp;&nbsp;&nbsp;</td>
-            <td><%= [order.price.to_i, @shop.currency].join(' ') %></td>
+            <td><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
           </tr>
         <% end %>
         <tr>

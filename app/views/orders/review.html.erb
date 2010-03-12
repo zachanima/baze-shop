@@ -6,7 +6,7 @@
   <fieldset>
     <%= content_tag :div, flash[:error], :id => 'error' if flash[:error] %>
     <ol>
-      <% unless @shop.addresses.empty? and @current_user.address.empty? %>
+      <% unless @shop.addresses.empty? and @current_user.address.nil? %>
         <li>
           <%= label_tag :address, 'Leveringsadresse' %>
           <% if @shop.addresses.count + (@current_user.address.empty? ? 0 : 1) > 1 %>
