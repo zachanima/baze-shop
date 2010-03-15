@@ -18,7 +18,8 @@
     </li>
   <% end %>
   <% f.inputs do %>
-    <%= f.input :price, :label => "Price (#{@shop.currency})" %>
+    <%= f.input :price, :label => "Gross Price (#{@shop.currency})" %>
+    <%= f.input :net_price, :label => "Net Price (#{@shop.currency})" %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
