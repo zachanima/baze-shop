@@ -1,32 +1,27 @@
 class AddressesController < ApplicationController
   before_filter :authenticate
-  before_filter :find_shop
   before_filter :find_address, :only => [:edit, :update, :destroy]
 
   def new
     @address = Address.new
   end
 
-  # def edit
-
   def create
     @address = @shop.addresses.build(params[:address])
     if @address.save
-      flash[:notice] = ['Created address', @address.text].join(' ')
-      redirect_to(edit_shop_path(@shop))
+      notice(@address, edit_shop_path(@shop))
     else
-      flash[:error] = ['Could not create address', @address.text].join(' ')
-      render :action => :new
+      error(@address, :new)
     end
   end
 
+  # def edit
+
   def update
     if @address.update_attributes(params[:address])
-      flash[:notice] = ['Updated address', @address.text].join(' ')
-      redirect_to(edit_shop_path(@shop))
+      notice(@address, edit_shop_path(@shop))
     else
-      flash[:error] = ['Could not update address', @address.text].join(' ')
-      render :action => :edit
+      error(@address, :edit)
     end
   end
 
