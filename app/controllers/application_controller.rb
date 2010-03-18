@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     @shop = Shop.find_by_link(params[:shop_id]) if params[:shop_id]
   end
 
-  def notice(resource = @this, url)
+  def notice(resource, url)
     if resource.new_record?
       action = 'Created'
     elsif resource
