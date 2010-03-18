@@ -9,9 +9,9 @@ class AddressesController < ApplicationController
   def create
     @address = @shop.addresses.build(params[:address])
     if @address.save
-      notice(@address, edit_shop_path(@shop))
+      notice(edit_shop_path(@shop))
     else
-      error(@address, :new)
+      error(:new)
     end
   end
 
@@ -19,9 +19,9 @@ class AddressesController < ApplicationController
 
   def update
     if @address.update_attributes(params[:address])
-      notice(@address, edit_shop_path(@shop))
+      notice(edit_shop_path(@shop))
     else
-      error(@address, :edit)
+      error(:edit)
     end
   end
 

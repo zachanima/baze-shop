@@ -8,7 +8,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
 
-
   protected
   def authenticate
     authenticate_or_request_with_http_basic do |login, password|
@@ -32,28 +31,28 @@ class ApplicationController < ActionController::Base
     @shop = Shop.find_by_link(params[:shop_id]) if params[:shop_id]
   end
 
-  def notice(resource, url)
-    if resource.new_record?
-      action = 'Created'
-    elsif resource
-      action = 'Updated'
+  def notice(url)
+    if current_resource.new_record?
+      action_text = 'Created'
+    elsif current_resource
+      action_text = 'Updated'
     else
-      action = 'Destroyed'
+      action_text = 'Destroyed'
     end
-    flash[:notice] = [action, resource.class.name.downcase].join(' ')
-    url.is_a?(Symbol) ? (render :action => url) : redirect_to(url)
+    flash[:notice] = [action_text, current_class_name].join(' ')
+    redirect_to(url)
   end
 
-  def error
-    if resource.new_record?
-      action = 'Created'
-    elsif resource
-      action = 'Updated'
+  def error(action)
+    if current_resource.new_record?
+      action_text = 'Could not create'
+    elsif current_resource
+      action_text = 'Could not update'
     else
-      action = 'Destroyed'
+      action_text = 'Could not destroy'
     end
-    flash[:error] = [action, resource.class.name.downcase].join(' ')
-    url.is_a?(Symbol) ? (render :action => url) : redirect_to(url)
+    flash[:error] = [action_text, current_class_name].join(' ')
+    render :action => action
   end
 
   def render_shop
@@ -63,5 +62,16 @@ class ApplicationController < ActionController::Base
       session.delete(:user_id)
       redirect_to(login_path(@shop))
     end
+  end
+
+
+  private
+  # Find current resource based on priority
+  def current_resource
+    [@address, @admin, @category, @email_address, @image, @option, @option_group, @order, @order_group, @variation, @product, @user, @shop, @product_template].compact.first
+  end
+
+  def current_class_name
+    current_resource.class.name.downcase
   end
 end
