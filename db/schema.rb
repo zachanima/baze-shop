@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100315035921) do
+ActiveRecord::Schema.define(:version => 20100319061722) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20100315035921) do
     t.datetime "logo_updated_at"
     t.string   "currency"
     t.string   "color"
+    t.text     "receipt_text"
   end
 
   create_table "templates", :force => true do |t|
