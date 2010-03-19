@@ -11,7 +11,7 @@ class Shop < ActiveRecord::Base
     :original => '500x50>' }
 
   def orders
-    Order.all(:order => 'order_group_id').select { |o| o.user.shop === self }
+    Order.all(:order => 'order_group_id DESC').select { |o| o.user.shop === self }
   end
 
   def templates

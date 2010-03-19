@@ -14,7 +14,7 @@ class OrdersController < ApplicationController
       if @shop
         @orders = @shop.orders.reject { |o| o.order_group_id == nil }
       else
-        @orders = OrderGroup.find(:all).collect { |order_group| order_group.orders }.flatten
+        @orders = OrderGroup.find(:all, :order => 'created_at DESC').collect { |order_group| order_group.orders }.flatten
       end
     end
   end
