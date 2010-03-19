@@ -108,6 +108,10 @@ body > #cart > a {
   margin-top: 8px;
 }
 
+#breadcrumbs {
+  margin-bottom: 12px;
+}
+
 .product {
   display: inline-block;
   margin: 1%;

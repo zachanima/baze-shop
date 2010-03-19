@@ -1,3 +1,8 @@
+<div id="breadcrumbs">
+  <%= link_to(@product.category.name, shop_category_path(@shop, @product.category)) %> &gt;
+  <%= @product.name %>
+</div>
+
 <div id="images">
   <% if @product.images.count > 1 %>
     <div><%= link_to('&lt;&lt;') %> 1 / <%= @product.images.count %> <%= link_to('&gt;&gt') %></div>
