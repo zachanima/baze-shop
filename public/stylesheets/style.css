@@ -25,6 +25,7 @@ tr.order_group td {
   padding: 4px;
 }
 
+
 .content {
   margin: auto;
   width: 750px;
@@ -289,6 +290,10 @@ body > #cart > a {
 /* colours */
 a:hover {
   color: #333;
+}
+
+a img {
+  border-width: 0;
 }
 
 body {
