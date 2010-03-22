@@ -8,5 +8,20 @@
   <strong><%= Option.all.count %></strong> Options.
   <strong><%= Image.all.count %></strong> Images,
 </p>
+<table>
+  <thead>
+    <th>ID</th>
+    <th>Changes</th>
+  </thead>
+  <tbody>
+    <% @changes.each do |change| %>
+      <tr>
+        <td><%= link_to(change.id, edit_change_path(change)) %></td>
+        <td><%= change.text %></td>
+      </tr>
+    <% end %>
+    <tr><td colspan="2"><%= link_to('Add change', new_change_path) %></td></tr>
+  </tbody>
+</table>
 <%= @admin.text %>
 <%= link_to('Edit', edit_admin_path(@admin)) %>

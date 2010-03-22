@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.increment 'shops/:shop_id/orders/increment/:id', :controller => 'orders', :action => 'increment', :conditions => { :method => :post }
   map.decrement 'shops/:shop_id/orders/decrement/:id', :controller => 'orders', :action => 'decrement', :conditions => { :method => :post }
 
+  map.resources :changes
+
   map.resources :option_groups do |option_group|
     option_group.resources :options, :collection => { :sort => :post }
   end

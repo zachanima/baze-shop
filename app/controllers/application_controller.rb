@@ -68,7 +68,21 @@ class ApplicationController < ActionController::Base
   private
   # Find current resource based on priority
   def current_resource
-    [@address, @admin, @category, @email_address, @image, @option, @option_group, @order, @order_group, @variation, @product, @user, @shop, @product_template].compact.first
+    [ @address,
+      @admin,
+      @category,
+      @change,
+      @email_address,
+      @image,
+      @option,
+      @option_group,
+      @order,
+      @order_group,
+      @variation,
+      @product,
+      @user,
+      @shop,
+      @product_template ].compact.first
   end
 
   def current_class_name

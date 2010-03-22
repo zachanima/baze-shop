@@ -2,7 +2,8 @@ class AdminsController < ApplicationController
   before_filter :authenticate, :except => [:show]
 
   def index
-    @admin = Admin.first
+    @admin = Admin.find(:first)
+    @changes = Change.find(:all, :order => 'id DESC')
   end
 
   def edit
