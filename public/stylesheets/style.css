@@ -86,6 +86,10 @@ tr.order_group td {
   margin-left: 100%;
 }
 
+#nav .content > ul > li.orders {
+  float: right;
+}
+
 #fortune {
   padding: 12px 0;
 }
