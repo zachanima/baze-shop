@@ -15,8 +15,8 @@
     <thead>
       <tr>
         <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
-        <th>Name</th>
         <th>Number</th>
+        <th>Name</th>
         <th>Brand</th>
         <th>Shops</th>
         <th>Images</th>
@@ -26,8 +26,8 @@
       <% @templates.each do |template| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('template_ids[]', template.id, false, :class => 'checkbox') %></td>
-          <td class="name"><%= link_to(template.name, edit_template_path(template)) %>
-          <td><%= template.number %></td>
+          <td class="name"><%= link_to(template.number, edit_template_path(template)) %>
+          <td><%= template.name %></td>
           <td><%= template.brand %></td>
           <td><%= template.products.collect { |p| link_to(p.shop.name, shop_products_path(p.shop)) }.flatten.join(', ') %></td>
           <td><%= template.images.count %></td>
