@@ -73,6 +73,7 @@ tr.order_group td {
   display: none;
   position: absolute;
   margin-top: 3px;
+  white-space: nowrap;
 }
 
 #nav:hover .content > ul > li > ul {
