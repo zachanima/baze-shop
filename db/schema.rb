@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322195159) do
+ActiveRecord::Schema.define(:version => 20100322231532) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(:version => 20100322195159) do
     t.string   "currency"
     t.string   "color"
     t.text     "receipt_text"
+    t.text     "css"
   end
 
   create_table "templates", :force => true do |t|

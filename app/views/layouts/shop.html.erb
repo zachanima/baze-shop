@@ -18,6 +18,7 @@
       #content, body > #cart, tr.order_group_total {
         border-bottom: 3px double <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
+      <%= @shop.css %>
     </style>
   </head>
   <body>
