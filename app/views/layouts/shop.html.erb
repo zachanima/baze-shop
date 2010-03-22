@@ -26,7 +26,13 @@
       <div class="content">
         <% content_tag :span, :class => 'logout' do %>
           Logget ind som <strong><%= @current_user.name %></strong><br />
-          <% if @current_user.budget %>Saldo: <strong><%= format_currency(@current_user.balance) %></strong><br /><% end %>
+          <% if @current_user.budget %>
+            <% if @current_user.budget != '0' %>
+              Saldo: <strong><%= format_currency(@current_user.balance) %></strong><br />
+            <% else %>
+              Bestilt for: <strong><%= format_currency(-@current_user.balance) %></strong><br />
+            <% end %>
+          <% end %>
           <%= link_to('Log ud', logout_path(@shop)) %></span>
         <% end if @current_user %>
         <h1><%= @shop.logo.url == '/logos/original/missing.png' ? @shop.name : image_tag(@shop.logo.url) if @shop %></h1>
