@@ -21,8 +21,9 @@ module ApplicationHelper
     else
       number_to_currency(number.to_f, {
         :unit => @shop ? @shop.currency : nil,
+        :delimiter => '.',
         :separator => ',',
-        :precision => number.to_f == number.to_i ? 0 : 2,
+        :precision => 2,
         :format => '%n %u'})
     end
   end
