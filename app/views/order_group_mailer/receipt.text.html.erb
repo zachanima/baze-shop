@@ -14,9 +14,9 @@
     <%= Maruku.new(@shop.receipt_text).to_html.gsub("\r\n", '<br />') unless @shop.receipt_text.blank? %>
     <br />
     <br />
-    <table border="1px">
+    <table border="0" style="border-collapse: collapse">
       <tbody>
-        <tr>
+        <tr style="color: #fff; background-color: #999">
           <td><strong>Ordre #<%= @order_group.id %></strong></td>
           <td />
           <td />
@@ -24,18 +24,18 @@
           <td><strong><%= @order_group.created_at.to_s(:short) %></strong></td>
         </tr>
         <% @order_group.orders.each do |order| %>
-          <tr class="<%= cycle('even', 'odd') %>">
-            <td><strong><%= order.product.name %>&nbsp;&nbsp;&nbsp;</strong></td>
-            <td><%= order.product.number %>&nbsp;&nbsp;&nbsp;</td>
-            <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [v.price.to_i, @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
-            <td>
+          <tr style="background-color: <%= cycle('#f4f4f4', '#fff') %>">
+            <td style="vertical-align: top; padding-right: 16px;"><%= order.product.number %>&nbsp;&nbsp;&nbsp;</td>
+            <td style="vertical-align: top; padding-right: 16px;"><%= order.product.name %>&nbsp;&nbsp;&nbsp;</td>
+            <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [v.price.to_i, @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
+            <td style="vertical-align: top; padding-right: 16px;">
               <%= order.quantity %> stk.
               <% if order.product.price %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
             &nbsp;&nbsp;&nbsp;</td>
-            <td><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
+            <td style="vertical-align: top; padding-right: 16px;"><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
           </tr>
         <% end %>
-        <tr>
+        <tr style="color: #fff; background-color: <%= @shop.color %>">
           <td><strong>Total</strong></td>
           <td />
           <td />
