@@ -73,17 +73,16 @@ tr.order_group td {
 #nav .content > ul > li ul, #nav .content > ul > li > ul > li > ul {
   display: none;
   position: absolute;
-  margin-top: 3px;
   white-space: nowrap;
 }
 
-#nav:hover .content > ul > li > ul {
+#nav .content > ul > li:hover > ul {
   display: block;
 }
 
 #nav .content > ul > li > ul li:hover > ul {
   display: block;
-  margin-top: -23px;
+  margin-top: -24px;
   margin-left: 100%;
 }
 
@@ -414,4 +413,19 @@ table.category img {
 
 #fortune {
   *padding: 4px 0;
+}
+
+#nav .content > ul {
+  *position: relative;
+}
+
+#nav .content > ul > li.orders {
+  *float: none;
+  *position: absolute;
+  *right: 0;
+  *margin-bottom: -3px;
+}
+
+#nav .content > ul > li > ul li:hover > ul {
+  *margin-top: -25px;
 }
