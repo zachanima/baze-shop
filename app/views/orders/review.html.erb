@@ -20,7 +20,7 @@
                 <option value="<%= address.id %>"><%= address.text.gsub("\r\n", ', ') %></option>
               <% end %>
             </select>
-          <% elsif @shop.addresses.count + (@current_user.address.empty? ? 0 : 1) == 1 %>
+          <% elsif @shop.addresses.count + (@current_user.address.blank? ? 0 : 1) == 1 %>
             <%= @shop.addresses.first ? @shop.addresses.first.text.gsub("\r\n", ', ') : @current_user.address.gsub("\r\n", ', ') %>
           <% end %>
         </li>

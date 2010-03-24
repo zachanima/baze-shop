@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100322231532) do
+ActiveRecord::Schema.define(:version => 20100324000717) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -170,6 +170,7 @@ ActiveRecord::Schema.define(:version => 20100322231532) do
     t.text     "address"
     t.string   "email"
     t.string   "telephone"
+    t.boolean  "dummy"
   end
 
   create_table "variations", :force => true do |t|
