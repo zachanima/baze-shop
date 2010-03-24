@@ -9,11 +9,11 @@
       <% unless @shop.addresses.empty? and @current_user.address.nil? %>
         <li>
           <%= label_tag :address, 'Leveringsadresse' %>
-          <% if @shop.addresses.count + (@current_user.address.empty? ? 0 : 1) > 1 %>
+          <% if @shop.addresses.count + (@current_user.address.blank? ? 0 : 1) > 1 %>
             <select name="order_group[address_id]">
               <option selected="selected" value="">V&aelig;lg leveringsadresse...</option>
               <option disabled="disabled" />
-              <% unless @current_user.address.empty? %>
+              <% unless @current_user.address.blank? %>
                 <option value="0"><%= @current_user.address.gsub("\r\n", ', ') %></option>
               <% end %>
               <% @shop.addresses.each do |address| %>

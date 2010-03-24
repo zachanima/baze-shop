@@ -33,7 +33,7 @@
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Afdeling:</td>
     <td><%= @current_user.department %></td>
-  <% end unless @current_user.department.empty? %>
+  <% end unless @current_user.department.blank? %>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Navn:</td>
     <td><%= @current_user.name %></td>
@@ -57,10 +57,10 @@
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Noter:</td>
     <td><%= markdown(@current_user.text).gsub("\r\n", '<br />') %></td>
-  <% end unless @current_user.text.empty? %>
+  <% end unless @current_user.text.blank? %>
 </table>
 
-<% unless @order_group.text.empty? %>
+<% unless @order_group.text.blank? %>
   <h2>Kommentar</h2>
   <%= markdown(@order_group.text).gsub("\r\n", '<br />') %>
 <% end %>

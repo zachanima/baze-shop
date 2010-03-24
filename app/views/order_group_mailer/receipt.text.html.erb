@@ -56,7 +56,7 @@
       <% content_tag :tr, :class => cycle('even', 'odd') do %>
         <td class="strong">Afdeling:&nbsp;&nbsp;&nbsp;</td>
         <td><%= @user.department %></td>
-      <% end unless @user.department.empty? %>
+      <% end unless @user.department.blank? %>
       <% content_tag :tr, :class => cycle('even', 'odd') do %>
         <td class="strong">Navn:&nbsp;&nbsp;&nbsp;</td>
         <td><%= @user.name %></td>
@@ -80,12 +80,12 @@
       <% content_tag :tr, :class => cycle('even', 'odd') do %>
         <td class="strong">Noter:&nbsp;&nbsp;&nbsp;</td>
         <td><%= Maruku.new(@user.text).to_html.gsub("\r\n", '<br />') %></td>
-      <% end unless @user.text.empty? %>
+      <% end unless @user.text.blank? %>
     </table>
     <br />
     <br />
 
-    <% unless @order_group.text.empty? %>
+    <% unless @order_group.text.blank? %>
       <strong>Kommentar</strong>
       <%= Maruku.new(@order_group.text).to_html.gsub("\r\n", '<br />') %>
     <% end %>
