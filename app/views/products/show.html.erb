@@ -18,7 +18,7 @@
       <% f.inputs do %>
         <%= content_tag :div, flash[:error], :id => 'error' if flash[:error] %>
         <ol>
-        <% @product.option_groups.each do |option_group| %>
+        <% @product.option_groups.all(:order => 'position').each do |option_group| %>
           <li>
             <%= f.label option_group.text %>
             <% if @product.options.select { |o| o.option_group === option_group }.count > 1 or option_group.optional %>

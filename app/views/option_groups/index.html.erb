@@ -6,6 +6,7 @@
   <table>
     <thead>
       <tr>
+        <th />
         <th class="checkbox"><input class="checkbox" id="check_all" onclick="$$('form input.checkbox').each(function(box){box.checked=$('check_all').checked})" type="checkbox"></th>
         <th>Name</th>
         <th>Text</th>
@@ -13,9 +14,10 @@
         <th>Optional</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="option_groups_list">
       <% @option_groups.each do |option_group| %>
-        <tr class="<%= cycle('odd', 'even') %>">
+        <tr id="<%= dom_id(option_group) %>" class="<%= cycle('odd', 'even') %>">
+          <td class="handle">[drag]</td>
           <td class="checkbox"><%= check_box_tag('option_group_ids[]', option_group.id, false, :class => 'checkbox') %></td>
           <td class="name"><%= link_to(option_group.name, edit_option_group_path(option_group)) %>
           <td><%= option_group.text %></td>
@@ -26,3 +28,4 @@
     </tbody>
   </table>
 <% end %>
+<%= sortable_element('option_groups_list', :tag => 'tr', :url => sort_option_groups_path) %>

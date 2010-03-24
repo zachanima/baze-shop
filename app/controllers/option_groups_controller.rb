@@ -3,7 +3,7 @@ class OptionGroupsController < ApplicationController
   before_filter :find_option_group, :only => [:edit, :update]
 
   def index
-    @option_groups = OptionGroup.all
+    @option_groups = OptionGroup.all(:order => 'position')
   end
 
   def new
@@ -43,6 +43,15 @@ class OptionGroupsController < ApplicationController
       flash[:error] = "Unexpected error, params: #{params.inspect}"
     end
     redirect_to(option_groups_path)
+  end
+
+  def sort
+    params[:option_groups_list].each_with_index do |id, index|
+      OptionGroup.update_all(['position = ?', index + 1], ['id = ?', id])
+    end
+    render :update do |page|
+      page.reload
+    end
   end
 
   private

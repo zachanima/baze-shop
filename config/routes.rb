@@ -8,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :changes
 
-  map.resources :option_groups do |option_group|
+  map.resources :option_groups, :collection => { :sort => :post } do |option_group|
     option_group.resources :options, :collection => { :sort => :post }
   end
 
