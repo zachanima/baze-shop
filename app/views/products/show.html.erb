@@ -51,7 +51,7 @@
                   <% end %>
                 <% end %>
               </select>
-            <% else %>
+            <% else if @product.options.select { |o| o.option_group === option_group }.count == 1 %>
               <%= @product.options.select { |o| o.option_group === option_group }.first.text %>
               <input name="order[variation_ids][]" type="hidden" value="<%= @product.options.select { |o| o.option_group === option_group }.first.variations.find(:first, :conditions => { :product_id => @product.id }).id %>">
             <% end %>
