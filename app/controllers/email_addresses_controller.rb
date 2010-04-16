@@ -32,6 +32,7 @@ class EmailAddressesController < ApplicationController
 
   def destroy
     @email_address.destroy
+    redirect_to(edit_shop_path(@shop))
   end
 
   def sort
