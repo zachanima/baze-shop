@@ -41,12 +41,12 @@
     <%= link_to_new('address', new_shop_address_path(@shop)) %>
     <% f.inputs do %>
       <li>
-        <%= f.label :email_addresses %>
+        <%= f.label :email_addresses, :label => 'Manager email addresses' %>
         <ol id="email_addresses">
           <% @shop.email_addresses.all(:order => 'position').each do |email_address| %>
             <% content_tag_for(:li, email_address) do %>
               <span class="handle">[drag]</span>
-              <%= link_to(email_address.text.gsub("\r\n", ', '), edit_shop_email_address_path(@shop, email_address)) %>
+              <%= link_to([email_address.name, "&lt;#{email_address.text.gsub("\r\n", ', ')}&gt;"].join(' '), edit_shop_email_address_path(@shop, email_address)) %>
               (<%= link_to('delete', shop_email_address_path(@shop, email_address), :confirm => "Delete email address\n#{email_address.text}?", :method => :delete) %>)
             <% end %>
           <% end %>

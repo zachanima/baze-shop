@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :shop
+  belongs_to :email_address
   has_many :orders, :dependent => :destroy
   has_many :order_groups, :dependent => :destroy
   validates_presence_of :first_name, :login, :password
