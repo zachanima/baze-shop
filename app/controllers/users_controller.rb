@@ -39,7 +39,21 @@ class UsersController < ApplicationController
     end
   end
 
-  # def destroy
+  def multiple
+    if params[:user_ids].nil?
+      flash[:error] = 'No users selected'
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:user_ids].count} users"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    if @shop
+      redirect_to(shop_users_path(@shop))
+    else
+      redirect_to(users_path)
+    end
+  end
 
   def import
     @shops = Shop.all
@@ -82,5 +96,9 @@ class UsersController < ApplicationController
   private
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def multiple_destroy
+    User.destroy(params[:user_ids])
   end
 end
