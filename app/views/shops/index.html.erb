@@ -2,6 +2,7 @@
 <%= link_to_new('shop', new_shop_path) %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
+  <%= submit_tag 'Delete', :name => 'destroy' %>
   <table>
     <thead>
       <tr>
@@ -18,7 +19,7 @@
     </thead>
     <tbody>
       <% @shops.each do |shop| %>
-        <tr class="<%= cycle('odd', 'even') %>">
+        <tr id="<%= dom_id(shop) %>" class="<%= cycle('odd', 'even') %>">
           <td class="checkbox"><%= check_box_tag('shop_ids[]', shop.id, false, :class => 'checkbox') %></td>
           <td class="name"><%= link_to(shop.name, edit_shop_path(shop)) %></td>
           <td><%= link_to(shop.link, shop_url(shop)) %></td>

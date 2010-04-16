@@ -42,7 +42,18 @@ class ShopsController < ApplicationController
     end
   end
 
-  # def destroy
+  def multiple
+    if params[:shop_ids].nil?
+      flash[:error] = 'No shops selected'
+    elsif params[:destroy]
+      multiple_destroy
+      flash[:notice] = "Deleted #{params[:shop_ids].count} shops"
+    else
+      flash[:error] = "Unexpected error, params: #{params.inspect}"
+    end
+    redirect_to(shops_path)
+  end
+
 
   private
   def find_shop
@@ -51,5 +62,9 @@ class ShopsController < ApplicationController
 
   def parameterize_link
     params[:shop][:link] = params[:shop][:link].parameterize if params[:shop] and params[:shop][:link]
+  end
+
+  def multiple_destroy
+    Shop.destroy(params[:shop_ids])
   end
 end
