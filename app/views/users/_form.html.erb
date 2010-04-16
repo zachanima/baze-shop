@@ -13,7 +13,7 @@
       <%= f.input :address %>
       <%= f.input :text %>
       <%= f.input :budget %>
-      <%= f.input :email_address, :label => 'Manager', :collection => @shop.email_addresses %>
+      <%= f.input :email_address, :label => 'Manager', :collection => @shop.email_addresses unless @shop.email_addresses.blank? %>
       <%= f.input :super, :label => 'Superuser' %>
       <%= f.input :dummy, :label => 'Do not send out email receipt' %>
     <% else %>
