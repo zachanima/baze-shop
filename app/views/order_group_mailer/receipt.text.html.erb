@@ -30,8 +30,12 @@
             <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [v.price.to_i, @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;">
               <%= order.quantity %> stk.
-              <% if order.product.price %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
-              <% if order.product.net_price %>(<%= [order.product.net_price.to_i, @shop.currency].join(' ') %>)<% end %>
+              <% if order.product.price %>
+                &aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %>
+                <% if order.product.net_price %>(<%= [order.product.net_price.to_i, @shop.currency].join(' ') %>)<% end %>
+              <% elsif order.product.net_price %>
+                &aacute; <%= [order.product.net_price.to_i, @shop.currency].join(' ') %>
+              <% end %>
             &nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;"><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
           </tr>

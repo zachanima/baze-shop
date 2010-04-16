@@ -1,6 +1,6 @@
 class OrderGroupMailer < ActionMailer::Base
   def receipt(order_group)
-    recipients  'zachanima@gmail.com'
+    recipients  'os@baze.dk'
     bcc         order_group.user.email_address.nil? ? nil : "#{order_group.user.email_address.name} <#{order_group.user.email_address.text}>"
     from        'Baze A/S <info@baze.dk>'
     subject     "#{order_group.user.shop.name}, Ordre ##{order_group.id}"
