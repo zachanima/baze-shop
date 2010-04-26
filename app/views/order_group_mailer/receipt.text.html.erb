@@ -87,12 +87,20 @@
         <td><%= Maruku.new(@user.text).to_html.gsub("\r\n", '<br />') %></td>
       <% end unless @user.text.blank? %>
     </table>
-    <br />
-    <br />
 
     <% unless @order_group.text.blank? %>
+      <br />
+      <br />
       <strong>Kommentar</strong>
       <%= Maruku.new(@order_group.text).to_html.gsub("\r\n", '<br />') %>
+    <% end %>
+
+    <% if @user.budget and @user.budget != '0' %>
+      <% if @user.balance < 0 %>
+        <br />
+        <br />
+        <strong>NB: <%= @user.name %> har efter denne ordre en saldo p&aring; <span style="color: red"><%= [@user.balance.to_i, @shop.currency].join(' ') %></span>.</strong>
+      <% end %>
     <% end %>
   </body>
 </html> 
