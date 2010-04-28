@@ -11,7 +11,11 @@ class User < ActiveRecord::Base
   end
 
   def accepted_orders
-    self.order_groups.collect { |order_group| order_group.orders }.flatten
+    self.order_groups.all(:conditions => { :dummy => false }).collect { |order_group| order_group.orders }.flatten
+  end
+
+  def dummy_orders
+    self.order_groups.all(:conditions => { :dummy => true }).collect { |order_group| order_group.orders }.flatten
   end
 
   def waiting_orders

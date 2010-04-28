@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @current_user.order_groups.each do |order_group| %>
+      <% @current_user.order_groups.all(:conditions => { :dummy => false }).each do |order_group| %>
         <% unless order_group.orders.empty? %>
           <% reset_cycle('even_odd') %>
           <tr class="order_group">
@@ -67,7 +67,7 @@
             <td><%= order.variations.collect { |v| "<abbr title=\"#{v.option.option_group.text}\">#{v.option.text}</abbr>" }.join(', ') %></td>
             <td><%= order.quantity %></td>
             <td><%= format_currency(order.price) %></td>
-            <td>#<%= order.order_group.id %></td>
+            <td>#<%= order.order_group.id %><%= ' (dummy)' if order.order_group.dummy %></td>
           </tr>
         <% end %>
       </tbody>

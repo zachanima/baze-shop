@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
     end
 
     unless flash[:error]
+      @order.dummy = false
       @order.update_price
       @order.save
     end
