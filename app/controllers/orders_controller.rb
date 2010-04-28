@@ -43,7 +43,6 @@ class OrdersController < ApplicationController
     end
 
     unless flash[:error]
-      @order.dummy = false
       @order.update_price
       @order.save
     end
@@ -97,6 +96,7 @@ class OrdersController < ApplicationController
       else
         @order_group = @current_user.order_groups.build(params[:order_group])
         @order_group.address_id = nil if @order_group.address_id == 0
+        @order_group.dummy = false
         @order_group.save
         @orders.each do |order|
           order.order_group_id = @order_group.id
