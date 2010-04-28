@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
 
   def show
     @products = @category.products.all(:order => 'position')
-    unless @current_user.super
+    unless @current_user and @current_user.super
       @products.reject! { |product| product.super == true }
     end
     render :layout => 'shop'
