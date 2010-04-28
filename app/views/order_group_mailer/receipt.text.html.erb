@@ -32,9 +32,9 @@
               <%= order.quantity %> stk.
               <% if order.product.price %>
                 &aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %>
-                <% if order.product.net_price %>(<%= [order.product.net_price.to_i, @shop.currency].join(' ') %>)<% end %>
+                <% if order.product.net_price %>(<%= order.product.net_price.to_i %> kr.)<% end %>
               <% elsif order.product.net_price %>
-                &aacute; <%= [order.product.net_price.to_i, @shop.currency].join(' ') %>
+                &aacute; <%= order.product.net_price.to_i %> kr.
               <% end %>
             &nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;"><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
