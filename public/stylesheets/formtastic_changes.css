@@ -44,6 +44,10 @@ form.formtastic fieldset ol li ol li ul li {
   background-color: rgba(0,0,0,0.05);
 }
 
+form.formtastic textarea {
+  height: 8em;
+}
+
 
 
 /* cart */
