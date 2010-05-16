@@ -72,6 +72,7 @@ class ApplicationController < ActionController::Base
       @admin,
       @category,
       @change,
+      @task,
       @email_address,
       @image,
       @option,

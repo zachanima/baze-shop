@@ -8,14 +8,33 @@
   <strong><%= Option.all.count %></strong> Options.
   <strong><%= Image.all.count %></strong> Images,
 </p>
-<table>
+
+<table class="admin" id="tasks">
+  <thead>
+    <th />
+    <th>Tasks</th>
+    <th />
+  </thead>
+  <tbody id="tasks_list">
+    <% @tasks.each do |task| %>
+      <tr id="<%= dom_id(task) %>" class="<%= cycle('odd', 'even') %>">
+        <td class="handle">[drag]</td>
+        <td><%= link_to(task.text, edit_task_path(task)) %></td>
+        <td><%= link_to('Delete', task_path(task), :confirm => "Delete task #{task.id}?", :method => :delete) %></td>
+      </tr>
+    <% end %>
+    <tr><td colspan="3"><%= link_to('Add task', new_task_path) %></td></tr>
+  </tbody>
+</table>
+
+<table class="admin" id="changes">
   <thead>
     <th>ID</th>
     <th>Changes</th>
   </thead>
   <tbody>
     <% @changes.each do |change| %>
-      <tr>
+      <tr class="<%= cycle('odd', 'even') %>">
         <td><%= link_to(change.id, edit_change_path(change)) %></td>
         <td><%= change.text %></td>
       </tr>
@@ -23,5 +42,7 @@
     <tr><td colspan="2"><%= link_to('Add change', new_change_path) %></td></tr>
   </tbody>
 </table>
+
 <%= @admin.text %>
 <%= link_to('Edit', edit_admin_path(@admin)) %>
+<%= sortable_element('tasks_list', :tag => 'tr', :url => sort_tasks_path) %>

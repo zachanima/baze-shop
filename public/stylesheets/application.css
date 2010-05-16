@@ -98,6 +98,14 @@ td.handle {
   margin: 16px 0;
 }
 
+table.admin {
+  width: 49%;
+}
+
+table.admin#tasks {
+  float: right;
+}
+
 
 
 /* texts */

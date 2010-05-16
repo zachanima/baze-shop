@@ -29,5 +29,4 @@ class ChangesController < ApplicationController
   def find_change
     @change = Change.find(params[:id])
   end
-
 end
