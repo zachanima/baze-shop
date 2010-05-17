@@ -39,7 +39,12 @@ class TasksController < ApplicationController
 
   def sort
     params[:tasks_list].each_with_index do |id, index|
-      Task.update_all(['position = ?', index + 1], ['id = ? AND NOT completed = 1', id])
+      unless id.blank?
+        task = Task.find(id)
+        task.position = index + 1 unless task.completed
+        task.save
+      end
+      #Task.update_all(['position = ?', index + 1], ['id = ?', id])
     end
     render :update do |page|
       page.reload
