@@ -4,7 +4,7 @@ class AdminsController < ApplicationController
   def index
     @admin = Admin.find(:first)
     @changes = Change.find(:all, :order => 'id DESC')
-    @tasks = Task.find(:all, :order => 'position')
+    @tasks = Task.find(:all, :order => 'completed, position, updated_at DESC')
   end
 
   def edit

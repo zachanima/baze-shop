@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100517045333) do
+ActiveRecord::Schema.define(:version => 20100517053146) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(:version => 20100517045333) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "completed"
   end
 
   create_table "templates", :force => true do |t|

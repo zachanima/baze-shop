@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
   before_filter :authenticate
-  before_filter :find_task, :only => [:edit, :update, :destroy]
+  before_filter :find_task, :only => [:edit, :update, :destroy, :complete]
 
   def new
     @task = Task.new
@@ -30,9 +30,16 @@ class TasksController < ApplicationController
     notice(admins_path)
   end
 
+  def complete
+    @task.completed = true
+    @task.position = 0
+    @task.save
+    redirect_to(admins_path)
+  end
+
   def sort
     params[:tasks_list].each_with_index do |id, index|
-      Task.update_all(['position = ?', index + 1], ['id = ?', id])
+      Task.update_all(['position = ?', index + 1], ['id = ? AND NOT completed = 1', id])
     end
     render :update do |page|
       page.reload

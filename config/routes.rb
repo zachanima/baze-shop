@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :changes
   map.resources :tasks, :collection => { :sort => :post }
+  map.complete_task 'tasks/:id/complete', :controller => 'tasks', :action => 'complete', :conditions => { :method => :get }
 
   map.resources :option_groups, :collection => { :sort => :post } do |option_group|
     option_group.resources :options, :collection => { :sort => :post }
