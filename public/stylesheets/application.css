@@ -98,12 +98,13 @@ td.handle {
   margin: 16px 0;
 }
 
-table.admin {
-  width: 49%;
+table.admin#changes {
+  width: 39%;
 }
 
 table.admin#tasks {
   float: right;
+  width: 59%;
 }
 
 
@@ -168,6 +169,9 @@ a.separator {
   font-size: 9pt;
 }
 
+table.admin#changes {
+  font-size: 8pt;
+}
 
 
 
