@@ -46,7 +46,9 @@
           <% @shop.email_addresses.all(:order => 'position').each do |email_address| %>
             <% content_tag_for(:li, email_address) do %>
               <span class="handle">[drag]</span>
+              <% if email_address.net %><b><% end %>
               <%= link_to([email_address.name, "&lt;#{email_address.text.gsub("\r\n", ', ')}&gt;"].join(' '), edit_shop_email_address_path(@shop, email_address)) %>
+              <% if email_address.net %></b><% end %>
               (<%= link_to('delete', shop_email_address_path(@shop, email_address), :confirm => "Delete email address\n#{email_address.text}?", :method => :delete) %>)
             <% end %>
           <% end %>

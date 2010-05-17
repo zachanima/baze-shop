@@ -1,7 +1,9 @@
 class OrderGroupMailer < ActionMailer::Base
   def receipt(order_group)
-    recipients  'os@baze.dk'
-    bcc         order_group.user.email_address.nil? ? nil : "#{order_group.user.email_address.name} <#{order_group.user.email_address.text}>"
+    #recipients  'os@baze.dk'
+    recipients  'zachanima@gmail.com'
+    #bcc         order_group.user.email_address.nil? ? nil : "#{order_group.user.email_address.name} <#{order_group.user.email_address.text}>"
+    bcc         (order_group.user.email_address.nil? or order_group.user.email_address.net.blank?) ? nil : "#{order_group.user.email_address.name} <#{order_group.user.email_address.text}>"
     from        'Baze A/S <info@baze.dk>'
     subject     "#{order_group.user.shop.name}, Ordre ##{order_group.id}"
     sent_on     Time.now
@@ -11,6 +13,7 @@ class OrderGroupMailer < ActionMailer::Base
 
   def user_receipt(order_group)
     recipients  order_group.user.email
+    bcc         (order_group.user.email_address.nil? or order_group.user.email_address.net) ? nil : "#{order_group.user.email_address.name} <#{order_group.user.email_address.text}>"
     from        'Baze A/S <info@baze.dk>'
     subject     "#{order_group.user.shop.name}, Ordre ##{order_group.id}"
     sent_on     Time.now

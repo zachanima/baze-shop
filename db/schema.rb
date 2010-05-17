@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100517053146) do
+ActiveRecord::Schema.define(:version => 20100517112044) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20100517053146) do
     t.string  "text"
     t.integer "position"
     t.integer "shop_id"
+    t.boolean "net"
   end
 
   create_table "images", :force => true do |t|
