@@ -5,7 +5,8 @@
       <% @variations.each do |variation| %>
         <li>
           <%= label_tag :price, [variation.option.option_group.text, variation.option.text].join(': ') %>
-          <%= text_field_tag "variations[#{variation.id}][price]", variation.price %>
+          <%= [text_field_tag("variations[#{variation.id}][price]", variation.price), @shop.currency].join(' ') %> (
+          <%= text_field_tag "variations[#{variation.id}][net_price]", variation.net_price %> kr.)
         </li>
       <% end %>
     </ol>

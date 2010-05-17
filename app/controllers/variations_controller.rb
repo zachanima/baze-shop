@@ -10,6 +10,7 @@ class VariationsController < ApplicationController
     params[:variations].each do |variation_data|
       variation = Variation.find(variation_data.first)
       variation.price = variation_data.last[:price]
+      variation.net_price = variation_data.last[:net_price]
       variation.save
     end
     flash[:notice] = "Updated prices for options of #{@product.name}"
