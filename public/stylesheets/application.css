@@ -99,12 +99,12 @@ td.handle {
 }
 
 table.admin#changes {
-  width: 39%;
+  width: 33%;
 }
 
 table.admin#tasks {
   float: right;
-  width: 59%;
+  width: 65%;
 }
 
 
