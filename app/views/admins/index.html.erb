@@ -1,12 +1,8 @@
 <% title 'Dashboard' %>
 <p>
-  <strong><%= Shop.all.count %></strong> Shops,
-  <strong><%= User.all.count %></strong> Users,
-  <strong><%= Product.all.count %></strong> Products,
-  <strong><%= Order.all.count %></strong> Orders,
-  <strong><%= OptionGroup.all.count %></strong> Option Groups,
-  <strong><%= Option.all.count %></strong> Options.
-  <strong><%= Image.all.count %></strong> Images,
+  <strong><%= Shop.all.count %></strong> Shops with <strong><%= User.all.count %></strong> Users, <strong><%= Product.all.count %></strong> Products.<br />
+  <strong><%= OptionGroup.all.count %></strong> Option Groups with <strong><%= Option.all.count %></strong> Options.
+  <strong><%= OrderGroup.all.count %></strong> Orders for <strong><%= Order.all.count %></strong> Products.<br />
 </p>
 
 <table class="admin" id="tasks">
