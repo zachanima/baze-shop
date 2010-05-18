@@ -14,10 +14,11 @@
     </li>
     <li class="text">
       <%= f.label :text %>
-      <%= text_area_tag(:template_text, @product.text, { :disabled => true, :rows => 20 }) %>
+      <%= text_area_tag(:template_text, @product.template.text, { :disabled => true, :rows => 20 }) %>
     </li>
   <% end %>
   <% f.inputs do %>
+    <%= f.input :text %>
     <%= f.input :price, :label => "Gross Price (#{@shop.currency})" %>
     <%= f.input :net_price, :label => "Net Price (#{@shop.currency})" %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>

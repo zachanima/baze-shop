@@ -20,8 +20,8 @@ class Product < ActiveRecord::Base
     self.template.brand
   end
 
-  def text
-    self.template.text
+  def fulltext
+    [self.template.text, self.text].compact.join("\r\n\r\n")
   end
 
   def thumbnail
