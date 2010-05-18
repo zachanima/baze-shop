@@ -327,11 +327,6 @@ tr.total {
   background-color: #333;
 }
 
-#header img {
-  background-color: #fff;
-  border: 1px solid #ccc;
-}
-
 #header .logout a {
   color: #fff;
 }

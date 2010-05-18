@@ -9,6 +9,12 @@
       a, #nav ul ul a {
         color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
+      <% if @shop.logo_box %>
+        #header img {
+          background-color: #fff;
+          border: 1px solid #ccc;
+        }
+      <% end %>
       #nav, tr.total {
         background-color: <%= @shop.color.blank? ? '#e82' : @shop.color %>;
       }
