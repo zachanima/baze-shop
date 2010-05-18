@@ -12,6 +12,7 @@
     <th />
   </thead>
   <tbody id="tasks_list">
+    <tr><td colspan="3"><%= link_to('Add task', new_task_path) %></td></tr>
     <% @tasks.each do |task| %>
       <tr id="<%= dom_id(task) %>" class="<%= cycle('odd', 'even') %>">
         <% if task.completed %>
@@ -28,7 +29,6 @@
         <% end %>
       </tr>
     <% end %>
-    <tr><td colspan="3"><%= link_to('Add task', new_task_path) %></td></tr>
   </tbody>
 </table>
 
@@ -38,13 +38,13 @@
     <th>Changes</th>
   </thead>
   <tbody>
+    <tr><td colspan="2"><%= link_to('Add change', new_change_path) %></td></tr>
     <% @changes.each do |change| %>
       <tr class="<%= cycle('odd', 'even') %>">
         <td><%= link_to(change.id, edit_change_path(change)) %></td>
         <td><%= change.text %></td>
       </tr>
     <% end %>
-    <tr><td colspan="2"><%= link_to('Add change', new_change_path) %></td></tr>
   </tbody>
 </table>
 
