@@ -37,7 +37,7 @@ class EmailAddressesController < ApplicationController
 
   def sort
     params[:email_addresses].each_with_index do |id, index|
-      Address.update_all(['position = ?', index + 1], ['id = ?', id])
+      EmailAddress.update_all(['position = ?', index + 1], ['id = ?', id])
     end
     render :nothing => true
   end
