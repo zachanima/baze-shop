@@ -50,7 +50,12 @@
           <td />
           <td />
           <td />
-          <td><strong><%= [@order_group.orders.collect { |o| o.price.to_i }.compact.inject(0) { |b,i| b + i }, @shop.currency].join(' ') %></strong></td>
+          <td>
+            <strong>
+              <%= [@order_group.orders.collect { |o| o.price.to_i }.compact.inject(0) { |b,i| b + i }, @shop.currency].join(' ') %>
+            </strong>
+            (<%= [@order_group.orders.collect { |o| o.net_price.to_i }.compact.inject(0) { |b,i| b + i }, 'kr.'].join(' ') %>)
+            </td>
         </tr>
       </tbody>
     </table>

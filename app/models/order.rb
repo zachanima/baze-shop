@@ -12,4 +12,13 @@ class Order < ActiveRecord::Base
     self.price *= self.quantity if self.price
     self.save
   end
+
+  def net_price
+    net_price = self.product.net_price
+    self.variations.each do |variation|
+      net_price += variation.net_price if net_price and variation.net_price
+    end
+    net_price *= self.quantity if net_price
+    net_price
+  end
 end
