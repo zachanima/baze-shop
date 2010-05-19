@@ -14,7 +14,9 @@
       <tr class="<%= cycle('odd', 'even') %>">
         <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
         <td><%= order.product.number %></td>
-        <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
+        <td>
+          <%= order.variations.collect { |v|
+            ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
         <td>
           <%= link_to_remote('-', :update => 'cart', :url => "/shops/#{@shop.link}/orders/decrement/#{order.id}") %>
           <%= order.quantity %>

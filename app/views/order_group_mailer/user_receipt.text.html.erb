@@ -27,12 +27,12 @@
           <tr style="background-color: <%= cycle('#f4f4f4', '#fff') %>">
             <td style="vertical-align: top; padding-right: 16px;"><%= order.product.number %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;"><%= order.product.name %>&nbsp;&nbsp;&nbsp;</td>
-            <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [v.price.to_i, @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
+            <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [('%.2f' % v.price).gsub!('.', ','), @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;">
               <%= order.quantity %> stk.
-              <% if order.product.price %>&aacute; <%= [order.product.price.to_i, @shop.currency].join(' ') %><% end %>
+              <% if order.product.price %>&aacute; <%= [('%.2f' % order.product.price).gsub!('.', ','), @shop.currency].join(' ') %><% end %>
             &nbsp;&nbsp;&nbsp;</td>
-            <td style="vertical-align: top; padding-right: 16px;"><%= [order.price.to_i, @shop.currency].join(' ') if order.price %></td>
+            <td style="vertical-align: top; padding-right: 16px;"><%= [('%.2f' % order.price).gsub!('.', ','), @shop.currency].join(' ') if order.price %></td>
           </tr>
         <% end %>
         <tr style="color: #fff; background-color: <%= @shop.color %>">
@@ -40,7 +40,7 @@
           <td />
           <td />
           <td />
-          <td><strong><%= [@order_group.orders.collect { |o| o.price.to_i }.compact.inject(0) { |b,i| b + i }, @shop.currency].join(' ') %></strong></td>
+          <td><strong><%= [('%.2f' % @order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong></td>
         </tr>
       </tbody>
     </table>
