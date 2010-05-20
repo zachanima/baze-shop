@@ -18,11 +18,11 @@
       <tr id="<%= dom_id(task) %>" class="<%= cycle('odd', 'even') %>">
         <% if task.completed %>
           <td />
-          <td><del><%= task.text %></del></td>
+          <td><del><%= task.name %></del></td>
           <td><%= task.updated_at.to_s(:short) %></td>
         <% else %>
           <td class="handle">[drag]</td>
-          <td><%= link_to(task.text, edit_task_path(task)) %></td>
+          <td><%= link_to(task.name, edit_task_path(task)) %></td>
           <td>
             <%= link_to('Complete', complete_task_path(task)) %> /
             <%= link_to('Delete', task_path(task), :confirm => "Delete task #{task.id}?", :method => :delete) %>
