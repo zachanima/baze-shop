@@ -73,7 +73,7 @@
           <%= f.label 'Antal' %>
           <select name="order[quantity]">
             <% (1..20).each do |quantity| %>
-              <option value="<%= quantity %>"><%= quantity %></option>
+              <option value="<%= quantity %>"><%= quantity * (@product.parcel_size || 1) %></option>
             <% end %>
           </select>
         </li>

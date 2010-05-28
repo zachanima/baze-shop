@@ -21,6 +21,7 @@
     <%= f.input :text %>
     <%= f.input :price, :label => "Gross Price (#{@shop.currency})" %>
     <%= f.input :net_price %>
+    <%= f.input :parcel_size %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
     <%= f.input :super, :label => "Superuser only" %>

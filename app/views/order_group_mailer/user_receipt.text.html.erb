@@ -29,7 +29,7 @@
             <td style="vertical-align: top; padding-right: 16px;"><%= order.product.name %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [('%.2f' % v.price).gsub!('.', ','), @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;">
-              <%= order.quantity %> stk.
+              <%= order.quantity * (order.product.parcel_size || 1) %> stk.
               <% if order.product.price %>&aacute; <%= [('%.2f' % order.product.price).gsub!('.', ','), @shop.currency].join(' ') %><% end %>
             &nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;"><%= [('%.2f' % order.price).gsub!('.', ','), @shop.currency].join(' ') if order.price %></td>

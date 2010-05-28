@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100520171528) do
+ActiveRecord::Schema.define(:version => 20100528025634) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -128,6 +128,7 @@ ActiveRecord::Schema.define(:version => 20100520171528) do
     t.float    "net_price"
     t.boolean  "super"
     t.text     "text"
+    t.integer  "parcel_size"
   end
 
   create_table "shops", :force => true do |t|

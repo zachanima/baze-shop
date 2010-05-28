@@ -19,7 +19,7 @@
             ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
         <td>
           <%= link_to_remote('-', :update => 'cart', :url => "/shops/#{@shop.link}/orders/decrement/#{order.id}") %>
-          <%= order.quantity %>
+          <%= order.quantity * (order.product.parcel_size || 1) %>
           <%= link_to_remote('+', :update => 'cart', :url => "/shops/#{@shop.link}/orders/increment/#{order.id}") %>
           (<%= link_to_remote('slet', :update => 'cart', :url => shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>)
         </td>
