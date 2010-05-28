@@ -20,7 +20,7 @@
   <% f.inputs do %>
     <%= f.input :text %>
     <%= f.input :price, :label => "Gross Price (#{@shop.currency})" %>
-    <%= f.input :net_price, :label => "Net Price (#{@shop.currency})" %>
+    <%= f.input :net_price %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
     <%= f.input :super, :label => "Superuser only" %>
