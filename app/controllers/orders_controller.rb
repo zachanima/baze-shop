@@ -116,14 +116,14 @@ class OrdersController < ApplicationController
   end
 
   def increment
-    @order.quantity += 1
+    @order.quantity += (@order.product.parcel_size || 1)
     @order.update_price
     @order.save
     render :partial => 'cart'
   end
 
   def decrement
-    @order.quantity -= 1
+    @order.quantity -= (@order.product.parcel_size || 1)
     if @order.quantity == 0
       @order.destroy
     else
