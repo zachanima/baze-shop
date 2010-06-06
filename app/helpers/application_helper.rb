@@ -38,8 +38,9 @@ module ApplicationHelper
     submit_tag 'Edit', :name => 'edit'
   end
 
-  def submit_tag_delete(resource)
-    submit_tag('Delete', :name => 'destroy', :confirm => ['Delete selected ', resource.class.name.downcase.pluralize, '?'].join)
+  def submit_tag_delete
+    class_name = controller.controller_name
+    submit_tag('Delete', :name => 'destroy', :confirm => ['Delete selected ', class_name, '?'].join)
   end
 
   def tr_cycle(id = nil)
