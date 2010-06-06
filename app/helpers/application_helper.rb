@@ -29,6 +29,11 @@ module ApplicationHelper
     end
   end
 
+  def count(resources, class_name = nil)
+    class_name ||= resources.first.class.name.downcase
+    pluralize(resources.count, class_name)
+  end
+
   def tag_with_handle(tag)
     content_tag(tag, '[drag]', :class => 'handle')
   end
