@@ -3,7 +3,7 @@
     <td class="completed"><%= task.name %></td>
     <td class="time"><%= task.updated %></td>
   <% else %>
-    <td class="text"><%= link_to(task.name, edit_task_path(task)) %>. <%= task.text %></td>
+    <td class="text" title="<%= [h(task.name), h(task.text)].join(' &mdash; ') %>"><%= link_to(task.name, edit_task_path(task)) %> &mdash; <%= task.text %></td>
     <td class="action">
       <%= link_to('&#x2714;', complete_task_path(task), :confirm => 'Complete?') %>
       <%= link_to_delete(task) %>
