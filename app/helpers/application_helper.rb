@@ -46,7 +46,7 @@ module ApplicationHelper
     tag_with_handle(:td)
   end
 
-  def tr_with_dom_id(resource)
+  def tr_for_sortable_element(resource)
     concat(['<tr id="', dom_id(resource), '" class="', cycle('odd', 'even'), '">'].join)
     concat(td_with_handle)
     yield

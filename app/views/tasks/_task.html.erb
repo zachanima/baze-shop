@@ -1,4 +1,4 @@
-<% tr_with_dom_id(task) do %>
+<% tr_for_sortable_element(task) do %>
   <% if task.completed %>
     <td class="completed text" title="<%= task.name_and_text %>"><%= task.name %></td>
     <td class="time"><%= task.updated %></td>
