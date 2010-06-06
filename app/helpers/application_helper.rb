@@ -34,6 +34,13 @@ module ApplicationHelper
     pluralize(resources.count, class_name)
   end
 
+  def tr_cycle(id = nil)
+    id = ['id="', id, '" '].join if id
+    concat(['<tr ', id, 'class="', cycle('odd', 'even'), '">'].join)
+    yield
+    concat('</tr>')
+  end
+
   def tag_with_handle(tag)
     content_tag(tag, '[drag]', :class => 'handle')
   end
@@ -47,10 +54,10 @@ module ApplicationHelper
   end
 
   def tr_for_sortable_element(resource)
-    concat(['<tr id="', dom_id(resource), '" class="', cycle('odd', 'even'), '">'].join)
+    tr_cycle(dom_id(resource)) do
     concat(td_with_handle)
     yield
-    concat('</tr>')
+    end
   end
 
   def link_to_delete(resource, text = nil, path = nil)
