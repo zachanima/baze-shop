@@ -1,4 +1,12 @@
 module ShopsHelper
+  def link_to_users(shop)
+    link_to_count(shop.users, shop_users_path(shop))
+  end
+
+  def link_to_products(shop)
+    link_to_count(shop.products, shop_products_path(shop))
+  end
+
   def truncated_status(shop)
     status = shop.status
     if status.count > 1
