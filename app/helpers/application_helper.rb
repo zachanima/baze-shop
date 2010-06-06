@@ -49,6 +49,16 @@ module ApplicationHelper
     concat('</tr>')
   end
 
+  def th_check_box
+    '<th class="checkbox"><input class="checkbox" id="check_all" onclick="$$(\'form input.checkbox\').each(function(box){box.checked=$(\'check_all\').checked})" type="checkbox"></th>'
+  end
+
+  def td_check_box(resource)
+    [ '<td class="checkbox">',
+      check_box_tag([resource.class.name.downcase, '_ids[]'].join, resource.id, false, :class => 'checkbox'),
+      '</td>'].join
+  end
+
   def tag_with_handle(tag)
     content_tag(tag, '[drag]', :class => 'handle')
   end
