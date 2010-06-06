@@ -28,6 +28,18 @@ module ApplicationHelper
     end
   end
 
+  def link_to_delete(resource, text = nil, path = nil)
+    class_name = resource.class.name.downcase
+    identifier = nil
+    [:name, :number, :text, :id].each do |method|
+      identifier = identifier || resource.send(method) if resource.respond_to?(method)
+    end
+    text = text || '&#x2716'
+    path = path || "/#{class_name.pluralize}/#{resource.id}"
+    confirm = ['Delete', class_name, "'#{identifier}'?"].join(' ')
+    link_to(text, path, :confirm => confirm, :method => :delete)
+  end
+
   def fortune
     [
     "clock speed",
