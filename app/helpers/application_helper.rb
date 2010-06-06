@@ -28,6 +28,25 @@ module ApplicationHelper
     end
   end
 
+  def tag_with_handle(tag)
+    content_tag(tag, '[drag]', :class => 'handle')
+  end
+
+  def span_with_handle
+    tag_with_handle(:span)
+  end
+
+  def td_with_handle
+    tag_with_handle(:td)
+  end
+
+  def tr_with_dom_id(resource)
+    concat(['<tr id="', dom_id(resource), '" class="', cycle('odd', 'even'), '">'].join)
+    concat(td_with_handle)
+    yield
+    concat('</tr>')
+  end
+
   def link_to_delete(resource, text = nil, path = nil)
     class_name = resource.class.name.downcase
     identifier = nil
