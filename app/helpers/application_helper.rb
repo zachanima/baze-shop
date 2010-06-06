@@ -82,6 +82,12 @@ module ApplicationHelper
     link_to(resources.count.zero_text('None'), path)
   end
 
+  def tooltip_image(image, text = nil)
+    if image.exists?
+      ['<span class="tooltip">', text || '&#x274f;', '<img src="', image.url, '" /></span>'].join
+    end
+  end
+
   def link_to_delete(resource, text = nil, path = nil)
     class_name = resource.class.name.downcase
     identifier = nil
