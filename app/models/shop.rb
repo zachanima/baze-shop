@@ -18,7 +18,15 @@ class Shop < ActiveRecord::Base
     self.categories.collect { |category| category.templates }.flatten
   end
 
+  def status
+    [
+      closed ? 'Closed' : nil,
+      logo.exists? ? nil : 'No logo'
+    ].compact
+  end
+
   def to_param
     self.link
   end
+
 end
