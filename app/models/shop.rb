@@ -18,6 +18,10 @@ class Shop < ActiveRecord::Base
     self.categories.collect { |category| category.templates }.flatten
   end
 
+  def conditional_currency
+    currency.blank? ? 'kr.' : currency
+  end
+
   def status
     [
       closed ? 'Closed' : nil,
