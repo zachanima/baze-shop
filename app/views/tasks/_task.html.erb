@@ -1,0 +1,12 @@
+<% tr_with_dom_id(task) do %>
+  <% if task.completed %>
+    <td class="completed"><%= task.name %></td>
+    <td class="time"><%= task.updated %></td>
+  <% else %>
+    <td class="text"><%= link_to(task.name, edit_task_path(task)) %>. <%= task.text %></td>
+    <td class="action">
+      <%= link_to('&#x2714;', complete_task_path(task), :confirm => 'Complete?') %>
+      <%= link_to_delete(task) %>
+    </td>
+  <% end %>
+<% end %>

@@ -126,6 +126,34 @@ td.name {
   font-weight: bold;
 }
 
+td.time {
+  text-align: right;
+}
+
+td.action {
+  text-align: center;
+}
+
+td.action > a {
+  text-decoration: none;
+}
+
+td.text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 485px;
+  border-width: 0;
+}
+
+td.time, td.action {
+  min-width: 4em;
+}
+
+td.completed {
+  color: #999;
+}
+
 a.separator {
   font-weight: bold;
 }
