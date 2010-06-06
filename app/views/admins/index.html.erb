@@ -7,9 +7,7 @@
 
 <table class="admin" id="tasks">
   <thead>
-    <th />
-    <th><%= count(@tasks) %></th>
-    <th />
+    <th colspan="3"><%= count(@tasks) %></th>
   </thead>
   <tbody id="tasks_list">
     <tr><td colspan="3"><%= link_to('Add task', new_task_path) %></td></tr>
@@ -19,17 +17,11 @@
 
 <table class="admin" id="changes">
   <thead>
-    <th>ID</th>
-    <th>Changes</th>
+    <th><%= count(@changes) %></th>
   </thead>
   <tbody>
-    <tr><td colspan="2"><%= link_to('Add change', new_change_path) %></td></tr>
-    <% @changes.each do |change| %>
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td><%= link_to(change.id, edit_change_path(change)) %></td>
-        <td><%= change.text %></td>
-      </tr>
-    <% end %>
+    <tr><td><%= link_to('Add change', new_change_path) %></td></tr>
+    <%= render @changes %>
   </tbody>
 </table>
 

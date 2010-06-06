@@ -99,12 +99,12 @@ td.handle {
 }
 
 table.admin#changes {
-  width: 33%;
+  width: 30%;
 }
 
 table.admin#tasks {
   float: right;
-  width: 65%;
+  width: 68%;
 }
 
 
@@ -142,7 +142,7 @@ td.text {
   display: block;
   overflow: hidden;
   white-space: nowrap;
-  width: 485px;
+  width: 520px;
   border-width: 0;
 }
 
@@ -199,6 +199,15 @@ a.separator {
 
 table.admin#changes {
   font-size: 8pt;
+}
+
+table.admin#changes tr.odd a, table.admin#changes tr.even a {
+  color: #666;
+  text-decoration: none;
+}
+
+table.admin#changes tr.odd a:hover, table.admin#changes tr.even a:hover {
+  color: #333;
 }
 
 
