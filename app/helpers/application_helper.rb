@@ -11,6 +11,7 @@ module ApplicationHelper
     link_to("Add new #{string}", path, :class => 'button')
   end
 
+
   def markdown(text)
     text.blank? ? "" : Maruku.new(text).to_html
   end
@@ -51,10 +52,10 @@ module ApplicationHelper
     class_name = resource.class.name.downcase
     identifier = nil
     [:name, :number, :text, :id].each do |method|
-      identifier = identifier || resource.send(method) if resource.respond_to?(method)
+      identifier ||= resource.send(method) if resource.respond_to?(method)
     end
-    text = text || '&#x2716'
-    path = path || "/#{class_name.pluralize}/#{resource.id}"
+    text ||= '&#x2716'
+    path ||= "/#{class_name.pluralize}/#{resource.id}"
     confirm = ['Delete', class_name, "'#{identifier}'?"].join(' ')
     link_to(text, path, :confirm => confirm, :method => :delete)
   end
