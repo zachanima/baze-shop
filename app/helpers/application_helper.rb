@@ -60,6 +60,10 @@ module ApplicationHelper
     end
   end
 
+  def link_to_count(resources, path)
+    link_to(resources.count.zero_text('None'), path)
+  end
+
   def link_to_delete(resource, text = nil, path = nil)
     class_name = resource.class.name.downcase
     identifier = nil
