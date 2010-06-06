@@ -34,6 +34,14 @@ module ApplicationHelper
     pluralize(resources.count, class_name)
   end
 
+  def submit_tag_edit
+    submit_tag 'Edit', :name => 'edit'
+  end
+
+  def submit_tag_delete(resource)
+    submit_tag('Delete', :name => 'destroy', :confirm => ['Delete selected ', resource.class.name.downcase.pluralize, '?'].join)
+  end
+
   def tr_cycle(id = nil)
     id = ['id="', id, '" '].join if id
     concat(['<tr ', id, 'class="', cycle('odd', 'even'), '">'].join)
