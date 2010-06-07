@@ -29,4 +29,8 @@ module UsersHelper
   def shop_or_department(user)
     @shop ? user.department : link_to(user.shop.link.capitalize, shop_users_path(user.shop))
   end
+
+  def truncated_text(user)
+    [truncated_tooltip(user.text)].join unless user.text.blank?
+  end
 end
