@@ -17,16 +17,13 @@ module ApplicationHelper
   end
 
   def format_currency(number)
-    if number.to_f == 0
-      return
-    else
-      number_to_currency(number.to_f, {
-        :unit => @shop ? @shop.currency : nil,
-        :delimiter => '.',
-        :separator => ',',
-        :precision => 2,
-        :format => '%n %u'})
-    end
+    return if number.to_f == 0
+    number_to_currency(number.to_f, {
+      :unit => @shop ? @shop.conditional_currency : 'kr.',
+      :delimiter => '.',
+      :separator => ',',
+      :precision => 2,
+      :format => number < 0 ? '<span class="negative">%n %u</span>' : '%n %u'})
   end
 
   def count(resources, class_name = nil)

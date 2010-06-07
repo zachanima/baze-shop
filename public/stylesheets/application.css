@@ -250,6 +250,10 @@ body {
   background-color: #eee;
 }
 
+span.negative {
+  color: #f00;
+}
+
 span.tooltip {
   border-bottom-width: 1px;
   border-bottom-style: dotted;
