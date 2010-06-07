@@ -33,4 +33,8 @@ module UsersHelper
   def truncated_text(user)
     [truncated_tooltip(user.text)].join unless user.text.blank?
   end
+
+  def truncated_manager(user)
+    truncated_tooltip(user.email_address.text, user.email_address.name) if user.email_address
+  end
 end
