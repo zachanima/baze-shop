@@ -1,0 +1,15 @@
+<% tr_cycle do %>
+  <%= td_check_box(shop) %>
+  <td class="name">
+    <%= tooltip_image(shop.logo) %>
+    <%= link_to(shop.name, edit_shop_path(shop)) %>
+  </td>
+  <td><%= link_to(shop.link, shop_url(shop)) %></td>
+  <td class="right-align"><%= link_to_users(shop) %></td>
+  <td class="right-align"><%= link_to_products(shop) %></td>
+  <td><%= shop.username_text %></td>
+  <td><%= shop.password_text %></td>
+  <td><%= shop.conditional_currency %></td>
+  <td class="status"><%= truncated_status(shop) %></td>
+  <td class="action"><%= link_to_delete(shop) %></td>
+<% end %>

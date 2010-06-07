@@ -19,6 +19,23 @@ input.checkbox {
   margin: 3px;
 }
 
+span.tooltip > * {
+  display: none;
+  position: absolute;
+}
+
+span.tooltip:hover > * {
+  display: block;
+}
+
+span.tooltip > *:hover {
+  display: none;
+}
+
+span.tooltip:hover > img {
+  padding: 4px;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
@@ -36,6 +53,15 @@ th.checkbox, td.checkbox {
 td.handle {
   width: 0;
   padding-right: 4px;
+}
+
+td.time {
+  min-width: 4em;
+}
+
+td.text {
+  display: block;
+  width: 520px;
 }
 
 .content {
@@ -126,8 +152,17 @@ td.name {
   font-weight: bold;
 }
 
+td.right-align {
+  text-align: right;
+}
+
 td.time {
   text-align: right;
+}
+
+td.status {
+  color: #f00;
+  font-weight: bold;
 }
 
 td.action {
@@ -139,19 +174,8 @@ td.action > a {
 }
 
 td.text {
-  display: block;
   overflow: hidden;
   white-space: nowrap;
-  width: 520px;
-  border-width: 0;
-}
-
-td.time, td.action {
-  min-width: 4em;
-}
-
-td.completed {
-  color: #999;
 }
 
 a.separator {
@@ -226,6 +250,17 @@ body {
   background-color: #eee;
 }
 
+span.tooltip {
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+}
+
+span.tooltip:hover > img {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 4px;
+}
+
 table, th, td {
   border: 1px solid #fff;
 }
@@ -241,6 +276,14 @@ tr.odd {
 
 tr.even {
   background-color: #eee;
+}
+
+td.text {
+  border-width: 0;
+}
+
+td.completed {
+  color: #999;
 }
 
 form.index {
