@@ -57,6 +57,10 @@ module ApplicationHelper
       '</td>'].join
   end
 
+  def td_delete(resource)
+    ['<td class="action">', link_to_delete(resource), '</td>'].join
+  end
+
   def tag_with_handle(tag)
     content_tag(tag, '[drag]', :class => 'handle')
   end
