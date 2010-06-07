@@ -40,6 +40,10 @@ module ApplicationHelper
     submit_tag('Delete', :name => 'destroy', :confirm => ['Delete selected ', class_name, '?'].join)
   end
 
+  def truncated_tooltip(title, text = nil)
+    ['<span class="tooltip" title="', title, '">', text || '&hellip;', '</span>'].join unless title.blank?
+  end
+
   def tr_cycle(id = nil)
     id = ['id="', id, '" '].join if id
     concat(['<tr ', id, 'class="', cycle('odd', 'even'), '">'].join)
