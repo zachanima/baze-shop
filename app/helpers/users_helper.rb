@@ -25,4 +25,8 @@ module UsersHelper
   def link_to_user_orders(user)
     link_to(user.order_groups.count.zero_text, shop_user_orders_path(user.shop, user))
   end
+
+  def shop_or_department(user)
+    @shop ? user.department : link_to(user.shop.link.capitalize, shop_users_path(user.shop))
+  end
 end
