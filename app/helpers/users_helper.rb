@@ -5,4 +5,8 @@ module UsersHelper
     end
     options_for_select(options.unshift(['', '']))
   end
+
+  def list_users_text
+    @shop ? ['List users of', @shop.name].join(' ') : 'List all users'
+  end
 end
