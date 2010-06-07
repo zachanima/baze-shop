@@ -8,5 +8,5 @@
   <td><%= link_to_user_orders(user) %></td>
   <td><%= format_currency(user.budget) %></td>
   <td><%= format_currency(user.balance) %></td>
-  <td class="action"><%= link_to_delete(user) %></td>
+  <%= td_delete(user) %>
 <% end %>

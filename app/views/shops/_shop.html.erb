@@ -11,5 +11,5 @@
   <td><%= shop.password_text %></td>
   <td><%= shop.conditional_currency %></td>
   <td class="status"><%= truncated_status(shop) %></td>
-  <td class="action"><%= link_to_delete(shop) %></td>
+  <%= td_delete(shop) %>
 <% end %>
