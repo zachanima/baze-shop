@@ -1,6 +1,9 @@
 <% tr_cycle do %>
   <%= td_check_box(user) %>
-  <td class="name"><%= link_to_user_name(user) %></td>
+  <td class="name">
+    <%= truncated_text(user) %>
+    <%= link_to_user_name(user) %>
+  </td>
   <td><%= shop_or_department(user) %></td>
   <td><%= user.manager %></td>
   <td><%= user.login %></td>
