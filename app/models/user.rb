@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
     [self.first_name, self.last_name].join(' ')
   end
 
+  def manager
+    self.email_address.name if self.email_address
+  end
+
   def accepted_orders
     self.order_groups.all(:conditions => { :dummy => false }).collect { |order_group| order_group.orders }.flatten
   end
