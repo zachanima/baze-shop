@@ -1,4 +1,4 @@
-<% tr_cycle do %>
+<tr>
   <%= td_check_box(user) %>
   <td class="name">
     <%= truncated_text(user) %>
@@ -12,4 +12,4 @@
   <td><%= format_currency(user.budget) %></td>
   <td><%= format_currency(user.balance) %></td>
   <%= td_delete(user) %>
-<% end %>
+</tr>

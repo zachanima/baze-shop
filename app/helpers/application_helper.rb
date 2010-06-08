@@ -44,13 +44,6 @@ module ApplicationHelper
     ['<span class="tooltip" title="', title, '">', text || '&hellip;', '</span>'].join unless title.blank?
   end
 
-  def tr_cycle(id = nil)
-    id = ['id="', id, '" '].join if id
-    concat(['<tr ', id, 'class="', cycle('odd', 'even'), '">'].join)
-    yield
-    concat('</tr>')
-  end
-
   def th_check_box
     '<th class="checkbox"><input class="checkbox" id="check_all" onclick="$$(\'form input.checkbox\').each(function(box){box.checked=$(\'check_all\').checked})" type="checkbox"></th>'
   end
@@ -78,10 +71,10 @@ module ApplicationHelper
   end
 
   def tr_for_sortable_element(resource)
-    tr_cycle(dom_id(resource)) do
+    concat(['<tr id="', dom_id(resource), '">'].join)
     concat(td_with_handle)
     yield
-    end
+    concat('</tr>')
   end
 
   def link_to_count(resources, path)

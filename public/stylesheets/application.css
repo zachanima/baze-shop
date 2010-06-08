@@ -225,12 +225,12 @@ table.admin#changes {
   font-size: 8pt;
 }
 
-table.admin#changes tr.odd a, table.admin#changes tr.even a {
+table.admin#changes tr a {
   color: #666;
   text-decoration: none;
 }
 
-table.admin#changes tr.odd a:hover, table.admin#changes tr.even a:hover {
+table.admin#changes tr a:hover {
   color: #333;
 }
 
@@ -274,11 +274,11 @@ th {
   background-color: #ccc;
 }
 
-tr.odd {
+tr:nth-child(2n+1) {
   background-color: #fff;
 }
 
-tr.even {
+tr:nth-child(2n) {
   background-color: #eee;
 }
 

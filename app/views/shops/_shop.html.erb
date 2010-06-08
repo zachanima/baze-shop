@@ -1,4 +1,4 @@
-<% tr_cycle do %>
+<tr>
   <%= td_check_box(shop) %>
   <td class="name">
     <%= tooltip_image(shop.logo) %>
@@ -12,4 +12,4 @@
   <td><%= shop.conditional_currency %></td>
   <td class="status"><%= truncated_status(shop) %></td>
   <%= td_delete(shop) %>
-<% end %>
+</tr>
