@@ -88,14 +88,14 @@ module ApplicationHelper
   end
 
   def link_to_delete(resource, text = nil, path = nil)
-    class_name = resource.class.name.downcase
+    class_name = resource.class.name.underscore
     identifier = nil
     [:name, :number, :text, :id].each do |method|
-      identifier ||= resource.send(method) if resource.respond_to?(method)
+      identifier = resource.send(method) if resource.respond_to?(method) and identifier.blank?
     end
     text ||= '&#x2716'
     path ||= "/#{class_name.pluralize}/#{resource.id}"
-    confirm = ['Delete', class_name, "'#{identifier}'?"].join(' ')
+    confirm = ['Delete', class_name.humanize.downcase, "'#{identifier}'?"].join(' ')
     link_to(text, path, :confirm => confirm, :method => :delete)
   end
 
