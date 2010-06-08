@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   end
 
   map.resources :orders
+  map.resources :order_groups
 
   map.resources :templates do |template|
     template.resources :images
@@ -32,6 +33,7 @@ ActionController::Routing::Routes.draw do |map|
       product.resources :variations, :collection => { :update_prices => :post }
     end
     shop.resources :orders
+    shop.resources :order_groups
     shop.resources :users, :collection => {
       :import => :get,
       :upload => :post,
@@ -41,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
         :review => :get,
         :accept => :post
       }
+      user.resources :order_groups
     end
   end
 
