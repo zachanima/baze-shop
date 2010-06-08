@@ -124,11 +124,11 @@ td.text {
   margin: 16px 0;
 }
 
-table.admin#changes {
+table#changes {
   width: 30%;
 }
 
-table.admin#tasks {
+table#tasks {
   float: right;
   width: 68%;
 }
@@ -221,16 +221,16 @@ a.separator {
   font-size: 9pt;
 }
 
-table.admin#changes {
+table#changes {
   font-size: 8pt;
 }
 
-table.admin#changes tr a {
+table#changes tr a {
   color: #666;
   text-decoration: none;
 }
 
-table.admin#changes tr a:hover {
+table#changes tr a:hover {
   color: #333;
 }
 
