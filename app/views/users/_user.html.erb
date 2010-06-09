@@ -8,8 +8,8 @@
   <td><%= truncated_manager(user) %></td>
   <td><%= user.login %></td>
   <td><%= user.password %></td>
-  <td><%= link_to_user_orders(user) %></td>
-  <td><%= format_currency(user.budget) %></td>
-  <td><%= format_currency(user.balance) %></td>
+  <td class="right-align"><%= link_to_user_orders(user) %></td>
+  <td class="right-align"><%= format_currency(user.budget) %></td>
+  <td class="right-align"><%= format_currency(user.balance) %></td>
   <%= td_delete(user) %>
 </tr>
