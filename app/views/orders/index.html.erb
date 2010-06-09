@@ -55,6 +55,7 @@
           <th>Quantity</th>
           <th>Price</th>
           <th>Order</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
@@ -68,6 +69,7 @@
             <td><%= order.quantity %></td>
             <td><%= format_currency(order.price) %></td>
             <td>#<%= order.order_group.id %><%= ' (dummy)' if order.order_group.dummy %></td>
+            <td><%= order.created_at.date_or_time %></td>
           </tr>
         <% end %>
       </tbody>
