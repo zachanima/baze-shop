@@ -50,7 +50,7 @@ module ApplicationHelper
 
   def td_check_box(resource)
     [ '<td class="checkbox">',
-      check_box_tag([resource.class.name.downcase, '_ids[]'].join, resource.id, false, :class => 'checkbox'),
+      check_box_tag([resource.class.name.underscore, '_ids[]'].join, resource.id, false, :class => 'checkbox'),
       '</td>'].join
   end
 
