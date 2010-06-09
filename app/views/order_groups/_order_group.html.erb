@@ -4,7 +4,7 @@
   <%= td_link_to_shop(order_group) %>
   <td><%= user_text(order_group) %></td>
   <%= td_products(order_group) %>
-  <td class="right-align"><%= format_currency(order_group.price) %></td>
+  <td class="price"><%= format_currency(order_group.price) %></td>
   <td class="time"><%= order_group.created_at.date %></td>
   <%= td_delete(order_group) %>
 </tr>

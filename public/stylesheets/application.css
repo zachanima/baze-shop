@@ -152,8 +152,12 @@ td.name {
   font-weight: bold;
 }
 
-td.right-align {
+td.right-align, td.price {
   text-align: right;
+}
+
+td.price {
+  white-space: nowrap;
 }
 
 td.time {
