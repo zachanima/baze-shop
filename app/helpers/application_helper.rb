@@ -36,7 +36,7 @@ module ApplicationHelper
   end
 
   def submit_tag_delete
-    class_name = controller.controller_name
+    class_name = controller.controller_name.humanize.downcase
     submit_tag('Delete', :name => 'destroy', :confirm => ['Delete selected ', class_name, '?'].join)
   end
 
