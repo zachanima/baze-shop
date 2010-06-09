@@ -1,0 +1,23 @@
+<% title(list_order_groups_text) %>
+<%= link_to_legacy_orders %>
+
+<% form_tag({ :action => :multiple }, :class => 'index') do %>
+  <%= submit_tag_delete %>
+  <table>
+    <thead>
+      <tr>
+        <%= th_check_box %>
+        <th>Order</th>
+        <%= '<th>Shop</th>' unless @shop %>
+        <th>User</th>
+        <th>Products</th>
+        <th>Price</th>
+        <th>Date</th>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <%= render @order_groups %>
+    </tbody>
+  </table>
+<% end %>

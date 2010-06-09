@@ -65,10 +65,10 @@
         <% else %>
           <ul id="orders" style="display: none;">
         <% end %>
-          <li><%= link_to('All orders', orders_path, :class => @shop ? 'inactive' : 'active') %></li>
+          <li><%= link_to('All orders', order_groups_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name, shop_orders_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.name, shop_order_groups_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
