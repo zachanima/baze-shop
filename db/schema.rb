@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100717180038) do
+ActiveRecord::Schema.define(:version => 20100717195255) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -126,7 +126,6 @@ ActiveRecord::Schema.define(:version => 20100717180038) do
     t.integer  "shop_id"
     t.float    "price"
     t.float    "net_price"
-    t.boolean  "super"
     t.text     "text"
     t.integer  "parcel_size"
   end
@@ -205,7 +204,6 @@ ActiveRecord::Schema.define(:version => 20100717180038) do
     t.string   "email"
     t.string   "telephone"
     t.boolean  "dummy"
-    t.boolean  "super"
     t.integer  "email_address_id"
   end
 
