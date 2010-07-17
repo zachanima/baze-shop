@@ -24,7 +24,7 @@
     <%= f.input :parcel_size %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
     <%= f.input :category, :as => :radio, :collection => categories_collection %>
-    <%= f.input :super, :label => "Superuser only" %>
+    <%= f.input :user_groups, :as => :check_boxes, :collection => @shop.user_groups %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
     <% @product.option_groups.each do |option_group| %>
       <%= f.input :options, :as => :check_boxes, :label => option_group.text, :collection =>

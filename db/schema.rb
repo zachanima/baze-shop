@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100717144308) do
+ActiveRecord::Schema.define(:version => 20100717180038) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -131,6 +131,11 @@ ActiveRecord::Schema.define(:version => 20100717144308) do
     t.integer  "parcel_size"
   end
 
+  create_table "products_user_groups", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "user_group_id"
+  end
+
   create_table "shops", :force => true do |t|
     t.string   "name"
     t.string   "link"
@@ -177,7 +182,7 @@ ActiveRecord::Schema.define(:version => 20100717144308) do
     t.datetime "updated_at"
   end
 
-  create_table "user_groups_users", :force => true do |t|
+  create_table "user_groups_users", :id => false, :force => true do |t|
     t.integer "user_group_id"
     t.integer "user_id"
   end

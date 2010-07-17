@@ -7,6 +7,7 @@ class Product < ActiveRecord::Base
   has_many :options, :through => :variations
   has_and_belongs_to_many :images
   has_and_belongs_to_many :option_groups
+  has_and_belongs_to_many :user_groups
 
   def name
     self.template.name
