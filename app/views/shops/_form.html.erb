@@ -28,6 +28,20 @@
     <% end %>
     <% f.inputs do %>
       <li>
+        <%= f.label :user_groups %>
+        <ol id="user_groups">
+          <% @shop.user_groups.all.each do |user_group| %>
+            <li>
+              <%= link_to(user_group.name, edit_shop_user_group_path(@shop, user_group)) %>
+              (<%= link_to('delete', shop_user_group_path(@shop, user_group), :confirm => "Delete user group\n#{user_group.name}?", :method => :delete) %>)
+            <li>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+    <%= link_to_new('user group', new_shop_user_group_path(@shop)) %>
+    <% f.inputs do %>
+      <li>
         <%= f.label :addresses %>
         <ol id="addresses">
           <% @shop.addresses.all(:order => 'position').each do |address| %>

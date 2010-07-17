@@ -4,6 +4,7 @@ class Shop < ActiveRecord::Base
   has_many :categories, :dependent => :destroy
   has_many :products, :dependent => :destroy
   has_many :users, :dependent => :destroy
+  has_many :user_groups, :dependent => :destroy
   validates_presence_of :link
   validates_uniqueness_of :link
 

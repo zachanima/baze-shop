@@ -45,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
       }
       user.resources :order_groups
     end
+    shop.resources :user_groups
   end
 
   map.resources :user_sessions

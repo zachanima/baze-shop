@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   belongs_to :email_address
   has_many :orders, :dependent => :destroy
   has_many :order_groups, :dependent => :destroy
+  has_and_belongs_to_many :user_groups
   validates_presence_of :first_name, :login, :password
   validates_uniqueness_of :login, :scope => :shop_id
 
