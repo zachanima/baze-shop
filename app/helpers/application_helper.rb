@@ -44,6 +44,10 @@ module ApplicationHelper
     ['<span class="tooltip" title="', title, '">', text || '&hellip;', '</span>'].join unless title.blank?
   end
 
+  def truncated_user_groups(resource)
+    [truncated_tooltip(resource.user_groups.collect(&:name).join(', '))].join unless resource.user_groups.empty?
+  end
+
   def th_check_box
     '<th class="checkbox"><input class="checkbox" id="check_all" onclick="$$(\'form input.checkbox\').each(function(box){box.checked=$(\'check_all\').checked})" type="checkbox"></th>'
   end

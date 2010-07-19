@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Price</th>
         <th>Category</th>
+        <th>Group</th>
         <th>Images</th>
         <th>Options</th>
       </tr>
@@ -25,6 +26,7 @@
           <td><%= product.name %></td>
           <td><%= [format_currency(product.price), product.net_price ? "(#{format_currency(product.net_price)})" : nil].join(' ') %></td>
           <td><%= product.category.self_and_ancestors.collect { |a| a.name }.join(' > ') if product.category %></td>
+          <td><%= truncated_user_groups(product) %></td>
           <td><%= product.images.count %></td>
           <td><%= product.option_groups.count %></td>
         </tr>
