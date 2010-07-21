@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100717195255) do
+ActiveRecord::Schema.define(:version => 20100721153251) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20100717195255) do
     t.float    "net_price"
     t.text     "text"
     t.integer  "parcel_size"
+    t.float    "print_price"
+    t.float    "environment_fee"
   end
 
   create_table "products_user_groups", :id => false, :force => true do |t|
