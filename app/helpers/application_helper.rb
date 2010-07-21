@@ -45,7 +45,12 @@ module ApplicationHelper
   end
 
   def truncated_user_groups(resource)
-    [truncated_tooltip(resource.user_groups.collect(&:name).join(', '))].join unless resource.user_groups.empty?
+    user_groups = resource.user_groups
+    if user_groups.count > 1
+      [truncated_tooltip(user_groups.collect(&:name).join(', '))].join unless resource.user_groups.empty?
+    elsif user_groups.first
+      user_groups.first.name
+    end
   end
 
   def th_check_box
