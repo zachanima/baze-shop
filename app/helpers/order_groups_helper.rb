@@ -22,8 +22,13 @@ module OrderGroupsHelper
   def td_products(order_group)
     orders = order_group.orders
     if orders.count == 1
+      text = String.new
       order = orders.first
-      text = truncated_tooltip(variations_text(order), order.product.name) || order.product.name
+      if order.product.nil?
+        text = truncated_tooltip(variations_text(order), order.product.name) || order.product.name
+      else
+        text = 'N/A'
+      end
       ['<td>', text, '</td>'].join
     else
       product_names = orders.collect { |order|
