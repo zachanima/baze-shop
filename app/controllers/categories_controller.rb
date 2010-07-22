@@ -17,24 +17,7 @@ class CategoriesController < ApplicationController
 
   def show
     @products = @category.products.all(:order => 'position')
-    if @current_user
-      if @current_user.user_groups.empty?
-        @products.reject! { |product| product.user_groups.empty? == false }
-      else
-        rejected_ids = Array.new
-        @products.each do |product|
-          reject = product.user_groups.empty? ? false : true
-          @current_user.user_groups.each do |user_group|
-            if product.user_groups.include? user_group
-              reject = false
-              break
-            end
-          end
-          rejected_ids << product.id if reject == true
-        end
-        @products.reject! { |product| rejected_ids.include? product.id }
-      end
-    end
+    filter_user_groups!(@products)
     render :layout => 'shop'
   end
   

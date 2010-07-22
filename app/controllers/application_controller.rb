@@ -89,4 +89,11 @@ class ApplicationController < ActionController::Base
   def current_class_name
     current_resource.class.name.downcase
   end
+
+  def filter_user_groups!(resources)
+    resources.reject! do |resource|
+      resource.user_groups.empty? == false and
+      (resource.user_groups & @current_user.user_groups).empty?
+    end
+  end
 end
