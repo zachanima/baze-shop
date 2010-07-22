@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def show
     @products = @category.products.all(:order => 'position')
     filter_user_groups!(@products)
-    render :layout => 'shop'
+    render_shop
   end
   
   def create
