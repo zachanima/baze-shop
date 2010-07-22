@@ -11,7 +11,6 @@ module ApplicationHelper
     link_to("Add new #{string}", path, :class => 'button')
   end
 
-
   def markdown(text)
     text.blank? ? "" : Maruku.new(text).to_html
   end

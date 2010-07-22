@@ -2,6 +2,7 @@
   <% f.inputs do %>
     <%= f.input :parent, :as => :select, :collection => categories_collection %>
     <%= f.input :name %>
+    <%= f.input :user_groups, :as => :check_boxes, :collection => @shop.user_groups %>
   <% end %>
   <%= f.buttons %>
 <% end %>
