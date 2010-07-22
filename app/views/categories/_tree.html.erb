@@ -1,6 +1,9 @@
 <li id="<%= dom_id(category) %>">
   <span class="handle">[drag]</span>
   <%= link_to(category.name, edit_shop_category_path(@shop, category)) %>
+  <% unless category.user_groups.empty? %>
+    (<%= truncated_user_groups(category) unless category.user_groups.empty? %>)
+  <% end %>
   (<%= link_to('delete', shop_category_path(@shop, category), :confirm => "Delete category #{category.name}?", :method => :delete) %>)
   <ul>
     <li class="empty" />

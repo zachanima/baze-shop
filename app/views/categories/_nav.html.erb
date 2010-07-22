@@ -1,8 +1,10 @@
-<li>
-  <%= link_to(category.name, category.products.empty? ? '#' : shop_category_path(@shop, category)) %>
-  <% content_tag :ul do %>
-    <% category.children.each do |child| %>
-      <%= render :partial => 'categories/nav', :locals => { :category => child } %>
-    <% end %>
-  <% end unless category.children.empty? %>
-</li>
+<% unless category.user_groups.empty? == false and (category.user_groups & @current_user.user_groups).empty? %>
+  <li>
+    <%= link_to(category.name, category.products.empty? ? '#' : shop_category_path(@shop, category)) %>
+    <% content_tag :ul do %>
+      <% category.children.each do |child| %>
+        <%= render :partial => 'categories/nav', :locals => { :category => child } %>
+      <% end %>
+    <% end unless category.children.empty? %>
+  </li>
+<% end %>
