@@ -25,9 +25,9 @@ module OrderGroupsHelper
       text = String.new
       order = orders.first
       if order.product.nil?
-        text = truncated_tooltip(variations_text(order), order.product.name) || order.product.name
-      else
         text = 'N/A'
+      else
+        text = truncated_tooltip(variations_text(order), order.product.name) || order.product.name
       end
       ['<td>', text, '</td>'].join
     else
