@@ -27,7 +27,11 @@ module OrderGroupsHelper
       ['<td>', text, '</td>'].join
     else
       product_names = orders.collect { |order|
-        [order.product.name, variations_text_with_parentheses(order)].compact.join(' ')
+        if order.product.nil?
+          'N/A'
+        else
+          [order.product.name, variations_text_with_parentheses(order)].compact.join(' ')
+        end
       }.join(', ')
       text = truncated_tooltip(product_names, orders.count)
       ['<td class="right-align">', text, '</td>'].join
