@@ -4,7 +4,7 @@ module ApplicationHelper
     if resource.nil?
       resource = @shop.categories
     end
-    nested_set_options(resource.roots) { |c| "#{'-' * c.level} #{c.name}" }
+    nested_set_options(resource.roots) { |c| "#{'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' * c.level} #{c.name}" }
   end
 
   def link_to_new(string, path)
@@ -40,7 +40,11 @@ module ApplicationHelper
   end
 
   def truncated_tooltip(title, text = nil)
-    ['<span class="tooltip" title="', title, '">', text || '&hellip;', '</span>'].join unless title.blank?
+    if not title.blank?
+      ['<span class="tooltip" title="', title, '">', text || '&hellip;', '</span>'].join
+    elsif not text.blank?
+      text
+    end
   end
 
   def truncated_user_groups(resource)
