@@ -48,11 +48,14 @@ module ApplicationHelper
   end
 
   def truncated_user_groups(resource)
-    user_groups = resource.user_groups
-    if user_groups.count > 1
-      [truncated_tooltip(user_groups.collect(&:name).join(', '))].join unless resource.user_groups.empty?
-    elsif user_groups.first
-      user_groups.first.name
+    if resource.user_groups.count > 0
+      user_groups = resource.user_groups
+      text = user_groups.shift.name
+      if user_groups.empty?
+        text
+      else
+        [truncated_tooltip(user_groups.collect(&:name).join(', '), text)].join
+      end
     end
   end
 
