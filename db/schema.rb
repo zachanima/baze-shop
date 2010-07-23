@@ -128,7 +128,6 @@ ActiveRecord::Schema.define(:version => 20100722201823) do
   end
 
   create_table "products", :force => true do |t|
-    t.integer  "category_id"
     t.integer  "template_id"
     t.integer  "position"
     t.datetime "created_at"

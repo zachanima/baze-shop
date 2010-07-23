@@ -1,6 +1,5 @@
 class Product < ActiveRecord::Base
   belongs_to :shop
-  belongs_to :category
   belongs_to :template
   has_many :orders
   has_many :variations

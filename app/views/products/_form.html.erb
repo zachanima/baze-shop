@@ -25,7 +25,7 @@
     <%= f.input :environment_fee %>
     <%= f.input :parcel_size %>
     <%= f.input :images, :as => :check_boxes, :collection => @product.template.images %>
-    <%= f.input :category, :as => :radio, :collection => categories_collection %>
+    <%= f.input :categories, :as => :check_boxes, :collection => categories_collection %>
     <%= f.input :user_groups, :as => :check_boxes, :collection => @shop.user_groups %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
     <% @product.option_groups.each do |option_group| %>

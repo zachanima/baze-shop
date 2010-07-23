@@ -4,7 +4,7 @@ class ProductsController < ApplicationController
   before_filter :find_shop
 
   def index
-    @products = @shop.products.all(:order => 'category_id, position')
+    @products = @shop.products.all('position')
   end
 
   def edit

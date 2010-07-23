@@ -11,7 +11,7 @@
         <th>Number</th>
         <th>Name</th>
         <th>Price</th>
-        <th>Category</th>
+        <th>Categories</th>
         <th>Group</th>
         <th>Images</th>
         <th>Options</th>
@@ -25,7 +25,7 @@
           <td class="name"><%= link_to(product.number, edit_shop_product_path(@shop, product)) %>
           <td><%= product.name %></td>
           <td><%= [format_currency(product.price), product.net_price ? "(#{format_currency(product.net_price)})" : nil].join(' ') %></td>
-          <td><%= product.category.self_and_ancestors.collect { |a| a.name }.join(' > ') if product.category %></td>
+          <td><%= truncated_categories(product) %></td>
           <td><%= truncated_user_groups(product) %></td>
           <td><%= product.images.count %></td>
           <td><%= product.option_groups.count %></td>
