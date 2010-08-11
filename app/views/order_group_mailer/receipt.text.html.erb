@@ -35,27 +35,44 @@
             </td>
             <td style="vertical-align: top; padding-right: 16px;">
               <%= order.quantity %> stk.
-              <% if order.product.price %>
-                &aacute; <%= [('%.2f' % order.product.price).gsub!('.', ','), @shop.currency].join(' ') %>
+              <% if order.product.total_price %>
+                &aacute; <%= [('%.2f' % order.product.total_price).gsub!('.', ','), @shop.currency].join(' ') %>
                 <% if order.product.net_price %>(<%= ('%.2f' % order.product.net_price).gsub!('.', ',') %> kr.)<% end %>
               <% elsif order.product.net_price %>
                 &aacute; <%= ('%.2f' % order.product.net_price).gsub!('.', ',') %> kr.
               <% end %>
+              <% if order.product.print_price %>
+                <br />Tryk &aacute; <%= [('%.2f' % order.product.print_price).gsub!('.', ','), @shop.currency].join(' ') if order.product.print_price %>
+              <% end %>
+              <% if order.product.environment_fee %>
+                <br />Milj&oslash; &aacute; <%= [('%.2f' % order.product.environment_fee).gsub!('.', ','), @shop.currency].join(' ') if order.product.environment_fee %>
+              <% end %>
             &nbsp;&nbsp;&nbsp;</td>
-            <td style="vertical-align: top; padding-right: 16px;"><%= [('%.2f' % order.price).gsub!('.', ','), @shop.currency].join(' ') if order.price %></td>
+            <td style="vertical-align: top; padding-right: 16px;">
+              <%= [('%.2f' % order.price).gsub!('.', ','), @shop.currency].join(' ') if order.product.total_price %><br />
+              <%= [('%.2f' % order.product.print_price).gsub!('.', ','), @shop.currency].join(' ') if order.product.print_price %><br />
+              <%= [('%.2f' % order.product.environment_fee).gsub!('.', ','), @shop.currency].join(' ') if order.product.environment_fee %><br />
+              <strong><%= [('%.2f' % order.product.total_price).gsub!('.', ','), @shop.currency].join(' ') if order.product.total_price %></strong>
+            </td>
           </tr>
         <% end %>
         <tr style="color: #fff; background-color: <%= @shop.color %>">
-          <td><strong>Total</strong></td>
+          <td>
+            Produktpris<br />
+            Trykpris<br />
+            Milj&oslash;till&aelig;g<br />
+            <strong>Total</strong>
+          </td>
           <td />
           <td />
           <td />
           <td>
-            <strong>
-              <%= [('%.2f' % (@order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i })).gsub!('.', ','), @shop.currency].join(' ') %>
-            </strong>
+            <%= [('%.2f' % @order_group.orders.collect { |o| o.price * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
+            <%= [('%.2f' % @order_group.orders.collect { |o| o.product.print_price * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
+            <%= [('%.2f' % @order_group.orders.collect { |o| o.product.environment_fee * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
+            <strong><%= [('%.2f' % @order_group.orders.collect { |o| o.product.total_price * o.quantity}.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong>
             (<%= [('%.2f' % (@order_group.orders.collect { |o| o.net_price }.compact.inject(0) { |b,i| b + i })).gsub!('.', ','), 'kr.'].join(' ') %>)
-            </td>
+          </td>
         </tr>
       </tbody>
     </table>

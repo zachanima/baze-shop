@@ -30,9 +30,11 @@
             <td style="vertical-align: top; padding-right: 16px;"><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(v.price ? [('%.2f' % v.price).gsub!('.', ','), @shop.currency].join(' ') : nil)].join(': ') }.join('<br />') %>&nbsp;&nbsp;&nbsp;</td>
             <td style="vertical-align: top; padding-right: 16px;">
               <%= order.quantity %> stk.
-              <% if order.product.price %>&aacute; <%= [('%.2f' % order.product.price).gsub!('.', ','), @shop.currency].join(' ') %><% end %>
+              <% if order.product.total_price %>&aacute; <%= [('%.2f' % order.product.total_price).gsub!('.', ','), @shop.currency].join(' ') %><% end %>
             &nbsp;&nbsp;&nbsp;</td>
-            <td style="vertical-align: top; padding-right: 16px;"><%= [('%.2f' % order.price).gsub!('.', ','), @shop.currency].join(' ') if order.price %></td>
+            <td style="vertical-align: top; padding-right: 16px;">
+              <strong><%= [('%.2f' % order.product.total_price).gsub!('.', ','), @shop.currency].join(' ') if order.product.total_price %></strong>
+            </td>
           </tr>
         <% end %>
         <tr style="color: #fff; background-color: <%= @shop.color %>">
@@ -40,7 +42,9 @@
           <td />
           <td />
           <td />
-          <td><strong><%= [('%.2f' % @order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong></td>
+          <td>
+            <strong><%= [('%.2f' % @order_group.orders.collect { |o| o.product.total_price * o.quantity}.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong>
+          </td>
         </tr>
       </tbody>
     </table>

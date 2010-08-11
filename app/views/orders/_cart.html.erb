@@ -23,12 +23,12 @@
           <%= link_to_remote('+', :update => 'cart', :url => "/shops/#{@shop.link}/orders/increment/#{order.id}") %>
           (<%= link_to_remote('slet', :update => 'cart', :url => shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>)
         </td>
-        <td><%= format_currency(order.price) %></td>
+        <td><%= format_currency(order.total_price) %></td>
       </tr>
     <% end %>
     <tr class="total">
       <td colspan="4">Total</td>
-      <td><%= format_currency(@current_user.waiting_orders.collect(&:price).compact.inject(0) { |b,i| b + i }) %>
+      <td><%= format_currency(@current_user.waiting_orders.collect(&:total_price).compact.inject(0) { |b,i| b + i }) %>
     </tr>
   </tbody>
 </table>

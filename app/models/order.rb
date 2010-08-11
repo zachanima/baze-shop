@@ -13,6 +13,10 @@ class Order < ActiveRecord::Base
     self.save
   end
 
+  def total_price
+    self.price + (self.product.print_price + self.product.environment_fee) * self.quantity
+  end
+
   def net_price
     net_price = self.product.net_price
     self.variations.each do |variation|

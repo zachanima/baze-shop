@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
       balance = self.budget
       self.accepted_orders.each do |order|
         balance -= order.price if order.price
+        balance -= ((order.product.print_price ? order.product.print_price : 0) + (order.product.environment_fee ? order.product.environment_fee : 0)) * order.quantity if order.price
       end
       return balance
     end

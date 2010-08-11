@@ -74,8 +74,8 @@
         </li>
         <% content_tag :li do %>
           <%= f.label 'Stykpris' %>
-          <span class="price"><%= format_currency(@product.price) %></span>
-        <% end if @product.price %>
+          <span class="price"><%= format_currency(@product.total_price) %></span>
+        <% end if @product.total_price %>
       </ol>
     </fieldset>
     <% f.buttons do %>

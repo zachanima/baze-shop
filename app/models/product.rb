@@ -30,4 +30,9 @@ class Product < ActiveRecord::Base
       self.images.first.data.url(:small)
     end
   end
+
+  def total_price
+    price = self.price + self.print_price + self.environment_fee
+    price > 0 ? price : nil
+  end
 end

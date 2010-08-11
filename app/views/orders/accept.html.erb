@@ -12,14 +12,14 @@
         <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
         <td>
           <%= order.quantity %> stk.
-          <% if order.product.price %>&aacute; <%= format_currency(order.product.price) %><% end %>
+          <% if order.product.total_price %>&aacute; <%= format_currency(order.product.total_price) %><% end %>
         </td>
-        <td class="date_price"><%= format_currency(order.price) %></td>
+        <td class="date_price"><%= format_currency(order.total_price) %></td>
       </tr>
     <% end %>
     <tr class="total">
       <td>Total</td>
-      <td colspan="4"class="date_price"><%= format_currency(@order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }) %></td>
+      <td colspan="4"class="date_price"><%= format_currency(@order_group.orders.collect { |o| o.total_price }.compact.inject(0) { |b,i| b + i }) %></td>
     </tr>
   </tbody>
 </table>
