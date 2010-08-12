@@ -68,8 +68,8 @@
           <td />
           <td>
             <%= [('%.2f' % @order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
-            <%= [('%.2f' % @order_group.orders.collect { |o| o.product.print_price * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
-            <%= [('%.2f' % @order_group.orders.collect { |o| o.product.environment_fee * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
+            <%= [('%.2f' % @order_group.orders.collect { |o| (o.product.print_price || 0) * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
+            <%= [('%.2f' % @order_group.orders.collect { |o| (o.product.environment_fee || 0) * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
             <strong><%= [('%.2f' % @order_group.orders.collect { |o| o.total_price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong>
             (<%= [('%.2f' % (@order_group.orders.collect { |o| o.net_price }.compact.inject(0) { |b,i| b + i })).gsub!('.', ','), 'kr.'].join(' ') %>)
           </td>

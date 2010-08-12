@@ -14,7 +14,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_price
-    self.price + (self.product.print_price + self.product.environment_fee) * self.quantity
+    (self.price || 0) + ((self.product.print_price || 0) + (self.product.environment_fee || 0)) * (self.quantity || 1)
   end
 
   def net_price

@@ -32,7 +32,7 @@ class Product < ActiveRecord::Base
   end
 
   def total_price
-    price = self.price + self.print_price + self.environment_fee
+    price = (self.price || 0) + (self.print_price || 0) + (self.environment_fee || 0)
     price > 0 ? price : nil
   end
 end
