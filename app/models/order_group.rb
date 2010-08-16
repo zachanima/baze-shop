@@ -1,5 +1,6 @@
 class OrderGroup < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
+  has_many :field_values, :dependent => :destroy
   belongs_to :user
   belongs_to :address
 

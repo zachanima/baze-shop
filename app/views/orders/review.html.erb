@@ -25,6 +25,12 @@
           <% end %>
         </li>
       <% end %>
+      <% @shop.fields.each do |field| %>
+        <li class="text">
+          <%= label_tag :field, field.text %>
+          <%= text_field_tag "field_values[#{field.id}]" %>
+        </li>
+      <% end %>
       <li class="text">
         <%= label_tag :text, 'Kommentar' %>
         <%= text_area_tag 'order_group[text]', nil, :rows => 4 %>

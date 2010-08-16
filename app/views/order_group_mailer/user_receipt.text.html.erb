@@ -81,6 +81,12 @@
         <td class="strong">Email:&nbsp;&nbsp;&nbsp;</td>
         <td><%= @user.email %></td>
       <% end if @user.email %>
+      <% @order_group.field_values.all.each do |value| %>
+        <% content_tag :tr, :class => cycle('even', 'odd') do %>
+          <td class="strong"><%= value.field.text %>:</td>
+          <td><%= value.text %></td>
+        <% end %>
+      <% end %>
       <% content_tag :tr, :class => cycle('even', 'odd') do %>
         <td class="strong">Noter:&nbsp;&nbsp;&nbsp;</td>
         <td><%= Maruku.new(@user.text).to_html.gsub("\r\n", '<br />') %></td>

@@ -54,6 +54,12 @@
     <td class="strong">Email:</td>
     <td><%= @current_user.email %></td>
   <% end if @current_user.email %>
+  <% @order_group.field_values.all.each do |value| %>
+    <% content_tag :tr, :class => cycle('even', 'odd') do %>
+      <td class="strong"><%= value.field.text %>:</td>
+      <td><%= value.text %></td>
+    <% end %>
+  <% end %>
   <% content_tag :tr, :class => cycle('even', 'odd') do %>
     <td class="strong">Noter:</td>
     <td><%= markdown(@current_user.text).gsub("\r\n", '<br />') %></td>

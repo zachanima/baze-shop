@@ -42,6 +42,20 @@
     <%= link_to_new('user group', new_shop_user_group_path(@shop)) %>
     <% f.inputs do %>
       <li>
+        <%= f.label :fields %>
+        <ol>
+          <% @shop.fields.all.each do |field| %>
+            <li>
+              <%= link_to(field.text, edit_shop_field_path(@shop, field)) %>
+              (<%= link_to('delete', shop_field_path(@shop, field), :confirm => "Delete field\n#{field.text}?", :method => :delete) %>)
+            </li>
+          <% end %>
+        </ol>
+      </li>
+    <% end %>
+    <%= link_to_new('field', new_shop_field_path(@shop)) %>
+    <% f.inputs do %>
+      <li>
         <%= f.label :addresses %>
         <ol id="addresses">
           <% @shop.addresses.all(:order => 'position').each do |address| %>

@@ -95,6 +95,16 @@ class OrdersController < ApplicationController
         @order_group = @current_user.order_groups.last
       else
         @order_group = @current_user.order_groups.build(params[:order_group])
+        @shop.fields.each do |field|
+          value = params[:field_values][field.id.to_s]
+          unless value.blank?
+            @order_group.field_values.build({ :field_id => field.id, :text => value })
+          else
+            flash[:error] = [field.text, 'ikke givet'].join(' ')
+            redirect_to(review_shop_user_orders_path(@shop, @current_user))
+            return
+          end
+        end
         @order_group.address_id = nil if @order_group.address_id == 0
         @order_group.dummy = false
         @order_group.save

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100722201823) do
+ActiveRecord::Schema.define(:version => 20100816062421) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -60,6 +60,17 @@ ActiveRecord::Schema.define(:version => 20100722201823) do
     t.integer "position"
     t.integer "shop_id"
     t.boolean "net"
+  end
+
+  create_table "field_values", :force => true do |t|
+    t.string  "text"
+    t.integer "field_id"
+    t.integer "order_group_id"
+  end
+
+  create_table "fields", :force => true do |t|
+    t.string  "text"
+    t.integer "shop_id"
   end
 
   create_table "images", :force => true do |t|
