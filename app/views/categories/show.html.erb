@@ -7,7 +7,7 @@
           <% link_to(shop_product_path(@shop, product)) do %>
             <%= image_tag(product.thumbnail) if product.thumbnail %>
             <span class="name"><%= product.name %></span>
-            <span class="price"><%= format_currency(product.price) %></span>
+            <span class="price"><%= format_currency(product.total_price) %></span>
           <% end %>
         </td>
       <% end %>
