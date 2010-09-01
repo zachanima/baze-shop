@@ -20,12 +20,16 @@
           </tr>
           <% order_group.orders.each do |order| %>
             <tr class="<%= cycle('even', 'odd', :name => 'even_odd') %>">
-              <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
-              <td><%= order.product.number %></td>
+              <% if order.product.nil? %>
+                <td class="name" colspan="2">Udg&aring;et</td>
+              <% else %>
+                <td class="name"><%= link_to(order.product.name, shop_product_path(@shop, order.product)) %></td>
+                <td><%= order.product.number %></td>
+              <% end %>
               <td><%= order.variations.collect { |v| ["<strong>#{v.option.option_group.text}</strong>", v.text_with_price(format_currency(v.price))].join(': ') }.join('<br />') %></td>
               <td>
                 <%= order.quantity %> stk.
-                <% if order.product.price %>&aacute; <%= format_currency(order.product.price) %><% end %>
+                <% if order.product and order.product.price %>&aacute; <%= format_currency(order.product.price) %><% end %>
               </td>
               <td class="date_price"><%= format_currency(order.price) %></td>
             </tr>
@@ -62,7 +66,7 @@
         <% @orders.each do |order| %>
           <tr class="<%= cycle('odd', 'even') %>">
             <td class="checkbox"><%= check_box_tag('order_ids[]', order.id, false, :class => 'checkbox') %></td>
-            <td class="name"><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) %></td>
+            <td class="name"><%= link_to(order.product.name, edit_shop_product_path(order.product.shop, order.product)) if order.product %></td>
             <%= content_tag :td, link_to(order.user.shop.name, shop_orders_path(order.user.shop)) unless @shop %>
             <td><%= link_to(order.user.name, edit_shop_user_path(order.user.shop, order.user)) %></td>
             <td><%= order.variations.collect { |v| "<abbr title=\"#{v.option.option_group.text}\">#{v.option.text}</abbr>" }.join(', ') %></td>
