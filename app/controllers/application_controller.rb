@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_shop
-    if @current_user and @current_user.shop === @shop
+    if (@current_user and @current_user.shop === @shop) or @shop.public
       render :layout => 'shop'
     else
       session.delete(:user_id)

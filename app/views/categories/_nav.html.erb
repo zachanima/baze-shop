@@ -1,4 +1,4 @@
-<% unless category.user_groups.empty? == false and (category.user_groups & @current_user.user_groups).empty? %>
+<% unless !@shop.public and (category.user_groups.empty? == false and (category.user_groups & @current_user.user_groups).empty?) %>
   <li>
     <%= link_to(category.name, category.products.empty? ? '#' : shop_category_path(@shop, category)) %>
     <% content_tag :ul do %>

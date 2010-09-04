@@ -27,7 +27,8 @@ class Shop < ActiveRecord::Base
   def status
     [
       closed ? 'Closed' : nil,
-      logo.exists? ? nil : 'No logo'
+      logo.exists? ? nil : 'No logo',
+      self.public ? 'Public' : nil
     ].compact
   end
 

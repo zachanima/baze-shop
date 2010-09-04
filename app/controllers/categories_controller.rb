@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
 
   def show
     @products = @category.products.all(:order => 'position')
-    filter_user_groups!(@products)
+    filter_user_groups!(@products) if @current_user
     render_shop
   end
   

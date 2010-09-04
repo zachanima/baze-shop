@@ -83,5 +83,5 @@
       <%= f.input :price, :as => :hidden, :value => @product.price %>
       <%= f.commit_button('Føj til kurv...') %>
     <% end %>
-  <% end %>
+  <% end unless @shop.public %>
 </div>
