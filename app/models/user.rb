@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
     self.orders.all(:conditions => { :order_group_id => nil })
   end
 
+  def waiting_orders_price
+    self.waiting_orders.collect(&:total_price).compact.inject(0) { |b,i| b + i }
+  end
+
   def balance
     if self.budget
       balance = self.budget

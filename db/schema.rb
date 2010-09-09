@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100904030033) do
+ActiveRecord::Schema.define(:version => 20100909113556) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20100904030033) do
   create_table "shops", :force => true do |t|
     t.string   "name"
     t.string   "link"
-    t.text     "text",              :limit => 255
+    t.text     "text",               :limit => 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username_text"
@@ -177,6 +177,8 @@ ActiveRecord::Schema.define(:version => 20100904030033) do
     t.boolean  "logo_box"
     t.string   "correspondent"
     t.boolean  "public"
+    t.float    "shipping_price"
+    t.float    "shipping_threshold"
   end
 
   create_table "tasks", :force => true do |t|

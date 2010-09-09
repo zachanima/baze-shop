@@ -26,10 +26,21 @@
         <td><%= format_currency(order.total_price) %></td>
       </tr>
     <% end %>
-    <tr class="total">
-      <td colspan="4">Total</td>
-      <td><%= format_currency(@current_user.waiting_orders.collect(&:total_price).compact.inject(0) { |b,i| b + i }) %>
-    </tr>
+    <% if !@shop.shipping_price or (@shop.shipping_threshold and @current_user.waiting_orders_price >= @shop.shipping_threshold) %>
+      <tr class="total">
+        <td colspan="4">Total</td>
+        <td><%= format_currency(@current_user.waiting_orders_price) %>
+      </tr>
+    <% else %>
+      <tr class="total">
+        <td colspan="4">Fragt</td>
+        <td><%= format_currency(@shop.shipping_price) %>
+      </tr>
+      <tr class="total">
+        <td colspan="4">Total inkl. fragt</td>
+        <td><%= format_currency(@current_user.waiting_orders_price + @shop.shipping_price) %>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 <%= link_to('G&aring; til bestilling', review_shop_user_orders_path(@shop, @current_user)) unless controller.action_name == 'review' %>
