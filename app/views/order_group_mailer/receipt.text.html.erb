@@ -8,9 +8,6 @@
     </style>
   </head>
   <body>
-    <strong>Tak for din bestilling!</strong>
-    <br />
-    <br />
     <%= Maruku.new(@shop.receipt_text).to_html.gsub("\r\n", '<br />') unless @shop.receipt_text.blank? %>
     <br />
     <br />
