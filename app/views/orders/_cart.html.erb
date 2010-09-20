@@ -26,10 +26,10 @@
         <td><%= format_currency(order.total_price) %></td>
       </tr>
     <% end %>
-    <% if !@shop.shipping_price or (@shop.shipping_threshold and @current_user.waiting_orders_price >= @shop.shipping_threshold) %>
+    <% if !@shop.shipping_price or (@shop.shipping_threshold and (@current_user.waiting_orders_price + (@order_group.nil? ? 0 : @order_group.price)) >= @shop.shipping_threshold) %>
       <tr class="total">
         <td colspan="4">Total</td>
-        <td><%= format_currency(@current_user.waiting_orders_price) %>
+        <td><%= format_currency(@current_user.waiting_orders_price) %><%= @current_user.waiting_orders_price + @order_group.price %></td>
       </tr>
     <% else %>
       <tr class="total">

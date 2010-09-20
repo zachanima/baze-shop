@@ -5,7 +5,7 @@
   <td><%= user_text(order_group) %></td>
   <%= td_products(order_group) %>
   <td><%= truncated_tooltip(order_group.field_values.collect(&:text) * ', ') %></td>
-  <td class="price"><%= format_currency(order_group.price) %></td>
+  <td class="price"><%= format_currency(order_group.price_with_shipping) %></td>
   <td class="time"><%= order_group.created_at.date %></td>
   <%= td_delete(order_group) %>
 </tr>

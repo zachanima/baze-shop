@@ -58,6 +58,7 @@
             Produktpris<br />
             Trykpris<br />
             Milj&oslash;till&aelig;g<br />
+            <%=raw 'Fragt<br />' if @order_group.shipping? %>
             <strong>Total</strong>
           </td>
           <td />
@@ -67,7 +68,8 @@
             <%= [('%.2f' % @order_group.orders.collect { |o| o.price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
             <%= [('%.2f' % @order_group.orders.collect { |o| (o.product.print_price || 0) * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
             <%= [('%.2f' % @order_group.orders.collect { |o| (o.product.environment_fee || 0) * o.quantity }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %><br />
-            <strong><%= [('%.2f' % @order_group.orders.collect { |o| o.total_price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong>
+            <%= [('%.2f' % @order_group.user.shop.shipping_price).gsub!('.', ','), @shop.currency].join(' ') if @order_group.shipping? %><br />
+            <strong><%= [('%.2f' % @order_group.price_with_shipping).gsub!('.', ','), @shop.currency].join(' ') %></strong>
             (<%= [('%.2f' % (@order_group.orders.collect { |o| o.net_price }.compact.inject(0) { |b,i| b + i })).gsub!('.', ','), 'kr.'].join(' ') %>)
           </td>
         </tr>

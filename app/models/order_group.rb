@@ -5,6 +5,16 @@ class OrderGroup < ActiveRecord::Base
   belongs_to :address
 
   def price
-    self.orders.collect { |o| o.total_price }.compact.inject(0) { |b,i| b + i } unless self.dummy
+    unless self.dummy
+      price = self.orders.collect(&:total_price).compact.inject(0) { |b,i| b + i } unless self.dummy
+    end
+  end
+
+  def price_with_shipping
+    self.price + (self.shipping? ? self.user.shop.shipping_price : 0)
+  end
+
+  def shipping?
+    self.user.shop.shipping_price and self.price < self.user.shop.shipping_threshold
   end
 end

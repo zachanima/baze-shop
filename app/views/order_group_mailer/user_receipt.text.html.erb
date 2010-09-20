@@ -35,12 +35,16 @@
           </tr>
         <% end %>
         <tr style="color: #fff; background-color: <%= @shop.color %>">
-          <td><strong>Total</strong></td>
+          <td>
+            <%=raw 'Fragt<br />' if @order_group.shipping? %>
+            <strong>Total</strong>
+          </td>
           <td />
           <td />
           <td />
           <td>
-            <strong><%= [('%.2f' % @order_group.orders.collect { |o| o.total_price }.compact.inject(0) { |b,i| b + i }).gsub!('.', ','), @shop.currency].join(' ') %></strong>
+            <%= [('%.2f' % @order_group.user.shop.shipping_price).gsub!('.', ','), @shop.currency].join(' ') if @order_group.shipping? %><br />
+            <strong><%= [('%.2f' % @order_group.price_with_shipping).gsub!('.', ','), @shop.currency].join(' ') %></strong>
           </td>
         </tr>
       </tbody>
