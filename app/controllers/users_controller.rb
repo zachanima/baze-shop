@@ -1,3 +1,5 @@
+require 'csv'
+
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show]
   before_filter :find_shop
@@ -5,6 +7,41 @@ class UsersController < ApplicationController
 
   def index
     @users = @shop ? @shop.users.all(:order => 'first_name, last_name') : User.all(:order => 'first_name, last_name')
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        CSV.open('public/all_users.csv', 'w') do |csv|
+          header = Array.new
+          header << 'Name'
+          header << 'Department'
+          header << 'Login'
+          header << 'Password'
+          header << 'Email'
+          header << 'Telephone'
+          header << 'Address'
+          header << 'Text'
+          header << 'Budget'
+          header << 'Balance'
+          csv << header.flatten
+          @users.each do |user|
+            row = Array.new
+            row << user.name
+            row << user.department
+            row << user.login
+            row << user.password
+            row << user.email
+            row << user.telephone
+            row << user.address.gsub("\r\n", ',')
+            row << user.text.gsub("\r\n", ',')
+            row << user.budget
+            row << user.balance
+            csv << row.flatten
+          end
+        end
+        render :file => 'public/all_users.csv', :layout => false
+      end
+    end
   end
 
   def new

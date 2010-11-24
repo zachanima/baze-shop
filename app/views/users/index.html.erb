@@ -1,6 +1,7 @@
 <% title(list_users_text) %>
 <%= link_to_add_user %>
 <%= link_to_import_users %>
+<%= link_to 'Export users', shop_users_path(@shop) + '.csv?' + Time.new.to_i.to_s %>
 
 <% form_tag({ :action => :multiple }, :class => 'index') do %>
   <%= submit_tag_delete %>
