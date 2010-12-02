@@ -23,7 +23,7 @@
           <%= link_to_remote('+', :update => 'cart', :url => "/shops/#{@shop.link}/orders/increment/#{order.id}") %>
           (<%= link_to_remote('slet', :update => 'cart', :url => shop_user_order_path(@shop, @current_user, order), :confirm => "Slet bestilling af #{order.product.name}?", :method => :delete) %>)
         </td>
-        <td><%= format_currency(order.total_price) %></td>
+        <td><%= format_currency(order.total_price) if order.total_price %></td>
       </tr>
     <% end %>
     <% if !@shop.shipping_price or (@shop.shipping_threshold and (@current_user.waiting_orders_price + (@order_group.nil? ? 0 : @order_group.price)) >= @shop.shipping_threshold) %>
