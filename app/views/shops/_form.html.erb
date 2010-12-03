@@ -16,6 +16,7 @@
     <%= f.input :correspondent %>
     <%= f.input :public %>
     <%= f.input :closed %>
+    <%= f.input :locale, :as => :select, :collection => [['Danish', :da], ['English', :en]], :include_blank => false %>
   <% end %>
   <% unless @shop.new_record? %>
     <% f.inputs do %>

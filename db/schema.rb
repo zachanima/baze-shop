@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100909113556) do
+ActiveRecord::Schema.define(:version => 20101203080939) do
 
   create_table "addresses", :force => true do |t|
     t.text     "text"
@@ -179,6 +179,7 @@ ActiveRecord::Schema.define(:version => 20100909113556) do
     t.boolean  "public"
     t.float    "shipping_price"
     t.float    "shipping_threshold"
+    t.string   "locale"
   end
 
   create_table "tasks", :force => true do |t|

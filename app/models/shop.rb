@@ -36,4 +36,10 @@ class Shop < ActiveRecord::Base
     self.link
   end
 
+  def locale_text
+    case self.locale
+      when 'da' then 'Danish'
+      when 'en' then 'English'
+    end
+  end
 end
