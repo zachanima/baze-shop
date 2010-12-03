@@ -42,7 +42,7 @@
           <li><%= link_to('All users', users_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name, shop_users_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.link, shop_users_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
@@ -55,7 +55,7 @@
           <li><%= link_to('All templates', templates_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name, shop_products_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.link, shop_products_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
@@ -68,7 +68,7 @@
           <li><%= link_to('All orders', order_groups_path, :class => @shop ? 'inactive' : 'active') %></li>
           <% Shop.all.each do |shop| %>
             <li>
-              <%= link_to(shop.name, shop_order_groups_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
+              <%= link_to(shop.link, shop_order_groups_path(shop), :class => @shop === shop ? 'active' : 'inactive') %>
             </li>
           <% end %>
         </ul>
