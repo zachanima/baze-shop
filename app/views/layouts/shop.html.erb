@@ -48,10 +48,10 @@
     <div id="nav">
       <div class="content">
         <ul>
-          <li><%= link_to('Velkommen', shop_path(@shop)) %></li>
+          <li><%= link_to((@shop.locale == 'en' ? 'Welcome' : 'Velkommen'), shop_path(@shop)) %></li>
           <% if (@current_user and @current_user.shop === @shop) or @shop.public %>
             <li>
-              <%= link_to('Produkter', '#') %>
+              <%= link_to((@shop.locale == 'en' ? 'Products' : 'Produkter'), '#') %>
               <ul>
                 <% @shop.categories.roots.all(:order => 'position').each do |root| %>
                   <%= render :partial => 'categories/nav', :locals => { :category => root } %>
