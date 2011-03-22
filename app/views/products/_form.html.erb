@@ -19,6 +19,7 @@
   <% end %>
   <% f.inputs do %>
     <%= f.input :text %>
+    <%= f.input :html %>
     <%= f.input :price, :label => "Gross Price (#{@shop.currency})" %>
     <%= f.input :net_price %>
     <%= f.input :print_price %>
