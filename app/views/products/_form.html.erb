@@ -29,7 +29,7 @@
     <%= f.input :categories, :as => :check_boxes, :collection => categories_collection %>
     <%= f.input :user_groups, :as => :check_boxes, :collection => @shop.user_groups %>
     <%= link_to_new('category', new_shop_category_path(@shop)) %>
-    <% @product.option_groups.each do |option_group| %>
+    <% @product.option_groups.all(:order => 'position').each do |option_group| %>
       <%= f.input :options, :as => :check_boxes, :label => option_group.text, :collection =>
         option_group.options.all(:order => 'position').collect { |o| [[o.text, o.separator ? '(separator)' : nil].join(' '), o.id] } %>
       <%= link_to_new('option', new_option_group_option_path(option_group)) %>
