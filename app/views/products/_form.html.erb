@@ -34,7 +34,7 @@
         option_group.options.all(:order => 'position').collect { |o| [[o.text, o.separator ? '(separator)' : nil].join(' '), o.id] } %>
       <%= link_to_new('option', new_option_group_option_path(option_group)) %>
     <% end %>
-    <%= f.input :option_groups, :as => :check_boxes, :collection => OptionGroup.all.collect { |og| [og.name, og.id] } %>
+    <%= f.input :option_groups, :as => :check_boxes, :collection => OptionGroup.all(:order => 'position').collect { |og| [og.name, og.id] } %>
     <%= link_to_new('option group', new_option_group_path) %>
     <%= link_to('Edit option prices', shop_product_variations_path(@shop, @product)) %>
   <% end %>
